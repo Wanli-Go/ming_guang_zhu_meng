@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
       body: ChangeNotifierProvider(
         create: (context) => TapNotifier(),
-        child: const ItemList()
+        child: const IconExample()
       ),
 
       floatingActionButton: const FloatingActionButton(
