@@ -42,7 +42,7 @@ class _DonationAmountWidgetState extends State<DonationAmountWidget>
     return Container(
       padding: EdgeInsets.all(16), // 内边距
       decoration: BoxDecoration(
-        color: Colors.white, // 背景颜色
+        color: Color.fromARGB(255, 249, 247, 247), // 背景颜色
         borderRadius: BorderRadius.circular(8), // 边框圆角
         boxShadow: [
           BoxShadow(
@@ -75,7 +75,7 @@ class _DonationAmountWidgetState extends State<DonationAmountWidget>
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: Colors.green,
+                color: Color.fromARGB(255, 91, 208, 95),
               ),
             ),
           ),
@@ -110,11 +110,14 @@ class DonationRowWidget extends StatelessWidget {
             child: DonationAmountWidget(description: '累计捐赠金额', amount: amount1),
           ),
           // 中间的竖线分隔
-          Container(
-            height: 100, // 根据实际需要调整高度
-            width: 5, // 使线更粗
-            color: Colors.black, // 线的颜色改为黑色
-            margin: EdgeInsets.symmetric(horizontal: 20), // 左右边距
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 100, // 根据实际需要调整高度
+              width: 5, // 使线更粗
+              color: Colors.black, // 线的颜色改为黑色
+              margin: EdgeInsets.symmetric(horizontal: 10), // 左右边距
+            ),
           ),
           // 使用Flexible确保两个组件大小一样，但不强迫它们填满额外空间
           Flexible(
