@@ -34,7 +34,7 @@ class ItemList extends StatelessWidget {
               onTap: () => notifier.change(),
               title: Text(item.title),
               subtitle: Text(item.alternatetitle), // Display alternate title
-              tileColor: Colors.lime.withOpacity(0.3),
+              tileColor: Colors.lime.withOpacity(0.8),
             );
           }
           return listTile;
