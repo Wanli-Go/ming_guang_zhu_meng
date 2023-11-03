@@ -184,23 +184,26 @@ class MiddleRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.end, // 交叉轴居中对齐
-      children: <Widget>[
-        DonorRankingTile(
-          donor: donor,
-          height: size.width * 0.3,
-          imageHeight: size.width * 0.12,
-        ),
-        DonorRankingTile(
-          donor: donor,
-          height: size.width * 0.33,
-          imageHeight: size.width * 0.14,
-        ),
-        DonorRankingTile(
-          donor: donor,
-          height: size.width * 0.27,
-          imageHeight: size.width * 0.1,
-        ),
-      ],
+      children:<Widget>[
+                DonorRankingTile(
+                  donor: donor,
+                  height: MediaQuery.of(context).size.width * 0.3,
+                  imageHeight: MediaQuery.of(context).size.width * 0.12,
+                  medalImagePath: 'assets/second_medal.png',
+                ),
+                DonorRankingTile(
+                  donor: donor,
+                  height: MediaQuery.of(context).size.width * 0.33,
+                  imageHeight: MediaQuery.of(context).size.width * 0.14,
+                  medalImagePath: 'assets/goldenmedal.png',
+                ),
+                DonorRankingTile(
+                  donor: donor,
+                  height: MediaQuery.of(context).size.width * 0.27,
+                  imageHeight: MediaQuery.of(context).size.width * 0.1,
+                  medalImagePath: 'assets/third_medal.png',
+                ),
+              ],
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/child/view/my_notification.dart';
+import 'package:ming_guang/child/view/my_notification_page.dart';
 import 'package:ming_guang/donor/view/rank_page.dart';
 
 void main() {
