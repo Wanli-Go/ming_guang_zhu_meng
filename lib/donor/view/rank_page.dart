@@ -185,25 +185,25 @@ class MiddleRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.end, // 交叉轴居中对齐
       children:<Widget>[
-                DonorRankingTile(
-                  donor: donor,
-                  height: MediaQuery.of(context).size.width * 0.3,
-                  imageHeight: MediaQuery.of(context).size.width * 0.12,
-                  medalImagePath: 'assets/second_medal.png',
-                ),
-                DonorRankingTile(
-                  donor: donor,
-                  height: MediaQuery.of(context).size.width * 0.33,
-                  imageHeight: MediaQuery.of(context).size.width * 0.14,
-                  medalImagePath: 'assets/goldenmedal.png',
-                ),
-                DonorRankingTile(
-                  donor: donor,
-                  height: MediaQuery.of(context).size.width * 0.27,
-                  imageHeight: MediaQuery.of(context).size.width * 0.1,
-                  medalImagePath: 'assets/third_medal.png',
-                ),
-              ],
+        DonorRankingTile(
+          donor: donor,
+          height: MediaQuery.of(context).size.width * 0.32,
+          imageHeight: MediaQuery.of(context).size.width * 0.12,
+          medalImagePath: 'assets/second_medal.png',
+        ),
+        DonorRankingTile(
+          donor: donor,
+          height: MediaQuery.of(context).size.width * 0.35,
+          imageHeight: MediaQuery.of(context).size.width * 0.14,
+          medalImagePath: 'assets/goldenmedal.png',
+        ),
+        DonorRankingTile(
+          donor: donor,
+          height: MediaQuery.of(context).size.width * 0.29,
+          imageHeight: MediaQuery.of(context).size.width * 0.1,
+          medalImagePath: 'assets/third_medal.png',
+        ),
+      ],
     );
   }
 }
