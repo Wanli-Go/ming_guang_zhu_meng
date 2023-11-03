@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ming_guang/child/view/my_information_page.dart';
 import 'package:ming_guang/child/view/my_notification_page.dart';
 import 'package:ming_guang/donor/view/rank_page.dart';
 
@@ -11,6 +12,6 @@ void main() {
           color: Colors.indigo),
     ),
 
-    home: const RankPage(), // Your widget
+    home: const MyInfomationPage(), // Your widget
   ));
 }
