@@ -23,10 +23,8 @@ class _RankPageState extends State<RankPage> {
           backgroundColor: Color.fromARGB(255, 248, 129, 178).withOpacity(0.5),
           foregroundColor: Colors.grey[800],
           elevation: 0,
-          title: const Center(
-            child: Text(
-              '捐赠排行',
-            ),
+          title: const Text(
+            '捐赠排行',
           ),
         ),
         drawer: const Drawer(
@@ -55,6 +53,7 @@ class _RankPageState extends State<RankPage> {
 
         //底部导航栏
         bottomNavigationBar: BottomNavigationBar(
+          currentIndex: 1,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "主页"),
             BottomNavigationBarItem(
@@ -185,25 +184,25 @@ class MiddleRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.end, // 交叉轴居中对齐
       children:<Widget>[
-                DonorRankingTile(
-                  donor: donor,
-                  height: MediaQuery.of(context).size.width * 0.3,
-                  imageHeight: MediaQuery.of(context).size.width * 0.12,
-                  medalImagePath: 'assets/second_medal.png',
-                ),
-                DonorRankingTile(
-                  donor: donor,
-                  height: MediaQuery.of(context).size.width * 0.33,
-                  imageHeight: MediaQuery.of(context).size.width * 0.14,
-                  medalImagePath: 'assets/goldenmedal.png',
-                ),
-                DonorRankingTile(
-                  donor: donor,
-                  height: MediaQuery.of(context).size.width * 0.27,
-                  imageHeight: MediaQuery.of(context).size.width * 0.1,
-                  medalImagePath: 'assets/third_medal.png',
-                ),
-              ],
+        DonorRankingTile(
+          donor: donor,
+          height: MediaQuery.of(context).size.width * 0.32,
+          imageHeight: MediaQuery.of(context).size.width * 0.12,
+          medalImagePath: 'assets/second_medal.png',
+        ),
+        DonorRankingTile(
+          donor: donor,
+          height: MediaQuery.of(context).size.width * 0.35,
+          imageHeight: MediaQuery.of(context).size.width * 0.14,
+          medalImagePath: 'assets/goldenmedal.png',
+        ),
+        DonorRankingTile(
+          donor: donor,
+          height: MediaQuery.of(context).size.width * 0.29,
+          imageHeight: MediaQuery.of(context).size.width * 0.1,
+          medalImagePath: 'assets/third_medal.png',
+        ),
+      ],
     );
   }
 }
