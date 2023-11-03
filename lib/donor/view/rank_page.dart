@@ -29,7 +29,8 @@ class _RankPageState extends State<RankPage> {
             ),
           ),
         ),
-        body: Column(children: [
+        body:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           //第一块区域
           Container(
             margin: const EdgeInsets.all(20),
@@ -139,16 +140,19 @@ class _RankPageState extends State<RankPage> {
                   donor: donor,
                   height: MediaQuery.of(context).size.width * 0.3,
                   imageHeight: MediaQuery.of(context).size.width * 0.12,
+                  medalImagePath: 'assets/second_medal.png',
                 ),
                 DonorRankingTile(
                   donor: donor,
                   height: MediaQuery.of(context).size.width * 0.33,
                   imageHeight: MediaQuery.of(context).size.width * 0.14,
+                  medalImagePath: 'assets/goldenmedal.png',
                 ),
                 DonorRankingTile(
                   donor: donor,
                   height: MediaQuery.of(context).size.width * 0.27,
                   imageHeight: MediaQuery.of(context).size.width * 0.1,
+                  medalImagePath: 'assets/third_medal.png',
                 ),
               ],
             ),
