@@ -61,12 +61,15 @@ class DonorRankingTile extends StatelessWidget {
             ),
 
             //text
-            Column(
-              children: [
-                Text(donor.name),
-                Text("捐赠${donor.donationCount}次"),
-                Text("累计金额${donor.donationMoney}元")
-              ],
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.25,
+              child: Column(
+                children: [
+                  Text(donor.name),
+                  Text("捐赠${donor.donationCount}次"),
+                  Text("累计${donor.donationMoney}元")
+                ],
+              ),
             )
           ]),
     );
