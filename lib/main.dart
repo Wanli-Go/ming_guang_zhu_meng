@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/donor/view/rank_page.dart'; // 调整这个路径来决定你的 App 的调试的 Page
+import 'package:ming_guang/child/view/my_notification.dart';
+import 'package:ming_guang/donor/view/rank_page.dart';
 
 void main() {
   runApp(MaterialApp(

@@ -32,7 +32,8 @@ class _RankPageState extends State<RankPage> {
         body: Column(children: [
           //第一块区域
           Container(
-            margin: EdgeInsets.all(20),
+            margin: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               color: primaryColor.withOpacity(0.5), // 方框的背景颜色
               borderRadius: BorderRadius.circular(10),
@@ -73,8 +74,8 @@ class _RankPageState extends State<RankPage> {
                   ),
                   child: Image.asset(
                     donor.imageUrl,
-                    width: 80,
-                    height: 80,
+                    width: MediaQuery.of(context).size.width * 0.15,
+                    height: MediaQuery.of(context).size.width * 0.15,
                   ),
                 ),
                 Column(
@@ -106,8 +107,8 @@ class _RankPageState extends State<RankPage> {
                   ],
                 ),
                 Container(
-                  width: 70.0,
-                  height: 70.0,
+                  width: MediaQuery.of(context).size.width * 0.15,
+                  height: MediaQuery.of(context).size.width * 0.15,
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 239, 146, 175), // 圆形的颜色
                     shape: BoxShape.circle, // 设置形状为圆形
@@ -136,18 +137,18 @@ class _RankPageState extends State<RankPage> {
               children: <Widget>[
                 DonorRankingTile(
                   donor: donor,
-                  height: 120,
-                  imageHeight: 50,
+                  height: MediaQuery.of(context).size.width * 0.3,
+                  imageHeight: MediaQuery.of(context).size.width * 0.12,
                 ),
                 DonorRankingTile(
                   donor: donor,
-                  height: 130,
-                  imageHeight: 60,
+                  height: MediaQuery.of(context).size.width * 0.33,
+                  imageHeight: MediaQuery.of(context).size.width * 0.14,
                 ),
                 DonorRankingTile(
                   donor: donor,
-                  height: 110,
-                  imageHeight: 40,
+                  height: MediaQuery.of(context).size.width * 0.27,
+                  imageHeight: MediaQuery.of(context).size.width * 0.1,
                 ),
               ],
             ),

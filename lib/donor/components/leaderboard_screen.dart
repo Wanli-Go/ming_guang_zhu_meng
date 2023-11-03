@@ -129,7 +129,9 @@ class _LeaderboardModuleState extends State<LeaderboardModule>
       child: DefaultTabController(
         length: 3, // 三个标签
         child: Container(
-          constraints: BoxConstraints(maxHeight: 210),
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.3,
+          ),
           child: DefaultTabController(
             length: 3,
             child: Scaffold(
