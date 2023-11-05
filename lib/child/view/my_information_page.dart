@@ -17,7 +17,7 @@ class _MyInfomationState extends State<MyInfomationPage> {
       appBar: AppBar(
         backgroundColor:
             const Color.fromARGB(255, 246, 105, 164).withOpacity(0.5),
-        title: const Center(child: Text('我的界面')),
+        title: const Center(child: Text('我的')),
       ),
       body: Container(
         color: primaryColor,
