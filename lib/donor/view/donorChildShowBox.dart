@@ -2,27 +2,40 @@ import 'package:flutter/material.dart';
 
 //儿童类别选择组件
 class CategorySelector extends StatefulWidget {
-  const CategorySelector({Key? key}) : super(key: key);
-
   @override
   _CategorySelectorState createState() => _CategorySelectorState();
 }
 
 class _CategorySelectorState extends State<CategorySelector> {
-  final List<String> categories = ['全部', '经济困难', '留守儿童', '学业困难'];
+  final List<String> categories = ['全部', '经济拮据', '留守儿童', '学业困难'];
   int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50.0,
+      height: 40.0, // Set a fixed height for the horizontal ListView
+      decoration: BoxDecoration(
+        color: Color.fromARGB(255, 255, 252, 252),
+        borderRadius: BorderRadius.circular(5.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 3,
+            offset: Offset(0, 1),
+          ),
+        ],
+      ),
       child: ListView.separated(
+        padding: EdgeInsets.symmetric(
+            vertical: 10), // Add vertical padding if needed
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         separatorBuilder: (context, index) => VerticalDivider(
-          color: Colors.black,
-          thickness: 1,
+          color: const Color.fromARGB(
+              255, 176, 158, 158), // Change color to make it visible
           width: 1,
+          thickness: 2, // Set thickness of the divider
         ),
         itemBuilder: (context, index) => GestureDetector(
           onTap: () {
@@ -38,6 +51,7 @@ class _CategorySelectorState extends State<CategorySelector> {
               categories[index],
               style: TextStyle(
                 fontSize: 18.0,
+                color: Color.fromARGB(255, 109, 49, 49),
                 fontWeight: index == selectedIndex
                     ? FontWeight.bold
                     : FontWeight.normal,
@@ -72,11 +86,12 @@ class InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 120.0, // 高度
-      padding: EdgeInsets.all(8.0), // 边距
+      margin: EdgeInsets.only(right: 8, left: 8),
+      height: 130.0, // 高度
+      padding: EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 10), // 边距
       decoration: BoxDecoration(
-        color: Colors.white, // 背景颜色
-        borderRadius: BorderRadius.circular(12.0), // 圆角
+        color: Color.fromARGB(255, 255, 252, 252), // 背景颜色
+        borderRadius: BorderRadius.circular(10.0), // 圆角
       ),
       child: Row(
         children: <Widget>[
@@ -86,7 +101,7 @@ class InfoCard extends StatelessWidget {
               imagePath,
               width:
                   MediaQuery.of(context).size.width * 1 / 3, // 设置图片宽度为屏幕宽度的1/3
-              height: 120.0, // 设置图片高度
+              height: 115.0, // 设置图片高度
               fit: BoxFit.cover, // 图片填充方式
             ),
           ),
@@ -100,34 +115,52 @@ class InfoCard extends StatelessWidget {
                   Text(
                     '姓名：$name',
                     style: TextStyle(
-                      fontSize: 16.0, // 字体大小
+                      fontSize: 16.0, height: 1.3,
+                      color: Color.fromARGB(255, 114, 39, 39), // 字体大小
                     ),
                   ),
                   Text(
                     '地区：$region',
                     style: TextStyle(
-                      fontSize: 16.0, // 字体大小
+                      fontSize: 16.0, height: 1.3,
+                      color: Color.fromARGB(255, 114, 39, 39), // 字体大小
                     ),
                   ),
                   Text(
                     '个人情况：$situation',
                     style: TextStyle(
-                      fontSize: 16.0, // 字体大小
+                      fontSize: 16.0,
+                      height: 1.3,
+                      color: Color.fromARGB(255, 114, 39, 39),
                     ),
                   ),
                   GestureDetector(
                     onTap: onTapDetail,
                     child: Align(
                       alignment: Alignment.bottomRight,
-                      child: Text(
-                        '详情',
-                        style: TextStyle(
-                          color: Colors.blue, // 字体颜色
-                          fontSize: 16.0, // 字体大小
-                        ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize
+                            .min, // 使Row包裹内容，而不是填满CrossAxisAlignment.stretch
+                        children: <Widget>[
+                          Text(
+                            '详情',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 169, 29, 29), // 字体颜色
+                              fontSize: 17.0, // 字体大小
+                            ),
+                          ),
+
+                          SizedBox(width: 3.0), // 添加一点间隔
+
+                          Icon(
+                            Icons.double_arrow, // 选择适当的图标
+                            color: Color.fromARGB(255, 169, 29, 29), // 图标颜色
+                            size: 20.0, // 图标大小
+                          ),
+                        ],
                       ),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),

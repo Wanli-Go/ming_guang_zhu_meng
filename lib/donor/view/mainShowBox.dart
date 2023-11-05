@@ -98,31 +98,90 @@ class DonationRowWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      // 确保竖直方向高度是被子组件决定的
-      child: Row(
-        mainAxisSize: MainAxisSize.min, // 设置mainAxisSize为min
-        mainAxisAlignment: MainAxisAlignment.center, // 水平居中
-        children: [
-          // 使用Flexible确保两个组件大小一样，但不强迫它们填满额外空间
-          Flexible(
-            fit: FlexFit.loose,
-            child: DonationAmountWidget(description: '累计捐赠金额', amount: amount1),
-          ),
-          // 中间的竖线分隔
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 100, // 根据实际需要调整高度
-              width: 5, // 使线更粗
-              color: Colors.black, // 线的颜色改为黑色
-              margin: EdgeInsets.symmetric(horizontal: 10), // 左右边距
+    return Container(
+      padding:
+          EdgeInsets.only(left: 9, right: 9, top: 12, bottom: 10), // 添加一些内边距
+      child: Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(top: 16, bottom: 16), // 卡片内边距
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 249, 246, 246), // 卡片的背景颜色
+              borderRadius: BorderRadius.circular(5.0), // 圆角边框
+              boxShadow: [
+                BoxShadow(
+                  color: const Color.fromARGB(255, 189, 188, 188)
+                      .withOpacity(0.5), // 阴影颜色
+                  spreadRadius: 2, // 扩散半径
+                  blurRadius: 4, // 模糊半径
+                  offset: Offset(0, 1), // 阴影的位置偏移
+                ),
+              ],
             ),
-          ),
-          // 使用Flexible确保两个组件大小一样，但不强迫它们填满额外空间
-          Flexible(
-            fit: FlexFit.loose,
-            child: DonationAmountWidget(description: '累计帮助儿童', amount: amount2),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 子元素水平均匀分布
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        '累计捐赠金额',
+                        style: TextStyle(
+                          fontSize: 19,
+                          color: Color.fromARGB(255, 117, 62, 58),
+                          //fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 8.0), // 添加一些垂直空间
+                      Text(
+                        '1000万元',
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          color: Color.fromARGB(255, 134, 16, 8),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // 添加一个竖线分隔符
+                // 中间的竖线分隔
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Container(
+                    height: 55, // 根据实际需要调整高度
+                    width: 3, // 使线更粗
+                    color: const Color.fromARGB(255, 183, 141, 141), // 线的颜色改为黑色
+                    margin: EdgeInsets.symmetric(horizontal: 6), // 左右边距
+                  ),
+                ),
+
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        '累计帮助儿童',
+                        style: TextStyle(
+                          fontSize: 19,
+                          color: Color.fromARGB(255, 117, 62, 58),
+                          //fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 8.0), // 添加一些垂直空间
+                      Text(
+                        '100位',
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          color: Color.fromRGBO(134, 16, 8, 1),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -146,7 +205,7 @@ class DonationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.only(top: 16, bottom: 8, left: 14, right: 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -156,66 +215,86 @@ class DonationCard extends StatelessWidget {
               Expanded(
                 child: Container(
                   margin: EdgeInsets.only(right: 10.0),
-                  height: 2.0, // 分割线粗细
-                  color: const Color.fromARGB(255, 150, 77, 77), // 分割线颜色
+                  height: 1.0, // 分割线粗细
+                  color: Color.fromARGB(255, 152, 92, 88), // 分割线颜色
                 ),
               ),
               Text(
                 '最近捐助',
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0,
+                  fontSize: 24,
+                  color: Color.fromARGB(255, 139, 49, 43),
+                  //fontWeight: FontWeight.bold,
                 ),
               ),
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(left: 10.0),
-                  height: 2.0, // 分割线粗细
-                  color: Color.fromARGB(255, 129, 45, 45), // 分割线颜色
+                  margin: EdgeInsets.only(left: 12.0),
+                  height: 1.0, // 分割线粗细
+                  color: Color.fromARGB(255, 152, 92, 88), // 分割线颜色
                 ),
               ),
             ],
           ),
           SizedBox(height: 16.0),
           // 图片和文字描述部分
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // 图片区域
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
-                child: Image.asset(
-                  image,
-                  width: 120.0, // 设置图片固定宽度
-                  height: 120.0, // 设置图片固定高度
-                  fit: BoxFit.cover,
+          Container(
+            padding: EdgeInsets.only(
+                left: 12, right: 12, top: 12, bottom: 12), // 内边距
+            margin: EdgeInsets.only(top: 4), // 外边距
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(7.0), // 边框的圆角
+              color: Colors.white, // 容器的填充颜色
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2), // 阴影颜色
+                  spreadRadius: 1, // 阴影扩散程度
+                  blurRadius: 5, // 阴影模糊程度
+                  offset: Offset(0, 1), // 阴影的位置偏移
                 ),
-              ),
-              SizedBox(width: 8.0),
-              // 文字描述部分
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25.0,
-                      ),
-                    ),
-                    SizedBox(height: 8.0),
-                    Text(
-                      content,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Color.fromARGB(134, 168, 30, 30),
-                      ),
-                    ),
-                  ],
+              ],
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // 图片区域
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(7.0),
+                  child: Image.asset(
+                    image,
+                    width: 115.0, // 设置图片固定宽度
+                    height: 115.0, // 设置图片固定高度
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(width: 13.0),
+                // 文字描述部分
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                          //fontWeight: FontWeight.bold,
+                          fontSize: 23.0,
+                          color: Color.fromARGB(255, 110, 67, 63),
+                        ),
+                      ),
+                      SizedBox(height: 9.0),
+                      Text(
+                        content,
+                        style: TextStyle(
+                          fontSize: 19,
+                          height: 1.3,
+                          color: Color.fromARGB(133, 156, 70, 70),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -223,7 +302,7 @@ class DonationCard extends StatelessWidget {
   }
 }
 
-//寿司店的button
+//button
 class SsdButton extends StatelessWidget {
   final String text;
   final void Function()? onTap;
@@ -234,23 +313,25 @@ class SsdButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 200,  // 指定宽度
-        height: 50,  // 指定高度
+        width: 220, // 指定宽度
+        height: 50, // 指定高度
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 219, 163, 187).withOpacity(0.8),
-          borderRadius: BorderRadius.circular(40),
+          color: Color.fromARGB(255, 169, 103, 98).withOpacity(0.8),
+          borderRadius: BorderRadius.circular(15),
         ),
-        padding: EdgeInsets.all(10),  // 根据需要调整padding
+        padding: EdgeInsets.only(top: 6, bottom: 5), // 根据需要调整padding
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               text,
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                  fontSize: 19,
+                  //fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             const SizedBox(
-              width: 10,
+              width: 6,
               height: 8,
             ),
             Icon(
@@ -263,4 +344,3 @@ class SsdButton extends StatelessWidget {
     );
   }
 }
-

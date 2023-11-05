@@ -9,10 +9,16 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('明光筑梦'), // 在这里设置 AppBar 的标题
-        backgroundColor: Colors.pink, // 设置 AppBar 的背景颜色
+        title: Text(
+          '明光筑梦',
+          style: TextStyle(
+            fontSize: 25,
+          ),
+        ),
+        centerTitle: true, // 在这里设置 AppBar 的标题
+        backgroundColor: Color.fromARGB(255, 152, 92, 88), // 设置 AppBar 的背景颜色
       ),
-      backgroundColor: Color.fromARGB(255, 244, 215, 227),
+      backgroundColor: Color.fromARGB(255, 239, 229, 229),
       body: SingleChildScrollView(
         // 使用 SingleChildScrollView
         child: Center(
@@ -23,7 +29,7 @@ class MainPage extends StatelessWidget {
                 options: CarouselOptions(
                   autoPlay: true, // 自动播放
                   autoPlayInterval: Duration(seconds: 3), // 自动播放间隔时间
-                  height: 200.0, // 设置图片轮播组件的高度
+                  height: 165.0, // 设置图片轮播组件的高度
                   enlargeCenterPage: true, // 设置中间的图片更大
                   viewportFraction: 0.95, // 设置每个页面占用的屏幕宽度比例
                   pageSnapping: false, // 设置页面是否对齐
@@ -35,68 +41,48 @@ class MainPage extends StatelessWidget {
                   Image.asset('assets/changePic3.png'),
                 ],
               ),
-              /* Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Image.asset(
-                      'assets/heart.png',
-                      width: 150, // 修改图片宽度
-                      height: 150, // 修改图片高度
-                    ),
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center, // 添加垂直居中对齐
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(0),
-                          child: Text(
-                            "明光筑梦",
-                            style: GoogleFonts.dmSerifDisplay(
-                              fontSize: 30, // 修改字体大小
-                              color: Colors.yellow[800],
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(0),
-                          child: Text(
-                            "积小善，成大德",
-                            style: GoogleFonts.dmSerifDisplay(
-                              fontSize: 25, // 修改字体大小
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ), */
               Center(
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16.0), // 设置圆角半径
+                  borderRadius: BorderRadius.circular(8.0), // 设置圆角半径
                   child: Container(
                     width: 380.0, // 设置固定宽度
-                    height: 270.0, // 设置固定高度
-                    color: Color.fromARGB(255, 244, 215, 227), // 设置背景颜色为白色
+                    height: 180.0, // 设置固定高度
+                    color: Color.fromARGB(255, 243, 227, 227), // 设置背景颜色为白色
                     child: Column(
+                      //mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            '捐赠总览',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          padding: const EdgeInsets.only(
+                              right: 10, left: 10, top: 13),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: <Widget>[
+                              Divider(
+                                color:
+                                    Color.fromARGB(255, 152, 92, 88), // 分割线颜色
+                                thickness: 1, // 分割线厚度
+                              ),
+                              Container(
+                                color: Color.fromARGB(
+                                    255, 243, 227, 227), // 背景色应与父容器相同
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Text(
+                                    '捐赠总览',
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      color: Color.fromARGB(255, 139, 49, 43),
+                                      //fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(30.0),
+                          padding: const EdgeInsets.all(5.0),
                           child: Center(
                             child: DonationRowWidget(
                               amount1: '1000万元',
@@ -115,21 +101,21 @@ class MainPage extends StatelessWidget {
                 image: 'assets/zuijinjuanzhu.png',
               ),
               SizedBox(
-                height: 20,
+                height: 15,
               ),
-              Center(child: SsdButton(text: '捐助儿童', onTap: onTap)),
-              SizedBox(
-                height: 20,
-              ),
-              Center(child: SsdButton(text: '捐助项目', onTap: onTap)),
-              SizedBox(
-                height: 20,
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center, // 设置主轴对齐方式为居中
+                children: [
+                  SsdButton(text: '捐助儿童', onTap: onTap),
+                  SizedBox(width: 50), // 两个按钮之间的间隔，可以根据需要调整
+                  SsdButton(text: '捐助项目', onTap: onTap),
+                ],
+              )
             ],
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: const[
+      bottomNavigationBar: BottomNavigationBar(items: const [
         BottomNavigationBarItem(
           label: '主页',
           icon: Icon(Icons.home),
@@ -142,7 +128,7 @@ class MainPage extends StatelessWidget {
           label: '捐赠记录',
           icon: Icon(Icons.receipt),
         ),
-      ]),
+      ], selectedItemColor: Color.fromARGB(255, 152, 92, 88)),
     );
   }
 
