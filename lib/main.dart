@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './example/my_app.dart'; // 调整这个路径来决定你的 App 的调试的 Page
+import './child/my_app.dart'; // 调整这个路径来决定你的 App 的调试的 Page
+import './volunteer/view/task_detail.dart';
 
 void main() {
 
@@ -14,7 +15,7 @@ void main() {
         ),
       ),
 
-      home: const MyApp(), // Your widget
+      home: MyApp(), // Your widget
 
     )
 
