@@ -9,6 +9,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return set_page();
+  }
+}
+
+class set_page extends StatelessWidget {
+  const set_page({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: '积分商城',
       theme: ThemeData(
@@ -146,6 +157,26 @@ class ProductTile extends StatelessWidget {
     required this.name,
     required this.heat,
   }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return introduce_hot_product(index: index, image: image, name: name, heat: heat);
+  }
+}
+
+class introduce_hot_product extends StatelessWidget {
+  const introduce_hot_product({
+    super.key,
+    required this.index,
+    required this.image,
+    required this.name,
+    required this.heat,
+  });
+
+  final int index;
+  final String image;
+  final String name;
+  final int heat;
 
   @override
   Widget build(BuildContext context) {

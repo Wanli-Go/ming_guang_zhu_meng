@@ -9,6 +9,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return set_page();
+  }
+}
+
+class set_page extends StatelessWidget {
+  const set_page({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: '捐赠记录',
       theme: ThemeData(
@@ -46,6 +57,24 @@ class _DonationPageState extends State<DonationPage> {
   }
 
   void fetchDonationData() {}
+
+  @override
+  Widget build(BuildContext context) {
+    return main_structure(donationCount: donationCount, totalDonationAmount: totalDonationAmount, donationRecords: donationRecords);
+  }
+}
+
+class main_structure extends StatelessWidget {
+  const main_structure({
+    super.key,
+    required this.donationCount,
+    required this.totalDonationAmount,
+    required this.donationRecords,
+  });
+
+  final int donationCount;
+  final double totalDonationAmount;
+  final List<DonationRecord> donationRecords;
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +150,22 @@ class DonationStatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return personal_donate_information(label: label, value: value);
+  }
+}
+
+class personal_donate_information extends StatelessWidget {
+  const personal_donate_information({
+    super.key,
+    required this.label,
+    required this.value,
+  });
+
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
     return Expanded(
       child: Container(
         padding: const EdgeInsets.all(16.0),
@@ -185,6 +230,24 @@ class DonationListItem extends StatelessWidget {
     required this.onStatusPressed,
     required this.onSharePressed,
   });
+
+  @override
+  Widget build(BuildContext context) {
+    return donate_record(record: record, onStatusPressed: onStatusPressed, onSharePressed: onSharePressed);
+  }
+}
+
+class donate_record extends StatelessWidget {
+  const donate_record({
+    super.key,
+    required this.record,
+    required this.onStatusPressed,
+    required this.onSharePressed,
+  });
+
+  final DonationRecord record;
+  final VoidCallback onStatusPressed;
+  final VoidCallback onSharePressed;
 
   @override
   Widget build(BuildContext context) {

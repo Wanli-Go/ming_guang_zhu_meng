@@ -9,6 +9,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return set_page();
+  }
+}
+
+class set_page extends StatelessWidget {
+  const set_page({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: '积分商城',
       theme: ThemeData(
@@ -217,6 +228,20 @@ class ProductListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return introduce_product(product: product);
+  }
+}
+
+class introduce_product extends StatelessWidget {
+  const introduce_product({
+    super.key,
+    required this.product,
+  });
+
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
@@ -264,6 +289,17 @@ class ProductListItem extends StatelessWidget {
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return bottom();
+  }
+}
+
+class bottom extends StatelessWidget {
+  const bottom({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

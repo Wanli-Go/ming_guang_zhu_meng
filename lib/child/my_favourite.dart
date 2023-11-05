@@ -9,6 +9,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return set_page();
+  }
+}
+
+class set_page extends StatelessWidget {
+  const set_page({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: '我的收藏',
       theme: ThemeData(
@@ -292,6 +303,17 @@ class _ProductCardState extends State<ProductCard> {
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return bottom();
+  }
+}
+
+class bottom extends StatelessWidget {
+  const bottom({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -37,6 +37,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return theme();
+  }
+}
+
+class theme extends StatelessWidget {
+  const theme({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: '支持学生',
       theme: ThemeData(
@@ -80,6 +91,20 @@ class _StudentSupportPageState extends State<StudentSupportPage> {
     super.initState();
     studentInfo = StudentInfo.fetchFromBackend();
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return main_structure(studentInfo: studentInfo);
+  }
+}
+
+class main_structure extends StatelessWidget {
+  const main_structure({
+    super.key,
+    required this.studentInfo,
+  });
+
+  final Future<StudentInfo> studentInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -159,6 +184,20 @@ class StudentInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return introduce_student(studentInfo: studentInfo);
+  }
+}
+
+class introduce_student extends StatelessWidget {
+  const introduce_student({
+    super.key,
+    required this.studentInfo,
+  });
+
+  final StudentInfo studentInfo;
+
+  @override
+  Widget build(BuildContext context) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -184,6 +223,17 @@ class StudentInfoWidget extends StatelessWidget {
 
 class BottomNavigationBarWidget extends StatelessWidget {
   const BottomNavigationBarWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return bottom();
+  }
+}
+
+class bottom extends StatelessWidget {
+  const bottom({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
