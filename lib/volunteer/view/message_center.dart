@@ -199,9 +199,9 @@ class SubjectContainer extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.8),
+                  color: Colors.white.withOpacity(0.3),
                   shape: BoxShape.circle,
-                  border: Border.all(width: 5, color: Colors.white.withOpacity(0.84))
+                  border: Border.all(width: 5, color: Colors.white)
                 ),
                 child: const Icon(Icons.arrow_forward, size: 50, color: Colors.pinkAccent)),
             )
