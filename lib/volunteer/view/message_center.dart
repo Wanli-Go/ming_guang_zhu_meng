@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ming_guang/volunteer/view/chat_frame.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers.dart';
 import 'package:provider/provider.dart';
 import '../model/model.dart';
-import '../my_app.dart';
 
 class MessageCenter extends StatelessWidget {
   const MessageCenter({super.key});
@@ -9,8 +10,9 @@ class MessageCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 251, 232, 241),
       appBar: AppBar(
-        backgroundColor: Colors.deepOrangeAccent,
+        backgroundColor: const Color.fromARGB(255, 236, 130, 165),
         title: Center(child: Text("${user.name} 的 消息中心")),
       ),
       body: const MCColumn(),
@@ -54,70 +56,155 @@ class SubjectContainer extends StatelessWidget {
 
   const SubjectContainer({required this.index, required this.notifier, super.key});
 
-  String _getFirstMessage(List<Message> messageList){
+  List<dynamic> _getFirstMessage(List<Message> messageList){
     String result = "";
+    Color color = Colors.black;
     for (var element in messageList) {
-      if(element.fromId == childs[index].id){
-        if (element.isRead == false){
+      var received = element.fromId == childs[index].id;
+      var sent = element.fromId == user.id && element.toId == childs[index].id;
+      if( received || sent ){
+        if (sent) {
+          result += "→  ";
+        }
+        else if (element.isRead == false){
           result += "·  ";
+          color = const Color.fromARGB(255, 255, 86, 86);
         }
         result += element.content;
+        break;
       }
     }
-    return result;
+    return [result, color];
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.amber.withOpacity(0.7),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 10,
-                  offset: const Offset(0, 3), // Changes the position of the shadow
-                ),
-        ]
-      ),
-      width: MediaQuery.of(context).size.width * 0.84,
-      height: 160,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
+    var firstMessageResult = _getFirstMessage(notifier.messageList);
+    String message = firstMessageResult[0];
+    Color color = firstMessageResult[1];
+
+    Size size = MediaQuery.of(context).size;
+
+    return SizedBox(
+      width: size.width,
+      child: Stack(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child:  (childs[index].imageLink != null ? 
-                  Image.network(childs[index].imageLink!, height: 80) 
-                  : Image.asset("assets/default.png", height: 80))
-              ),
-              Column(
-                children: [
-                  Text(childs[index].name,
-                    style: const TextStyle(
-                      color: Colors.green,
-                      fontSize: 35
-                    ),
-                  ),
-                  Text(childs[index].description??"无信息可用")
-                ],
-              ),
-            ],
-          ),
           Container(
-            width: MediaQuery.of(context).size.width * 0.7,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.8),
-              borderRadius: BorderRadius.circular(13)
+              border: Border.all(
+                color: Colors.white.withOpacity(0.6),
+                width: 2
+              ),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                        color: Colors.grey.withOpacity(0.4),
+                        spreadRadius: 1,
+                        blurRadius: 10,
+                        offset: const Offset(0, 3), // Changes the position of the shadow
+                      ),
+              ],
+              gradient: const LinearGradient(
+                    // 线性渐变
+                    begin: Alignment.topLeft, // 渐变开始的位置
+                    end: Alignment.bottomRight, // 渐变结束的位置
+                    colors: [
+                      Color.fromARGB(255, 255, 161, 200), // 开始颜色
+                      Colors.white, // 结束颜色
+                    ],
+                  ),
             ),
-            padding: const EdgeInsets.all(13),
-            child: TextFade(text: _getFirstMessage(notifier.messageList), color: Colors. redAccent),
+            width: MediaQuery.of(context).size.width * 0.80,
+            height: 160,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Expanded(
+                      flex: 2,  
+                      child: SizedBox(width: 1)
+                    ),
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.pink.shade400.withOpacity(0.58),
+                              width: 2.5
+                            )
+                          ),
+                          child:  CircleAvatar(
+                          radius: size.width * 0.1 ,
+                          backgroundImage: childs[index].imageLink != null 
+                          ? NetworkImage(childs[index].imageLink!) 
+                          : const AssetImage("assets/default.png") as ImageProvider<Object>,
+                          
+                          )
+                      ),
+                    ),
+                    const Expanded(
+                      flex: 1,  
+                      child: SizedBox(width: 1)
+                    ),
+                    Expanded(
+                      flex: 15,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(childs[index].name,
+                          softWrap: false,
+                            style: TextStyle(
+                              //color: Color.fromARGB(255, 255, 42, 42).withOpacity(0.6),
+                              fontSize: 32,
+                              letterSpacing: 1,
+                              foreground: 
+                              Paint()
+                                ..style = PaintingStyle.stroke
+                                ..strokeWidth = 1.8
+                                ..color = Colors.pink.shade400,
+                            ),
+                          ),
+                          TextFade(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 15, text: childs[index].description??"无信息可用  "),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.6),
+                    borderRadius: BorderRadius.circular(13),
+                    border: Border.all(color: Colors.pinkAccent.withOpacity(0.6),width: 2)
+                  ),
+                  padding: const EdgeInsets.all(13),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: TextFade(text: message, color: color),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Positioned(
+            right: 0,
+            top: 52,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_) => ChatScreen(key:UniqueKey(), userId: user.id, toId: childs[index].id)));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.8),
+                  shape: BoxShape.circle,
+                  border: Border.all(width: 5, color: Colors.white.withOpacity(0.84))
+                ),
+                child: const Icon(Icons.arrow_forward, size: 50, color: Colors.pinkAccent)),
+            )
           )
         ],
       ),
@@ -128,9 +215,13 @@ class SubjectContainer extends StatelessWidget {
 class TextFade extends StatelessWidget {
   final String text;
   final Color color;
-  const TextFade({
+  double? fontSize;
+  FontWeight? fontWeight;
+  TextFade({
     required this.color,
     required this.text,
+    this.fontSize,
+    this.fontWeight,
     super.key,
   });
 
@@ -139,12 +230,12 @@ class TextFade extends StatelessWidget {
     return Container( 
       // 这是用 ChatGPT 生成的一个文本组件，实现了当文本过长时自动淡出的效果。
       // 多多利用 ChatGPT 达到类似的效果、提高开发效率。
-      padding: const EdgeInsets.symmetric(horizontal: 16.0), // Padding for the container
+      // padding: const EdgeInsets.symmetric(horizontal: 16.0), // Padding for the container
       child: ShaderMask(
         shaderCallback: (Rect bounds) {
           return const LinearGradient(
             colors: [Colors.white, Colors.transparent],
-            stops: [0.93, 1.0], // 90% of the text will be fully visible, the last 10% will fade out
+            stops: [0.90, 1.0], // 90% of the text will be fully visible, the last 10% will fade out
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ).createShader(bounds);
@@ -155,8 +246,8 @@ class TextFade extends StatelessWidget {
           softWrap: false,
           overflow: TextOverflow.clip, // Clip the overflow to ensure the fade effect
           style: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.bold,
+            fontSize: (fontSize ?? 14.0),
+            fontWeight: fontWeight??FontWeight.bold,
             color: color,
           ),
         ),

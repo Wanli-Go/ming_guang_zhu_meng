@@ -14,7 +14,8 @@ class ItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<TapNotifier>(
-      builder: (context, notifier, child) => ListView.builder(
+      builder: (context, notifier, child) => 
+      ListView.builder(
     
         itemCount: items.length,
         
@@ -56,7 +57,7 @@ class IconExample extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children:[
-      DynamicBackgroundScreen(),
+      const DynamicBackgroundScreen(),
       Container(
         width: size.width * 0.9,
         height: size.height * 0.8,
@@ -84,6 +85,8 @@ class IconExample extends StatelessWidget {
 }
 
 class DynamicBackgroundScreen extends StatefulWidget {
+  const DynamicBackgroundScreen({super.key});
+
   @override
   _DynamicBackgroundScreenState createState() => _DynamicBackgroundScreenState();
 }
@@ -95,7 +98,7 @@ class _DynamicBackgroundScreenState extends State<DynamicBackgroundScreen> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 2), (Timer timer) {
+    Timer.periodic(const Duration(seconds: 2), (Timer timer) {
       setState(() {
         _backgroundColor = Color.fromRGBO(
           _random.nextInt(256),
@@ -111,7 +114,7 @@ class _DynamicBackgroundScreenState extends State<DynamicBackgroundScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedContainer(
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
         curve: Curves.easeInOut,
         color: _backgroundColor,
       ),

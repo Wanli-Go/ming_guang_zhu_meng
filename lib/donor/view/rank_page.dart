@@ -20,7 +20,7 @@ class _RankPageState extends State<RankPage> {
     return Scaffold(
         backgroundColor: primaryColor,
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 248, 129, 178).withOpacity(0.5),
+          backgroundColor: const Color.fromARGB(255, 248, 129, 178).withOpacity(0.5),
           foregroundColor: Colors.grey[800],
           elevation: 0,
           title: const Text(
@@ -48,7 +48,7 @@ class _RankPageState extends State<RankPage> {
           const SizedBox(height: 20),
 
           //第三块区域
-          LeaderboardModule(),
+          const LeaderboardModule(),
         ]),
 
         //底部导航栏
@@ -92,7 +92,7 @@ class TopWidget extends StatelessWidget {
             color: Colors.grey.withOpacity(0.36), // 阴影颜色
             spreadRadius: 0, // 扩散半径
             blurRadius: 5, // 模糊半径
-            offset: Offset(0, 3), // 阴影偏移量
+            offset: const Offset(0, 3), // 阴影偏移量
           ),
         ],
 
@@ -110,8 +110,8 @@ class TopWidget extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.all(3),
-            margin: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(3),
+            margin: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 241, 182, 93),
               borderRadius: BorderRadius.circular(80),
@@ -130,7 +130,7 @@ class TopWidget extends StatelessWidget {
               Text(
                 donor.name,
                 style:
-                    TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
 
               //捐赠次数
@@ -160,7 +160,7 @@ class TopWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 "总榜\n${donor.totalRating}",
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           )

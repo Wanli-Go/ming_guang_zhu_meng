@@ -28,19 +28,18 @@ class _MyNotificationState extends State<MyNotification> {
     return Scaffold(
       backgroundColor: primaryColor,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 248, 129, 178).withOpacity(0.5),
+        backgroundColor: const Color.fromARGB(255, 248, 129, 178).withOpacity(0.5),
         foregroundColor: Colors.grey[800],
         elevation: 0,
         leading: const Icon(
           Icons.arrow_back,
         ),
-        title: Padding(
-          padding: const EdgeInsets.only(left: 100),
+        title: const Center(
           child: Text(
             '我的消息',
           ),
         ),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
       ),
       body: ListView.builder(
         itemCount: users.length,

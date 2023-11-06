@@ -28,7 +28,7 @@ class Message{
 
 // Dummy Users 
 var childAnn = Child(id: "573842", name: "Ann", imageLink: "http://img.crcz.com/allimg/201912/01/1575205350650038-lp.jpg");
-var childKusnali = Child(id: "867432", name: "Kusnali", description: "来自山东，日照。留守儿童。");
+var childKusnali = Child(id: "867432", name: "饮月君", description: "来自山东，日照。留守儿童。性活泼，喜乐子。");
 
 var childs = [childAnn, childKusnali];
 
@@ -64,6 +64,10 @@ List<String> dummyContents = [
 String generateRandomTime() {
   int hour = random.nextInt(24);
   int minute = random.nextInt(60);
+  return timeFormatter(hour, minute);
+}
+
+String timeFormatter(int hour, int minute){
   return '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
 }
 

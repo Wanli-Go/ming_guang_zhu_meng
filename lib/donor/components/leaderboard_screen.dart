@@ -70,6 +70,8 @@ final List<Donor> yearlyDonations = [
 ];
 
 class LeaderboardModule extends StatefulWidget {
+  const LeaderboardModule({super.key});
+
   @override
   _LeaderboardModuleState createState() => _LeaderboardModuleState();
 }
@@ -90,13 +92,14 @@ class _LeaderboardModuleState extends State<LeaderboardModule>
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     // 定义颜色变量
     Color tabUnselectedColor = Colors.grey.shade200;
     Color tabSelectedColor =
-        Color.fromARGB(255, 248, 129, 178).withOpacity(0.5);
+        const Color.fromARGB(255, 248, 129, 178).withOpacity(0.5);
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: primaryColor.withOpacity(0.5), // 方框的背景颜色
         borderRadius: BorderRadius.circular(10),
@@ -111,7 +114,7 @@ class _LeaderboardModuleState extends State<LeaderboardModule>
             color: primaryColor.withOpacity(0.5).withOpacity(0.5), // 阴影颜色
             spreadRadius: 0, // 扩散半径
             blurRadius: 5, // 模糊半径
-            offset: Offset(0, 3), // 阴影偏移量
+            offset: const Offset(0, 3), // 阴影偏移量
           ),
         ],
 
@@ -130,7 +133,7 @@ class _LeaderboardModuleState extends State<LeaderboardModule>
         length: 3, // 三个标签
         child: Container(
           constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.3,
+            maxHeight: MediaQuery.of(context).size.height * 0.32,
           ),
           child: DefaultTabController(
             length: 3,
@@ -138,7 +141,7 @@ class _LeaderboardModuleState extends State<LeaderboardModule>
               appBar: AppBar(
                 toolbarHeight: 5.0,
                 backgroundColor:
-                    Color.fromARGB(255, 247, 170, 202).withOpacity(0.5),
+                    const Color.fromARGB(255, 247, 170, 202).withOpacity(0.5),
                 bottom: TabBar(
                   controller: _tabController,
                   // 未选中的标签颜色
@@ -185,7 +188,7 @@ class _LeaderboardModuleState extends State<LeaderboardModule>
 class DonationList extends StatelessWidget {
   final List<Donor> donations;
 
-  DonationList({required this.donations});
+  const DonationList({super.key, required this.donations});
 
   @override
   Widget build(BuildContext context) {
@@ -201,10 +204,10 @@ class DonationList extends StatelessWidget {
         //阴影
         boxShadow: [
           BoxShadow(
-            color: Color.fromARGB(255, 249, 199, 216).withOpacity(0.5), // 阴影颜色
+            color: const Color.fromARGB(255, 249, 199, 216).withOpacity(0.5), // 阴影颜色
             spreadRadius: 0, // 扩散半径
             blurRadius: 5, // 模糊半径
-            offset: Offset(0, 3), // 阴影偏移量
+            offset: const Offset(0, 3), // 阴影偏移量
           ),
         ],
 
@@ -221,8 +224,8 @@ class DonationList extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Row(
               // Title row with headers
               children: <Widget>[
@@ -265,8 +268,8 @@ class DonationList extends StatelessWidget {
                         child: Text(
                           '${index + 1}',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: const Color.fromARGB(255, 108, 108, 108),
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 108, 108, 108),
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -291,12 +294,12 @@ class DonationList extends StatelessWidget {
                                 radius: 20.0, // 根据需要调整大小
                               ),
                             ),
-                            SizedBox(width: 10), // 头像和名字之间的空白
+                            const SizedBox(width: 10), // 头像和名字之间的空白
                             Flexible(
                               flex: 3,
                               child: Text(
                                 donation.name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Color.fromARGB(255, 108, 108, 108),
                                     fontWeight: FontWeight.bold),
                               ),
@@ -308,7 +311,7 @@ class DonationList extends StatelessWidget {
                         child: Text(
                           '\$${donation.donationMoney}',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Color.fromARGB(255, 108, 108, 108),
                               fontWeight: FontWeight.bold),
                         ),
