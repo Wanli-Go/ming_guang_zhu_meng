@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'package:ming_guang/volunteer/model/X_LC.dart';
 import 'package:ming_guang/volunteer/model/Y_LC.dart';
 import 'package:ming_guang/volunteer/model/modelStudent.dart';
@@ -18,9 +17,9 @@ class _ChildSituationPageState extends State<ChildSituationPage> {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('孩子近况'),
+        title: const Text('孩子近况'),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
@@ -33,44 +32,44 @@ class _ChildSituationPageState extends State<ChildSituationPage> {
             children: [
 
               //包含有学生照片、名字与简介的container组件
-              student_Infor(),
+              const student_Infor(),
              
               //包含学生任务完成进度条（两个对应两种任务），两个图表展示框的column大组件
               Expanded(
                 child: Container(
                   height: MediaQuery.of(context).size.height*0.5,
-                  margin: EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
               
                       //进度条一
-                      Text(
+                      const Text(
                         '必做任务（完成度）',
                         style: TextStyle(fontSize: 16),
                       ),
                       LinearProgressIndicator(
                         minHeight: 14,
                         value: student.nessary,
-                        backgroundColor: Color.fromARGB(255, 244, 242, 242),
-                        valueColor: AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 151, 98, 179)),
+                        backgroundColor: const Color.fromARGB(255, 244, 242, 242),
+                        valueColor: const AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 151, 98, 179)),
                       ),
-                      SizedBox(height: 25),
+                      const SizedBox(height: 25),
               
                       //进度条二
-                      Text(
+                      const Text(
                         '选做任务（完成度）',
                         style: TextStyle(fontSize: 16),
                       ),
                       LinearProgressIndicator(
                         minHeight: 14,
                         value: student.choose,
-                        backgroundColor: Color.fromARGB(255, 240, 238, 239),
-                        valueColor: AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 239, 132, 225)),
+                        backgroundColor: const Color.fromARGB(255, 240, 238, 239),
+                        valueColor: const AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 239, 132, 225)),
                       ),
-                       Container(
-                        child: Center(child: Text('排名图')),
-                        height:40
+                       const SizedBox(
+                        height:40,
+                        child: Center(child: Text('排名图'))
                       ),
               
                      //展示图,曲线柱形图
@@ -78,13 +77,13 @@ class _ChildSituationPageState extends State<ChildSituationPage> {
                       Expanded(
                         child: ListView(
                           children: <Widget>[
-                            Text('Line Chart', style: Theme.of(context).textTheme.headline6),
-                              Container(
+                            Text('Line Chart', style: Theme.of(context).textTheme.titleLarge),
+                              SizedBox(
                                 height: 300,
                                 child: LineChartWidget( xValues:  xValues, yValues: yValues),
                               ),
-                              Text('Bar Chart', style: Theme.of(context).textTheme.headline6),
-                              Container(
+                              Text('Bar Chart', style: Theme.of(context).textTheme.titleLarge),
+                              SizedBox(
                                 height: 300,
                                 child: BarChartWidget(xValues: xValues, yValues: yValues),
                               ),
@@ -133,7 +132,7 @@ class student_Infor extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: [Color.fromARGB(255, 240, 33, 102).withOpacity(0.5), Color.fromARGB(255, 168, 39, 248).withOpacity(0.5)],
+          colors: [const Color.fromARGB(255, 240, 33, 102).withOpacity(0.5), const Color.fromARGB(255, 168, 39, 248).withOpacity(0.5)],
         ),
       ),
       child: Row(
@@ -141,7 +140,7 @@ class student_Infor extends StatelessWidget {
            Padding(
              padding: const EdgeInsets.all(8),
              child: Center(
-             child: Container(
+             child: SizedBox(
               width: MediaQuery.of(context).size.width*0.3,
               height: MediaQuery.of(context).size.width*0.3,
               child: ClipOval(
@@ -153,26 +152,26 @@ class student_Infor extends StatelessWidget {
           Expanded( 
             child: Container(
               //color: Colors.amber,
-              padding: EdgeInsets.only(left:60),
+              padding: const EdgeInsets.only(left:60),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.all(0),
                     child: Text(
                       student.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Expanded(
                     child: Text(
                       student.description,
-                      style: TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14),
                     ),
                   ),
                 ],

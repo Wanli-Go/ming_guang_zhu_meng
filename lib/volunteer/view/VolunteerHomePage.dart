@@ -15,30 +15,32 @@ class MyApp extends StatelessWidget {
     'assets/Donald.png',
   ];
 
+  MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor:  Color.fromARGB(255, 238, 177, 198).withOpacity(0.95),
+        backgroundColor:  const Color.fromARGB(255, 238, 177, 198).withOpacity(0.95),
          appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 228, 79, 128),
             leading: IconButton(
-              icon: Icon(Icons.person),
+              icon: const Icon(Icons.person),
               onPressed: () {
                
 
               },
             ),
-            title: Row(
+            title: const Row(
               children:
                [
                 Padding(
-                  padding: const EdgeInsets.only(left: 50),
-                  child: const Text("明光筑梦·志愿者"),
+                  padding: EdgeInsets.only(left: 50),
+                  child: Text("明光筑梦·志愿者"),
                 )]),  
             actions: [
               IconButton(
-                  icon: Icon(Icons.markunread),
+                  icon: const Icon(Icons.markunread),
                   onPressed: () {
                    
 
@@ -53,7 +55,7 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height*0.01,
               ),
@@ -63,7 +65,7 @@ class MyApp extends StatelessWidget {
               
           //查看孩子近况：
               Container(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -77,12 +79,12 @@ class MyApp extends StatelessWidget {
                           gradient: LinearGradient(
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
-                            colors: [Color.fromARGB(255, 86, 3, 157).withOpacity(0.5), Color.fromARGB(255, 245, 243, 246).withOpacity(0.5)],
+                            colors: [const Color.fromARGB(255, 86, 3, 157).withOpacity(0.5), const Color.fromARGB(255, 245, 243, 246).withOpacity(0.5)],
                           ),
                         ),
                       child: Row(
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Text(
                               '孩子近况',
@@ -94,7 +96,7 @@ class MyApp extends StatelessWidget {
                           ),
                           Expanded(child: Container()),
                           IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.arrow_forward,
                               color: Colors.white,
                             ),
@@ -117,7 +119,7 @@ class MyApp extends StatelessWidget {
                           gradient: LinearGradient(
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
-                            colors: [Color.fromARGB(255, 127, 5, 45).withOpacity(0.5), Color.fromARGB(255, 95, 10, 147).withOpacity(0.5)],
+                            colors: [const Color.fromARGB(255, 127, 5, 45).withOpacity(0.5), const Color.fromARGB(255, 95, 10, 147).withOpacity(0.5)],
                           ),
                         ),
                         child: Row(
@@ -125,7 +127,7 @@ class MyApp extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(25),
                               child: Center(
-                              child: Container(
+                              child: SizedBox(
                                 width: MediaQuery.of(context).size.width*0.2,
                                 height: MediaQuery.of(context).size.width*0.2,
                                 child: ClipOval(
@@ -137,26 +139,26 @@ class MyApp extends StatelessWidget {
                             Expanded( 
                               child: Container(
                                
-                                padding: EdgeInsets.only(left:20),
+                                padding: const EdgeInsets.only(left:20),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(height: 30),
+                                    const SizedBox(height: 30),
                                     Padding(
                                       padding: const EdgeInsets.all(0),
                                       child: Text(
                                         volunteerPerson.childName,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 13,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 8),
+                                    const SizedBox(height: 8),
                                     Expanded(
                                       child: Text(
                                         volunteerPerson.childDescription,
-                                        style: TextStyle(fontSize: 11),
+                                        style: const TextStyle(fontSize: 11),
                                       ),
                                     ),
                                   ],
@@ -179,12 +181,12 @@ class MyApp extends StatelessWidget {
                           gradient: LinearGradient(
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
-                            colors: [Color.fromARGB(255, 165, 6, 109).withOpacity(0.5), Color.fromARGB(255, 241, 237, 239).withOpacity(0.5)],
+                            colors: [const Color.fromARGB(255, 165, 6, 109).withOpacity(0.5), const Color.fromARGB(255, 241, 237, 239).withOpacity(0.5)],
                           ),
                         ),
                       child: Row(
                         children: [
-                          Padding(
+                          const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Text(
                               '我的任务',
@@ -196,7 +198,7 @@ class MyApp extends StatelessWidget {
                           ),
                           Expanded(child: Container()),
                           IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.arrow_forward,
                               color: Colors.white,
                             ),
@@ -220,7 +222,7 @@ class MyApp extends StatelessWidget {
                           gradient: LinearGradient(
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
-                            colors: [Color.fromARGB(255, 192, 5, 183).withOpacity(0.5), Color.fromARGB(255, 159, 14, 86).withOpacity(0.5)],
+                            colors: [const Color.fromARGB(255, 192, 5, 183).withOpacity(0.5), const Color.fromARGB(255, 159, 14, 86).withOpacity(0.5)],
                           ),
                         ),
 
@@ -271,7 +273,7 @@ class GunLun extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
 
       width: MediaQuery.of(context).size.width ,
       height: MediaQuery.of(context).size.height * 0.22,
@@ -279,7 +281,7 @@ class GunLun extends StatelessWidget {
         options: CarouselOptions(
           autoPlay: true,
           enableInfiniteScroll: true,
-          autoPlayInterval: Duration(seconds: 3),
+          autoPlayInterval: const Duration(seconds: 3),
           enlargeCenterPage: true,
         ),
         items: imageList.map((image) {
@@ -287,8 +289,8 @@ class GunLun extends StatelessWidget {
             builder: (BuildContext context) {
               return Container(
                 width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: const BoxDecoration(
                   color: Colors.grey,
                 ),
                 child: Image.asset(

@@ -40,7 +40,7 @@ class _MyInfomationState extends State<MyInfomationPage> {
                         primaryColor.withOpacity(0.5).withOpacity(0.5), // 阴影颜色
                     spreadRadius: 0, // 扩散半径
                     blurRadius: 5, // 模糊半径
-                    offset: Offset(0, 3), // 阴影偏移量
+                    offset: const Offset(0, 3), // 阴影偏移量
                   ),
                 ],
 
@@ -55,7 +55,7 @@ class _MyInfomationState extends State<MyInfomationPage> {
                   ],
                 ),
               ),
-              margin: EdgeInsets.all(10.0),
+              margin: const EdgeInsets.all(10.0),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -64,13 +64,13 @@ class _MyInfomationState extends State<MyInfomationPage> {
                       backgroundImage: AssetImage(child.imagePath), // 小孩头像的路径
                       radius: 30,
                     ),
-                    SizedBox(width: 16.0),
+                    const SizedBox(width: 16.0),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(child.name,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold)),
                           Text(child.school),
                           Text('已获得捐助金额: ${child.getMoney}元'),
@@ -98,7 +98,7 @@ class _MyInfomationState extends State<MyInfomationPage> {
                         primaryColor.withOpacity(0.5).withOpacity(0.5), // 阴影颜色
                     spreadRadius: 0, // 扩散半径
                     blurRadius: 5, // 模糊半径
-                    offset: Offset(0, 3), // 阴影偏移量
+                    offset: const Offset(0, 3), // 阴影偏移量
                   ),
                 ],
 
@@ -113,7 +113,7 @@ class _MyInfomationState extends State<MyInfomationPage> {
                   ],
                 ),
               ),
-              margin: EdgeInsets.all(10.0),
+              margin: const EdgeInsets.all(10.0),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -125,7 +125,7 @@ class _MyInfomationState extends State<MyInfomationPage> {
                         Text('商城积分: ${child.mallIntegral}'),
                       ],
                     ),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -154,7 +154,7 @@ class _MyInfomationState extends State<MyInfomationPage> {
                         primaryColor.withOpacity(0.5).withOpacity(0.5), // 阴影颜色
                     spreadRadius: 0, // 扩散半径
                     blurRadius: 5, // 模糊半径
-                    offset: Offset(0, 3), // 阴影偏移量
+                    offset: const Offset(0, 3), // 阴影偏移量
                   ),
                 ],
 
@@ -169,7 +169,7 @@ class _MyInfomationState extends State<MyInfomationPage> {
                   ],
                 ),
               ),
-              margin: EdgeInsets.all(10.0),
+              margin: const EdgeInsets.all(10.0),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -232,7 +232,7 @@ class _MyInfomationState extends State<MyInfomationPage> {
               },
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
 

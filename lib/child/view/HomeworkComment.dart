@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/child/model/modelStudent.dart';
 import 'package:ming_guang/child/model/commention.dart';
 import 'package:ming_guang/child/model/ListItem.dart';
 
@@ -14,11 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor:  Color.fromARGB(255, 238, 177, 198).withOpacity(0.95),
+        backgroundColor:  const Color.fromARGB(255, 238, 177, 198).withOpacity(0.95),
          appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 228, 79, 128),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 // 返回上一页的逻辑处理
               },
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
 
               //学生作业展示
 
-              HomeworkShow(),
+              const HomeworkShow(),
               
               Container(
                 height: 30,
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
 
               //作业评论展示
               
-              CommentShow(),
+              const CommentShow(),
             
               
             ],
@@ -88,7 +87,7 @@ class CommentShow extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: [Color.fromARGB(255, 127, 5, 45).withOpacity(0.5), Color.fromARGB(255, 95, 10, 147).withOpacity(0.5)],
+          colors: [const Color.fromARGB(255, 127, 5, 45).withOpacity(0.5), const Color.fromARGB(255, 95, 10, 147).withOpacity(0.5)],
         ),
       ),
       child: 
@@ -98,7 +97,7 @@ class CommentShow extends StatelessWidget {
           return 
            Padding(
              padding: const EdgeInsets.all(7.0),
-             child: Container(
+             child: SizedBox(
               width: MediaQuery.of(context).size.width*0.88,
               height: MediaQuery.of(context).size.height*0.05,
               child: Row(
@@ -114,7 +113,7 @@ class CommentShow extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left:100),
                          child: Text(items[index].text1,
-                              style: TextStyle(
+                              style: const TextStyle(
                                       fontSize: 12,)
                                 
                          ),
@@ -122,7 +121,7 @@ class CommentShow extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left :100),
                         child: Text(items[index].text2,
-                        style: TextStyle(
+                        style: const TextStyle(
                                       fontSize: 10,)
                                       ),
                       ),
@@ -153,7 +152,7 @@ class HomeworkShow extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: [Color.fromARGB(255, 127, 5, 45).withOpacity(0.5), Color.fromARGB(255, 95, 10, 147).withOpacity(0.5)],
+          colors: [const Color.fromARGB(255, 127, 5, 45).withOpacity(0.5), const Color.fromARGB(255, 95, 10, 147).withOpacity(0.5)],
         ),
       ),
       width: MediaQuery.of(context).size.width,
@@ -173,7 +172,7 @@ class HomeworkShow extends StatelessWidget {
                   homeworkComment.data
                 ),
               ),
-              Icon(Icons.trending_up, size: 40,),
+              const Icon(Icons.trending_up, size: 40,),
             ],
           ),
           Center(
@@ -201,7 +200,7 @@ class HomeworkShow extends StatelessWidget {
                 onPressed: () {
                   // 按钮点击事件
                 },
-                child: Text('赞赏'),
+                child: const Text('赞赏'),
               ),
             ],
           ),

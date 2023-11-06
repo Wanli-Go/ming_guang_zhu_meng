@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/model/modelVolunteer.dart';
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
 
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
    VolunteerPerson volunteerPerson;
 
-   MyHomePage({required this.volunteerPerson});
+   MyHomePage({super.key, required this.volunteerPerson});
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -37,17 +39,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor:  Color.fromARGB(255, 238, 177, 198).withOpacity(0.95),
+        backgroundColor:  const Color.fromARGB(255, 238, 177, 198).withOpacity(0.95),
          appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 228, 79, 128),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 
 
               },
             ),
-            title: Row(
+            title: const Row(
               children:
                [
                 Text(
@@ -56,8 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   "返回"),
                 Padding(
-                  padding: const EdgeInsets.only(left: 50),
-                  child: const Text("个人信息"),
+                  padding: EdgeInsets.only(left: 50),
+                  child: Text("个人信息"),
                 )]),
           ),
 
@@ -80,13 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
-                    colors: [Color.fromARGB(255, 240, 33, 102).withOpacity(0.5), Color.fromARGB(255, 168, 39, 248).withOpacity(0.5)],
+                    colors: [const Color.fromARGB(255, 240, 33, 102).withOpacity(0.5), const Color.fromARGB(255, 168, 39, 248).withOpacity(0.5)],
                   ),
                 ),
                 child: Row(
                   children: [
                     Center(
-                      child: Container(
+                      child: SizedBox(
                         width: MediaQuery.of(context).size.width*0.3,
                         height: MediaQuery.of(context).size.width*0.3,
                         child: ClipOval(
@@ -97,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                    
                     Expanded( 
                       child: Container(
-                        padding: EdgeInsets.only(left: 70),
+                        padding: const EdgeInsets.only(left: 70),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -105,14 +107,14 @@ class _MyHomePageState extends State<MyHomePage> {
                               padding: const EdgeInsets.all(18.0),
                               child: Text(
                                 volunteerPerson.name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                            SizedBox(height: 10),
-                            Expanded(
+                            const SizedBox(height: 10),
+                            const Expanded(
                               child: Text(
                                 '欢迎来到志愿者之家!!!',
                                 style: TextStyle(fontSize: 14),
@@ -131,13 +133,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Container(
                 width: MediaQuery.of(context).size.width*0.8,
                 height: MediaQuery.of(context).size.height*0.6,
-                margin: EdgeInsets.all(20),
-                padding: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.centerRight,
-                    colors: [Color.fromARGB(255, 247, 65, 65).withOpacity(0.5), Color.fromARGB(255, 192, 148, 220).withOpacity(0.9)],
+                    colors: [const Color.fromARGB(255, 247, 65, 65).withOpacity(0.5), const Color.fromARGB(255, 192, 148, 220).withOpacity(0.9)],
                   ),
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -145,32 +147,32 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Text(
                       '             性别:         ${volunteerPerson.sex}',
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Text(    
                       '             年龄:         ${volunteerPerson.age}',
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Text(
                       '             生日:        ${volunteerPerson.birthday}',
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Text(
                       '             地区:         ${volunteerPerson.area}',
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Text(
                       '             简介: ${volunteerPerson.description}',
-                      style: TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 18),
                     ),
-                    SizedBox(height: 120),
+                    const SizedBox(height: 120),
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
@@ -178,18 +180,18 @@ class _MyHomePageState extends State<MyHomePage> {
                             context: context,
                             builder: (BuildContext context) {
                               String updatedSex = volunteerPerson.sex;
-                              int updatedAge = volunteerPerson.age as int;
+                              int updatedAge = volunteerPerson.age;
                               String updatedBirthday = volunteerPerson.birthday;
                               String updatedArea = volunteerPerson.area;
                               String updatedDescription = volunteerPerson.description;
                     
                               return AlertDialog(
-                                title: Text('修改信息'),
+                                title: const Text('修改信息'),
                                 content: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text('性别'),
+                                    const Text('性别'),
                                     DropdownButton<String>(
                                       value: updatedSex,
                                       onChanged: (String? newValue) {
@@ -207,8 +209,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                             }
                                           ).toList(),
                                     ),
-                                    SizedBox(height: 10),
-                                    Text('年龄'),
+                                    const SizedBox(height: 10),
+                                    const Text('年龄'),
                                     TextFormField(
                                       initialValue: updatedAge.toString(),
                                       keyboardType: TextInputType.number,
@@ -218,8 +220,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                         });
                                       },
                                     ),
-                                    SizedBox(height: 10),
-                                    Text('生日'),
+                                    const SizedBox(height: 10),
+                                    const Text('生日'),
                                     TextFormField(
                                       initialValue: updatedBirthday,
                                       onChanged: (value) {
@@ -228,8 +230,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                         });
                                       },
                                     ),
-                                    SizedBox(height: 10),
-                                    Text('地区'),
+                                    const SizedBox(height: 10),
+                                    const Text('地区'),
                                     TextFormField(
                                       initialValue: updatedArea,
                                       onChanged: (value) {
@@ -238,8 +240,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                         });
                                       },
                                     ),
-                                    SizedBox(height: 10),
-                                    Text('简介'),
+                                    const SizedBox(height: 10),
+                                    const Text('简介'),
                                     TextFormField(
                                       initialValue: updatedDescription,
                                       onChanged: (value) {
@@ -252,13 +254,13 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                                 actions: [
                                   ElevatedButton(
-                                    child: Text('取消'),
+                                    child: const Text('取消'),
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
                                   ),
                                   ElevatedButton(
-                                    child: Text('保存'),
+                                    child: const Text('保存'),
                                     onPressed: () {
                                       setState(() {
                                         volunteerPerson.sex = updatedSex;
@@ -275,7 +277,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                           );
                         },
-                        child: Text('修改信息'),
+                        child: const Text('修改信息'),
                       ),
                     ),
                   ],

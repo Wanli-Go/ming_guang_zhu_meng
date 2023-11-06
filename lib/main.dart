@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers.dart';
+import 'package:provider/provider.dart';
+import './volunteer/my_app.dart';
 
-import './volunteer/view/VolunteerChildSituationPage.dart'; // 调整这个路径来决定你的 App 的调试的 Page
-//import './volunteer/view/VolunteerHomePage.dart';
-//import './volunteer/view/VolunteerPersonPage.dart';
- void main() {
-
-   runApp(
-
-     MaterialApp(
-
-       theme: ThemeData(
-         fontFamily: "StarRail", // 定义 App 的字体
-         iconTheme: const IconThemeData( // 定义 图标 的颜色
-          color: Colors.indigo
-         ),
+void main() {
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create:(context) => MessageNotifier(),)
+    ],
+    builder: (c, ch) => MaterialApp(
+      theme: ThemeData(
+        fontFamily: "StarRail", // 定义 App 的字体
+        iconTheme: const IconThemeData(
+            // 定义 图标 的颜色
+            color: Colors.indigo),
       ),
-
-       home:  ChildSituationPage(), // Your widget
-
-     )
-
-   );
- }
+  
+      home: const MyApp(), // Your widget
+    ),
+  ));
+}
