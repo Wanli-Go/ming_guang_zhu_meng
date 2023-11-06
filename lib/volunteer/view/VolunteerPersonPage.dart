@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/example/model/modelVolunteer.dart';
+import 'package:ming_guang/volunteer/model/modelVolunteer.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -62,14 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
           
-          //两个组件:一个container装有志愿者图片名字信息以及欢迎字眼,一个container装有基本信息以及修改按钮
+   //两个组件:一个container装有志愿者图片名字信息以及欢迎字眼,一个container装有基本信息以及修改按钮
           body: Column(
             
             //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
-              //container1
+        //container1
               
              Container
               (
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
 
 
-              //container2
+        //container2
               Container(
                 width: MediaQuery.of(context).size.width*0.8,
                 height: MediaQuery.of(context).size.height*0.6,

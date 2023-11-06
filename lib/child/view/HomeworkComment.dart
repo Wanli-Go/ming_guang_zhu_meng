@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/example/model/modelStudent.dart';
-import 'package:ming_guang/example/model/commention.dart';
-import 'package:ming_guang/example/model/ListItem.dart';
+import 'package:ming_guang/child/model/modelStudent.dart';
+import 'package:ming_guang/child/model/commention.dart';
+import 'package:ming_guang/child/model/ListItem.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,11 +38,16 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
+              //学生作业展示
+
               HomeworkShow(),
               
               Container(
                 height: 30,
               ),
+
+              //作业评论展示
+              
               CommentShow(),
             
               

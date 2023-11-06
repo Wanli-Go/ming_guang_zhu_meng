@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ming_guang/example/model/modelVolunteer.dart';
+import 'package:ming_guang/volunteer/model/modelVolunteer.dart';
 
 void main() {
   runApp( MyApp());

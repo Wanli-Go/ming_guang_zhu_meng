@@ -1,4 +1,4 @@
-import 'package:ming_guang/example/model/commention.dart';
+import 'package:ming_guang/child/model/commention.dart';
 
 class ListItem {
   String imageURL;

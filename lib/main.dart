@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './example/view/Comment.dart'; // 调整这个路径来决定你的 App 的调试的 Page
+import './child/view/HomeworkComment.dart'; // 调整这个路径来决定你的 App 的调试的 Page
 
  void main() {
 
