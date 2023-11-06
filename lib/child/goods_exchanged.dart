@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'model/goods_exchanged_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -201,24 +202,6 @@ class _PointsMallPageState extends State<PointsMallPage> {
       bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
-}
-
-class Product {
-  String name;
-  String price;
-  String address;
-  String orderDate;
-  String imageUrl;
-  String status;
-
-  Product({
-    required this.name,
-    required this.price,
-    required this.address,
-    required this.orderDate,
-    required this.imageUrl,
-    required this.status,
-  });
 }
 
 class ProductListItem extends StatelessWidget {

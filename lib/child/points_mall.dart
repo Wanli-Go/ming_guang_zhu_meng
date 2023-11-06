@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'model/points_mall_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -231,22 +232,6 @@ class _PointsMallPageState extends State<PointsMallPage> {
       bottomNavigationBar: const BottomNavigationBarWidget(),
     );
   }
-}
-
-class Product {
-  String name;
-  int points;
-  int stock;
-  String imageUrl;
-  String category;
-
-  Product({
-    required this.name,
-    required this.points,
-    required this.stock,
-    required this.imageUrl,
-    required this.category,
-  });
 }
 
 class ProductCard extends StatefulWidget {
