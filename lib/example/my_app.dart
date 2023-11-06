@@ -1,6 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-// //import './view/home_page.dart';
 
 // class MyApp extends StatelessWidget {
 //   // Sample data for the list

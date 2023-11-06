@@ -7,14 +7,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+<<<<<<< HEAD
 import 'package:ming_guang/example/view/VolunteerPersonPage.dart';
+=======
+import 'package:ming_guang/child/my_app.dart';
+>>>>>>> b4974ab7949b643fa08505bd22d36fcd3a61f4f3
 
-import 'package:ming_guang/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
+<<<<<<< HEAD
     await tester.pumpWidget(MyApp());
+=======
+    //await tester.pumpWidget(const MyApp());
+>>>>>>> b4974ab7949b643fa08505bd22d36fcd3a61f4f3
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
