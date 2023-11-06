@@ -38,7 +38,7 @@ class DonorRankingTile extends StatelessWidget {
                     .withOpacity(0.5), // 阴影颜色
                 spreadRadius: 0, // 扩散半径
                 blurRadius: 5, // 模糊半径
-                offset: Offset(0, 3), // 阴影偏移量
+                offset: const Offset(0, 3), // 阴影偏移量
               ),
             ],
 
@@ -81,7 +81,7 @@ class DonorRankingTile extends StatelessWidget {
           child: Container(
             // 根据设计调整内边距和大小
             padding: const EdgeInsets.all(4),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               // 可选: 为奖章容器添加一个装饰
               shape: BoxShape.circle, // 圆形容器
             ),

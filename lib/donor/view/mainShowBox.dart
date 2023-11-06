@@ -5,7 +5,7 @@ class DonationAmountWidget extends StatefulWidget {
   final String description;
   final String amount; // 第二行要显示的捐赠金额
 
-  DonationAmountWidget(
+  const DonationAmountWidget(
       {Key? key, required this.description, required this.amount})
       : super(key: key);
 
@@ -40,16 +40,16 @@ class _DonationAmountWidgetState extends State<DonationAmountWidget>
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16), // 内边距
+      padding: const EdgeInsets.all(16), // 内边距
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 249, 247, 247), // 背景颜色
+        color: const Color.fromARGB(255, 249, 247, 247), // 背景颜色
         borderRadius: BorderRadius.circular(8), // 边框圆角
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.75), // 更深的阴影颜色
             spreadRadius: 2, // 更大的扩展半径
             blurRadius: 10, // 更大的模糊半径
-            offset: Offset(0, 4), // 阴影位置稍微偏下
+            offset: const Offset(0, 4), // 阴影位置稍微偏下
           ),
         ],
       ),
@@ -60,19 +60,19 @@ class _DonationAmountWidgetState extends State<DonationAmountWidget>
           // 第一行固定文本
           Text(
             widget.description,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
-          SizedBox(height: 4), // 添加一点儿间距
+          const SizedBox(height: 4), // 添加一点儿间距
           // 第二行可变文本
           ScaleTransition(
             scale: _animation, // 应用缩放动画
             child: Text(
               widget.amount,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Color.fromARGB(255, 91, 208, 95),
@@ -90,7 +90,7 @@ class DonationRowWidget extends StatelessWidget {
   final String amount1; // 第一个组件显示的金额
   final String amount2; // 第二个组件显示的金额
 
-  DonationRowWidget({
+  const DonationRowWidget({
     Key? key,
     required this.amount1,
     required this.amount2,
@@ -100,13 +100,13 @@ class DonationRowWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding:
-          EdgeInsets.only(left: 9, right: 9, top: 12, bottom: 10), // 添加一些内边距
+          const EdgeInsets.only(left: 9, right: 9, top: 12, bottom: 10), // 添加一些内边距
       child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.only(top: 16, bottom: 16), // 卡片内边距
+            padding: const EdgeInsets.only(top: 16, bottom: 16), // 卡片内边距
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 249, 246, 246), // 卡片的背景颜色
+              color: const Color.fromARGB(255, 249, 246, 246), // 卡片的背景颜色
               borderRadius: BorderRadius.circular(5.0), // 圆角边框
               boxShadow: [
                 BoxShadow(
@@ -114,14 +114,14 @@ class DonationRowWidget extends StatelessWidget {
                       .withOpacity(0.5), // 阴影颜色
                   spreadRadius: 2, // 扩散半径
                   blurRadius: 4, // 模糊半径
-                  offset: Offset(0, 1), // 阴影的位置偏移
+                  offset: const Offset(0, 1), // 阴影的位置偏移
                 ),
               ],
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 子元素水平均匀分布
               children: <Widget>[
-                Expanded(
+                const Expanded(
                   child: Column(
                     children: <Widget>[
                       Text(
@@ -153,11 +153,11 @@ class DonationRowWidget extends StatelessWidget {
                     height: 55, // 根据实际需要调整高度
                     width: 3, // 使线更粗
                     color: const Color.fromARGB(255, 183, 141, 141), // 线的颜色改为黑色
-                    margin: EdgeInsets.symmetric(horizontal: 6), // 左右边距
+                    margin: const EdgeInsets.symmetric(horizontal: 6), // 左右边距
                   ),
                 ),
 
-                Expanded(
+                const Expanded(
                   child: Column(
                     children: <Widget>[
                       Text(
@@ -195,7 +195,7 @@ class DonationCard extends StatelessWidget {
   final String content; // 文章内容
   final String image; // 图片
 
-  DonationCard({
+  const DonationCard({
     Key? key,
     required this.title,
     required this.content,
@@ -205,7 +205,7 @@ class DonationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 16, bottom: 8, left: 14, right: 14),
+      padding: const EdgeInsets.only(top: 16, bottom: 8, left: 14, right: 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -214,12 +214,12 @@ class DonationCard extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(right: 10.0),
+                  margin: const EdgeInsets.only(right: 10.0),
                   height: 1.0, // 分割线粗细
-                  color: Color.fromARGB(255, 152, 92, 88), // 分割线颜色
+                  color: const Color.fromARGB(255, 152, 92, 88), // 分割线颜色
                 ),
               ),
-              Text(
+              const Text(
                 '最近捐助',
                 style: TextStyle(
                   fontSize: 24,
@@ -229,19 +229,19 @@ class DonationCard extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.only(left: 12.0),
+                  margin: const EdgeInsets.only(left: 12.0),
                   height: 1.0, // 分割线粗细
-                  color: Color.fromARGB(255, 152, 92, 88), // 分割线颜色
+                  color: const Color.fromARGB(255, 152, 92, 88), // 分割线颜色
                 ),
               ),
             ],
           ),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           // 图片和文字描述部分
           Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
                 left: 12, right: 12, top: 12, bottom: 12), // 内边距
-            margin: EdgeInsets.only(top: 4), // 外边距
+            margin: const EdgeInsets.only(top: 4), // 外边距
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7.0), // 边框的圆角
               color: Colors.white, // 容器的填充颜色
@@ -250,7 +250,7 @@ class DonationCard extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.2), // 阴影颜色
                   spreadRadius: 1, // 阴影扩散程度
                   blurRadius: 5, // 阴影模糊程度
-                  offset: Offset(0, 1), // 阴影的位置偏移
+                  offset: const Offset(0, 1), // 阴影的位置偏移
                 ),
               ],
             ),
@@ -267,7 +267,7 @@ class DonationCard extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(width: 13.0),
+                const SizedBox(width: 13.0),
                 // 文字描述部分
                 Expanded(
                   child: Column(
@@ -275,16 +275,16 @@ class DonationCard extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           //fontWeight: FontWeight.bold,
                           fontSize: 23.0,
                           color: Color.fromARGB(255, 110, 67, 63),
                         ),
                       ),
-                      SizedBox(height: 9.0),
+                      const SizedBox(height: 9.0),
                       Text(
                         content,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 19,
                           height: 1.3,
                           color: Color.fromARGB(133, 156, 70, 70),
@@ -316,16 +316,16 @@ class SsdButton extends StatelessWidget {
         width: 220, // 指定宽度
         height: 50, // 指定高度
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 169, 103, 98).withOpacity(0.8),
+          color: const Color.fromARGB(255, 169, 103, 98).withOpacity(0.8),
           borderRadius: BorderRadius.circular(15),
         ),
-        padding: EdgeInsets.only(top: 6, bottom: 5), // 根据需要调整padding
+        padding: const EdgeInsets.only(top: 6, bottom: 5), // 根据需要调整padding
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 19,
                   //fontWeight: FontWeight.bold,
                   color: Colors.white),
@@ -334,7 +334,7 @@ class SsdButton extends StatelessWidget {
               width: 6,
               height: 8,
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward,
               color: Colors.white,
             ),

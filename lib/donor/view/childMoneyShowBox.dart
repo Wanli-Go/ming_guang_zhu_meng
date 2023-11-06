@@ -18,7 +18,7 @@ class ChildStatusCard extends StatelessWidget {
   final List<DonationInfo> donations;
   final List<String> teacherComments;
 
-  ChildStatusCard({
+  const ChildStatusCard({
     Key? key,
     required this.imagePaths,
     required this.donations,
@@ -28,23 +28,23 @@ class ChildStatusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 244, 215, 227), // 方框的背景颜色
+        color: const Color.fromARGB(255, 244, 215, 227), // 方框的背景颜色
         borderRadius: BorderRadius.circular(10),
 
         //阴影
         boxShadow: [
           BoxShadow(
-            color: Color.fromARGB(255, 244, 215, 227).withOpacity(0.5), // 阴影颜色
+            color: const Color.fromARGB(255, 244, 215, 227).withOpacity(0.5), // 阴影颜色
             spreadRadius: 0, // 扩散半径
             blurRadius: 5, // 模糊半径
-            offset: Offset(0, 3), // 阴影偏移量
+            offset: const Offset(0, 3), // 阴影偏移量
           ),
         ],
 
         //背景颜色渐变
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           // 线性渐变
           begin: Alignment.topLeft, // 渐变开始的位置
           end: Alignment.bottomRight, // 渐变结束的位置
@@ -70,8 +70,8 @@ class ChildStatusCard extends StatelessWidget {
                 enableInfiniteScroll: true, // 无限滚动
                 reverse: false,
                 autoPlay: true, // 自动播放
-                autoPlayInterval: Duration(seconds: 2), // 自动播放间隔
-                autoPlayAnimationDuration: Duration(milliseconds: 800), // 动画时长
+                autoPlayInterval: const Duration(seconds: 2), // 自动播放间隔
+                autoPlayAnimationDuration: const Duration(milliseconds: 800), // 动画时长
                 autoPlayCurve: Curves.fastOutSlowIn,
                 scrollDirection: Axis.vertical, // 竖向滚动
                 onPageChanged: (index, reason) {
@@ -83,7 +83,7 @@ class ChildStatusCard extends StatelessWidget {
                         builder: (BuildContext context) {
                           return Container(
                             width: MediaQuery.of(context).size.width,
-                            margin: EdgeInsets.symmetric(horizontal: 5.0),
+                            margin: const EdgeInsets.symmetric(horizontal: 5.0),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               image: DecorationImage(
@@ -97,13 +97,13 @@ class ChildStatusCard extends StatelessWidget {
                   .toList(),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
 
-          TextDivider(text: '儿童留言'),
+          const TextDivider(text: '儿童留言'),
 
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
               "        感谢您对我的帮助，我会好好学习，不辜负您的期望！",
@@ -118,7 +118,7 @@ class ChildStatusCard extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.02,
           ),
           // 捐赠用途部分
-          TextDivider(text: '捐赠用途'),
+          const TextDivider(text: '捐赠用途'),
           //_buildSectionTitle(context, "捐赠用途"),
 
           Column(
@@ -142,7 +142,7 @@ class ChildStatusCard extends StatelessWidget {
 
   Widget _buildDonationItem(BuildContext context, DonationInfo donation) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -166,25 +166,25 @@ Widget _buildIconText(BuildContext context, IconData icon, String text) {
     mainAxisSize: MainAxisSize.min,
     children: [
       Icon(icon, size: 16.0, color: Colors.black54),
-      SizedBox(width: 4.0),
+      const SizedBox(width: 4.0),
       Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16,
           color: Colors.black87,
         ),
       ),
-      SizedBox(width: 8.0), // 为了美观，各元素之间添加一些间隔
+      const SizedBox(width: 8.0), // 为了美观，各元素之间添加一些间隔
     ],
   );
 }
 
 Widget _buildSectionTitle(BuildContext context, String title) {
   return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
     child: Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
         color: Colors.black87,
@@ -195,17 +195,17 @@ Widget _buildSectionTitle(BuildContext context, String title) {
 
 Widget _buildTextWithIcon(BuildContext context, IconData icon, String text) {
   return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Icon(icon, color: Colors.black54),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Expanded(
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               color: Colors.black87,
             ),
@@ -220,7 +220,7 @@ Widget _buildTextWithIcon(BuildContext context, IconData icon, String text) {
 class VerticalCarouselWithImages extends StatelessWidget {
   final List<String> imagePaths;
 
-  VerticalCarouselWithImages({Key? key, required this.imagePaths})
+  const VerticalCarouselWithImages({Key? key, required this.imagePaths})
       : super(key: key);
 
   @override
@@ -234,8 +234,8 @@ class VerticalCarouselWithImages extends StatelessWidget {
         enableInfiniteScroll: true, // 无限滚动
         reverse: false,
         autoPlay: true, // 自动播放
-        autoPlayInterval: Duration(seconds: 3), // 自动播放间隔
-        autoPlayAnimationDuration: Duration(milliseconds: 800), // 动画时长
+        autoPlayInterval: const Duration(seconds: 3), // 自动播放间隔
+        autoPlayAnimationDuration: const Duration(milliseconds: 800), // 动画时长
         autoPlayCurve: Curves.fastOutSlowIn,
         scrollDirection: Axis.vertical, // 竖向滚动
         onPageChanged: (index, reason) {
@@ -247,7 +247,7 @@ class VerticalCarouselWithImages extends StatelessWidget {
                 builder: (BuildContext context) {
                   return Container(
                     width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       image: DecorationImage(
@@ -266,7 +266,7 @@ class VerticalCarouselWithImages extends StatelessWidget {
 class TextDivider extends StatelessWidget {
   final String text;
 
-  TextDivider({
+  const TextDivider({
     Key? key,
     required this.text,
   }) : super(key: key);
@@ -275,7 +275,7 @@ class TextDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        Expanded(
+        const Expanded(
           child: Divider(
             //color: Color.fromARGB(255, 139, 115, 109),
             thickness: 1,
@@ -285,13 +285,13 @@ class TextDivider extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color.fromARGB(255, 139, 115, 109),
               fontSize: 22,
             ),
           ),
         ),
-        Expanded(
+        const Expanded(
           child: Divider(
             //color: Color.fromARGB(255, 139, 115, 109),
             thickness: 1,

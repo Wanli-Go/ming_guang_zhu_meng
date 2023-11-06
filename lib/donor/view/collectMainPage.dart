@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'projectOne.dart';
-import 'donorChild.dart';
 
-class collectMainPage extends StatelessWidget {
-  const collectMainPage({super.key});
+class CollectMainPage extends StatelessWidget {
+  const CollectMainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class collectMainPage extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 244, 215, 227),
       body: Column(
         children: <Widget>[
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           CharityProjectCardCollect(
             item: CardItem(
                 id: '1',
@@ -39,7 +38,7 @@ class collectMainPage extends StatelessWidget {
               );
             },
           ),
-          Center(
+          const Center(
             child: TagWidget(),
           ),
         ],
@@ -67,7 +66,7 @@ class CharityProjectCardCollect extends StatelessWidget {
   final CardItem item; // Using CardItem model for data
   final VoidCallback onTap;
 
-  CharityProjectCardCollect({
+  const CharityProjectCardCollect({super.key, 
     required this.item,
     required this.onTap,
   });
@@ -96,7 +95,7 @@ class CharityProjectCardCollect extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   item.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -113,6 +112,8 @@ class CharityProjectCardCollect extends StatelessWidget {
 
 //孩子详情标签
 class TagWidget extends StatelessWidget {
+  const TagWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -125,7 +126,7 @@ class TagWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 8), // 添加一些垂直间隔
+          const SizedBox(height: 8), // 添加一些垂直间隔
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
@@ -133,7 +134,7 @@ class TagWidget extends StatelessWidget {
               _buildTagItem(Icons.settings, '缺乏基本生活设施'),
             ],
           ),
-          SizedBox(height: 4), // 添加行之间的间隔
+          const SizedBox(height: 4), // 添加行之间的间隔
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[

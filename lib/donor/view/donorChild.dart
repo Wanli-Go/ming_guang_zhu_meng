@@ -8,17 +8,17 @@ class DonarChildPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             '明光筑梦',
             style: TextStyle(
               fontSize: 25,
             ),
           ),
           centerTitle: true, // 在这里设置 AppBar 的标题
-          backgroundColor: Color.fromARGB(255, 152, 92, 88), // 设置 AppBar 的背景颜色
+          backgroundColor: const Color.fromARGB(255, 152, 92, 88), // 设置 AppBar 的背景颜色
         ),
-        backgroundColor: Color.fromARGB(255, 239, 229, 229),
-        body: Column(
+        backgroundColor: const Color.fromARGB(255, 239, 229, 229),
+        body: const Column(
           children: <Widget>[
             Center(
               child: Padding(
@@ -26,19 +26,19 @@ class DonarChildPage extends StatelessWidget {
                 child: CategorySelector(),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 13,
             ),
-            const InfoCard(
+            InfoCard(
               imagePath: 'assets/zuijinjuanzhu.png',
               name: '王小森',
               region: '云南省昌宁县大河完小',
               situation: '父母外出打工，长期独自生活。',
             ),
-            const SizedBox(
+            SizedBox(
               height: 13,
             ),
-            const InfoCard(
+            InfoCard(
               imagePath: 'assets/zuijinjuanzhu.png',
               name: '王小哲',
               region: '云南省昌宁县长山完小',
@@ -62,7 +62,7 @@ class DonarChildPage extends StatelessWidget {
             label: '捐赠记录',
             icon: Icon(Icons.receipt),
           ),
-        ], selectedItemColor: Color.fromARGB(255, 152, 92, 88) // 选中项的颜色
+        ], selectedItemColor: const Color.fromARGB(255, 152, 92, 88) // 选中项的颜色
             //unselectedItemColor: Colors.grey, // 未选中项的颜色),
             ));
   }

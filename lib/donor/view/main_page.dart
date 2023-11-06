@@ -9,16 +9,16 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           '明光筑梦',
           style: TextStyle(
             fontSize: 25,
           ),
         ),
         centerTitle: true, // 在这里设置 AppBar 的标题
-        backgroundColor: Color.fromARGB(255, 152, 92, 88), // 设置 AppBar 的背景颜色
+        backgroundColor: const Color.fromARGB(255, 152, 92, 88), // 设置 AppBar 的背景颜色
       ),
-      backgroundColor: Color.fromARGB(255, 239, 229, 229),
+      backgroundColor: const Color.fromARGB(255, 239, 229, 229),
       body: SingleChildScrollView(
         // 使用 SingleChildScrollView
         child: Center(
@@ -28,7 +28,7 @@ class MainPage extends StatelessWidget {
               CarouselSlider(
                 options: CarouselOptions(
                   autoPlay: true, // 自动播放
-                  autoPlayInterval: Duration(seconds: 3), // 自动播放间隔时间
+                  autoPlayInterval: const Duration(seconds: 3), // 自动播放间隔时间
                   height: 165.0, // 设置图片轮播组件的高度
                   enlargeCenterPage: true, // 设置中间的图片更大
                   viewportFraction: 0.95, // 设置每个页面占用的屏幕宽度比例
@@ -47,7 +47,7 @@ class MainPage extends StatelessWidget {
                   child: Container(
                     width: 380.0, // 设置固定宽度
                     height: 180.0, // 设置固定高度
-                    color: Color.fromARGB(255, 243, 227, 227), // 设置背景颜色为白色
+                    color: const Color.fromARGB(255, 243, 227, 227), // 设置背景颜色为白色
                     child: Column(
                       //mainAxisSize: MainAxisSize.min,
                       children: [
@@ -57,16 +57,16 @@ class MainPage extends StatelessWidget {
                           child: Stack(
                             alignment: Alignment.center,
                             children: <Widget>[
-                              Divider(
+                              const Divider(
                                 color:
                                     Color.fromARGB(255, 152, 92, 88), // 分割线颜色
                                 thickness: 1, // 分割线厚度
                               ),
                               Container(
-                                color: Color.fromARGB(
+                                color: const Color.fromARGB(
                                     255, 243, 227, 227), // 背景色应与父容器相同
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
+                                child: const Padding(
+                                  padding: EdgeInsets.symmetric(
                                       horizontal: 8.0),
                                   child: Text(
                                     '捐赠总览',
@@ -81,8 +81,8 @@ class MainPage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(5.0),
+                        const Padding(
+                          padding: EdgeInsets.all(5.0),
                           child: Center(
                             child: DonationRowWidget(
                               amount1: '1000万元',
@@ -95,19 +95,19 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
               ),
-              DonationCard(
+              const DonationCard(
                 title: '爱心捐赠',
                 content: '郭老师捐了爱心大蛋糕给云南小朋友,还帮助小朋友背诵将进酒。',
                 image: 'assets/zuijinjuanzhu.png',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center, // 设置主轴对齐方式为居中
                 children: [
                   SsdButton(text: '捐助儿童', onTap: onTap),
-                  SizedBox(width: 50), // 两个按钮之间的间隔，可以根据需要调整
+                  const SizedBox(width: 50), // 两个按钮之间的间隔，可以根据需要调整
                   SsdButton(text: '捐助项目', onTap: onTap),
                 ],
               )
@@ -128,7 +128,7 @@ class MainPage extends StatelessWidget {
           label: '捐赠记录',
           icon: Icon(Icons.receipt),
         ),
-      ], selectedItemColor: Color.fromARGB(255, 152, 92, 88)),
+      ], selectedItemColor: const Color.fromARGB(255, 152, 92, 88)),
     );
   }
 

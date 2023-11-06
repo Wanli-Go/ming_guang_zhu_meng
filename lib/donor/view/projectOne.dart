@@ -20,15 +20,15 @@ class CustomCard extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  CustomCard(
-      {required this.item, required this.isSelected, required this.onTap});
+  const CustomCard(
+      {super.key, required this.item, required this.isSelected, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.only(right: 6, left: 6, top: 6, bottom: 6),
+        margin: const EdgeInsets.only(right: 6, left: 6, top: 6, bottom: 6),
         decoration: BoxDecoration(
           color: Colors.white, // Added a white background color
           border: Border.all(
@@ -49,7 +49,7 @@ class CustomCard extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(
+                padding: const EdgeInsets.all(
                     8.0), // Added padding for the entire expanded container
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,7 +58,7 @@ class CustomCard extends StatelessWidget {
                       item.title,
                       textAlign: TextAlign
                           .center, // Center text alignment for the title
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 20.0,
                           color: Color.fromARGB(255, 110, 82, 87)),
                     ),
@@ -67,7 +67,7 @@ class CustomCard extends StatelessWidget {
                       maxLines: 1, // Show only one line
                       overflow:
                           TextOverflow.ellipsis, // Add ellipsis if it overflows
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 16.0,
                           color: Color.fromARGB(255, 110, 82, 87)),
                     ),
@@ -85,7 +85,7 @@ class CustomCard extends StatelessWidget {
 class CardCarousel extends StatefulWidget {
   final List<CardItem> items;
 
-  CardCarousel({required this.items});
+  const CardCarousel({super.key, required this.items});
 
   @override
   _CardCarouselState createState() => _CardCarouselState();
@@ -118,8 +118,8 @@ class _CardCarouselState extends State<CardCarousel> {
             height: 250.0,
             viewportFraction: 1.0, // 保证等大的卡片
             autoPlay: true, // 开启自动播放
-            autoPlayInterval: Duration(seconds: 3), // 自动播放的间隔时间
-            autoPlayAnimationDuration: Duration(milliseconds: 800), // 动画执行的时间
+            autoPlayInterval: const Duration(seconds: 3), // 自动播放的间隔时间
+            autoPlayAnimationDuration: const Duration(milliseconds: 800), // 动画执行的时间
             autoPlayCurve: Curves.fastOutSlowIn, // 动画曲线
             enlargeCenterPage: false, // 不需要放大中间页面
             onPageChanged: (index, reason) {
@@ -137,7 +137,7 @@ class _CardCarouselState extends State<CardCarousel> {
 class DetailPage extends StatelessWidget {
   final CardItem item;
 
-  DetailPage({required this.item});
+  const DetailPage({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -145,27 +145,27 @@ class DetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           item.title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 25,
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 152, 92, 88),
+        backgroundColor: const Color.fromARGB(255, 152, 92, 88),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.favorite_border),
+            icon: const Icon(Icons.favorite_border),
             onPressed: () {
               // Action for the icon button
             },
           ),
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 245, 241, 233),
+      backgroundColor: const Color.fromARGB(255, 245, 241, 233),
       body: SingleChildScrollView(
         // Wrap with SingleChildScrollView for scrollable content
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -196,7 +196,7 @@ class DetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             Padding(
@@ -219,7 +219,7 @@ class DetailPage extends StatelessWidget {
           label: '捐赠记录',
           icon: Icon(Icons.receipt),
         ),
-      ], selectedItemColor: Color.fromARGB(255, 152, 92, 88)),
+      ], selectedItemColor: const Color.fromARGB(255, 152, 92, 88)),
     );
   }
 
@@ -236,7 +236,7 @@ class CharityProjectCard extends StatelessWidget {
   final CardItem item; // Using CardItem model for data
   final VoidCallback onTap;
 
-  CharityProjectCard({
+  const CharityProjectCard({super.key, 
     required this.item,
     required this.onTap,
   });
@@ -284,7 +284,7 @@ class CharityProjectCard extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         item.title,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 17,
                             //fontWeight: FontWeight.bold,
                             color: Color.fromARGB(255, 85, 46, 43),
@@ -293,17 +293,17 @@ class CharityProjectCard extends StatelessWidget {
                       ),
                       Text(
                         item.description,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 15,
                             color: Color.fromARGB(255, 139, 115, 109),
                             height: 1.1),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      Text(
+                      const Text(
                         '主办机构：红十字会',
                         style: TextStyle(
-                            color: const Color.fromARGB(255, 164, 146, 143),
+                            color: Color.fromARGB(255, 164, 146, 143),
                             fontSize: 14,
                             height: 1.1),
                       ),
@@ -323,13 +323,13 @@ class CharityProjectCard extends StatelessWidget {
 class GridCardView extends StatelessWidget {
   final List<CardItem> items;
 
-  GridCardView({required this.items});
+  const GridCardView({super.key, required this.items});
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       padding: const EdgeInsets.fromLTRB(9, 8, 9, 0),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2, // 每行显示两个卡片
         crossAxisSpacing: 5, // 横向间隔
         mainAxisSpacing: 5, // 纵向间隔
@@ -363,7 +363,7 @@ class CharityInfoCard extends StatelessWidget {
   final String title;
   final String detailInfo;
 
-  CharityInfoCard({
+  const CharityInfoCard({super.key, 
     required this.title,
     required this.detailInfo,
   });
@@ -380,7 +380,7 @@ class CharityInfoCard extends StatelessWidget {
             color: Colors.grey.withOpacity(0.2),
             spreadRadius: 1,
             blurRadius: 5,
-            offset: Offset(0, 1), // changes position of shadow
+            offset: const Offset(0, 1), // changes position of shadow
           ),
         ],
       ),
@@ -389,13 +389,13 @@ class CharityInfoCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 24.0, // 标题字体大小调整
                 color: Color.fromARGB(255, 97, 71, 75)
                 //fontWeight: FontWeight.bold,
                 ),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -408,21 +408,21 @@ class CharityInfoCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          Divider(
+          const Divider(
             color: Color.fromARGB(255, 232, 224, 224), // 设置分割线颜色
             thickness: 1.0,
           ),
-          SizedBox(height: 4.0),
+          const SizedBox(height: 4.0),
           Text(
             detailInfo,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 17.0,
                 color: Color.fromARGB(255, 110, 82, 87)), // 详细信息字体大小调整
           ),
-          SizedBox(height: 12.0),
+          const SizedBox(height: 12.0),
           Column(
             children: [
               Row(
@@ -432,7 +432,7 @@ class CharityInfoCard extends StatelessWidget {
                   _buildIconInfo(Icons.check_circle_outline, '已提交计划、预算'),
                 ],
               ),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -440,15 +440,15 @@ class CharityInfoCard extends StatelessWidget {
                   _buildIconInfo(Icons.attach_money, '近一年披露财务2次'),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 6,
               ),
-              Divider(
+              const Divider(
                 color: Color.fromARGB(255, 232, 224, 224), // 设置分割线颜色
                 thickness: 1.0,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: CharityInstitutionInfo(institutionName: "红十字会"),
               ),
             ],
@@ -460,16 +460,16 @@ class CharityInfoCard extends StatelessWidget {
 
   Widget _buildInfoBox(String text) {
     return Container(
-      margin: EdgeInsets.only(right: 8.0), // 为了保持一点距离
+      margin: const EdgeInsets.only(right: 8.0), // 为了保持一点距离
       padding:
-          EdgeInsets.symmetric(horizontal: 9.0, vertical: 6.0), // 根据内容调整padding
+          const EdgeInsets.symmetric(horizontal: 9.0, vertical: 6.0), // 根据内容调整padding
       decoration: BoxDecoration(
-        border: Border.all(color: Color.fromARGB(95, 121, 34, 34)),
+        border: Border.all(color: const Color.fromARGB(95, 121, 34, 34)),
         borderRadius: BorderRadius.circular(6), // 方框圆角
       ),
       child: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 15.0,
           color: Color.fromARGB(95, 121, 34, 34),
         ), // 文字大小也可以根据需求调整
@@ -483,13 +483,13 @@ class CharityInfoCard extends StatelessWidget {
         Icon(
           icon,
           size: 35.0, // 图标大小调整
-          color: Color.fromARGB(255, 187, 126, 128),
+          color: const Color.fromARGB(255, 187, 126, 128),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 14.0,
               color: Color.fromARGB(255, 165, 144, 144) // 文字大小调整
               ),
@@ -503,7 +503,7 @@ class CharityInfoCard extends StatelessWidget {
 class CharityInstitutionInfo extends StatelessWidget {
   final String institutionName;
 
-  CharityInstitutionInfo({
+  const CharityInstitutionInfo({
     Key? key,
     required this.institutionName,
   }) : super(key: key);
@@ -514,15 +514,15 @@ class CharityInstitutionInfo extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 30.0), // 容器内左右padding
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.public, // 使用一个代表“公益”的图标
             color: Color.fromARGB(255, 164, 146, 143), // 图标颜色可以根据需求调整
           ),
-          SizedBox(width: 10), // 图标和文字之间的间距
+          const SizedBox(width: 10), // 图标和文字之间的间距
           Expanded(
             child: Text(
               '执行与收款机构：$institutionName',
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 17,
                   color: Color.fromARGB(255, 164, 146, 143)), // 文字大小可以根据需要调整
             ),

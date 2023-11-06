@@ -49,26 +49,26 @@ class DonarProjectPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           '明光筑梦',
           style: TextStyle(
             fontSize: 25,
           ),
         ),
         centerTitle: true, // 在这里设置 AppBar 的标题
-        backgroundColor: Color.fromARGB(255, 152, 92, 88), // 设置 AppBar 的背景颜色
+        backgroundColor: const Color.fromARGB(255, 152, 92, 88), // 设置 AppBar 的背景颜色
       ),
-      backgroundColor: Color.fromARGB(255, 245, 241, 233),
+      backgroundColor: const Color.fromARGB(255, 245, 241, 233),
       body: Column(
         children: <Widget>[
-          SizedBox(height: 2),
+          const SizedBox(height: 2),
           CardCarousel(items: items),
-          SizedBox(height: 4),
-          Padding(
-            padding: const EdgeInsets.only(left: 3, right: 3),
+          const SizedBox(height: 4),
+          const Padding(
+            padding: EdgeInsets.only(left: 3, right: 3),
             child: CategorySelector(),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Expanded(
             child: GridCardView(items: projects),
           ),
@@ -87,7 +87,7 @@ class DonarProjectPage extends StatelessWidget {
           label: '捐赠记录',
           icon: Icon(Icons.receipt),
         ),
-      ], selectedItemColor: Color.fromARGB(255, 152, 92, 88)),
+      ], selectedItemColor: const Color.fromARGB(255, 152, 92, 88)),
     );
   }
 

@@ -14,7 +14,7 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   int _current = 0;
   int _selectedIndex = -1;
-  CarouselController _carouselController = new CarouselController();
+  final CarouselController _carouselController = CarouselController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +25,14 @@ class _ProductCardState extends State<ProductCard> {
       floatingActionButton: _selectedIndex != -1
           ? FloatingActionButton(
               onPressed: () {},
-              child: Icon(Icons.arrow_forward_ios),
+              child: const Icon(Icons.arrow_forward_ios),
             )
           : null,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white, // 设置 AppBar 背景色为白色
         centerTitle: true, // 标题居中
-        title: Text(
+        title: const Text(
           '@theflutterlover',
           style: TextStyle(
             color: Colors.black,
@@ -74,7 +74,7 @@ class _ProductCardState extends State<ProductCard> {
                         });
                       },
                       child: AnimatedContainer(
-                        duration: Duration(milliseconds: 300),
+                        duration: const Duration(milliseconds: 300),
                         // 这里不再设置 width，因为 Carousel 已经给出了视口大小
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -88,14 +88,14 @@ class _ProductCardState extends State<ProductCard> {
                                   BoxShadow(
                                     color: Colors.blue.shade100,
                                     blurRadius: 30,
-                                    offset: Offset(0, 10),
+                                    offset: const Offset(0, 10),
                                   ),
                                 ]
                               : [
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.2),
                                     blurRadius: 20,
-                                    offset: Offset(0, 5),
+                                    offset: const Offset(0, 5),
                                   ),
                                 ],
                         ),
@@ -104,7 +104,7 @@ class _ProductCardState extends State<ProductCard> {
                             children: [
                               Container(
                                 height: 320,
-                                margin: EdgeInsets.only(top: 10),
+                                margin: const EdgeInsets.only(top: 10),
                                 clipBehavior: Clip.hardEdge,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
@@ -113,20 +113,20 @@ class _ProductCardState extends State<ProductCard> {
                                 child: Image.network(product['image']!,
                                     fit: BoxFit.cover),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Center(
                                 child: Text(
                                   product['title']!,
                                   textAlign: TextAlign.center, // 标题文字居中对齐
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Text(
@@ -137,7 +137,7 @@ class _ProductCardState extends State<ProductCard> {
                                   color: Colors.grey.shade600,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20, // 确保底部有足够空间
                               ),
                             ],
@@ -158,6 +158,8 @@ class _ProductCardState extends State<ProductCard> {
 
 //项目类型选择
 class CategorySelector extends StatefulWidget {
+  const CategorySelector({super.key});
+
   @override
   _CategorySelectorState createState() => _CategorySelectorState();
 }
@@ -179,16 +181,16 @@ class _CategorySelectorState extends State<CategorySelector> {
             color: Colors.grey.withOpacity(0.2),
             spreadRadius: 1,
             blurRadius: 5,
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
           ),
         ],
       ),
       child: ListView.separated(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
             vertical: 12), // Add vertical padding if needed
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
-        separatorBuilder: (context, index) => VerticalDivider(
+        separatorBuilder: (context, index) => const VerticalDivider(
           color: Colors.grey, // Change color to make it visible
           width: 1,
           thickness: 2, // Set thickness of the divider
@@ -201,13 +203,13 @@ class _CategorySelectorState extends State<CategorySelector> {
             onTap(categories[index]);
           },
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 15.0),
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
             alignment: Alignment.center,
             child: Text(
               categories[index],
               style: TextStyle(
                 fontSize: 19.0,
-                color: Color.fromARGB(255, 137, 114, 108),
+                color: const Color.fromARGB(255, 137, 114, 108),
                 fontWeight: index == selectedIndex
                     ? FontWeight.bold
                     : FontWeight.normal,

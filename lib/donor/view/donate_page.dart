@@ -9,8 +9,8 @@ class DonatePage extends StatefulWidget {
 
 class _DonatePageState extends State<DonatePage> {
   String _donationType = 'money'; // 默认捐助类型为善款
-  TextEditingController _moneyController = TextEditingController();
-  TextEditingController _goodsController = TextEditingController();
+  final TextEditingController _moneyController = TextEditingController();
+  final TextEditingController _goodsController = TextEditingController();
 
   void _performDonation() {
     if (_donationType == 'money') {
@@ -35,11 +35,11 @@ class _DonatePageState extends State<DonatePage> {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.white),
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          title: Padding(
-            padding: const EdgeInsets.only(left: 110),
+          title: const Padding(
+            padding: EdgeInsets.only(left: 110),
             child: Text('儿童详情', style: TextStyle(color: Colors.white)),
           ),
           backgroundColor: Colors.blue,
@@ -56,9 +56,9 @@ class _DonatePageState extends State<DonatePage> {
             ),
             // 儿童详情
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               color: Colors.white,
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text('姓名：王小花'),
@@ -72,12 +72,12 @@ class _DonatePageState extends State<DonatePage> {
             Expanded(
               child: ListView(children: [
                 Container(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text('捐助方式：',
+                      const Text('捐助方式：',
                           style: TextStyle(fontWeight: FontWeight.bold)),
                       ListTile(
                         title: const Text('捐助善款'),
@@ -92,8 +92,8 @@ class _DonatePageState extends State<DonatePage> {
                         ),
                       ),
                       if (_donationType == 'money')
-                        Padding(
-                          padding: const EdgeInsets.only(left: 40),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 40),
                           child: TextField(
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
@@ -116,8 +116,8 @@ class _DonatePageState extends State<DonatePage> {
                         ),
                       ),
                       if (_donationType == 'goods')
-                        Padding(
-                          padding: const EdgeInsets.only(left: 40),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 40),
                           child: TextField(
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
@@ -134,15 +134,14 @@ class _DonatePageState extends State<DonatePage> {
           ],
         ),
         bottomNavigationBar: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
               onPressed: _performDonation,
-              child: Text('进行捐助', style: TextStyle(fontSize: 20)),
               style: ElevatedButton.styleFrom(
-                primary: Colors.blue, // button's fill color
-                onPrimary: Colors.white, // button's text color
-                minimumSize: Size(double.infinity, 50), // button's size
+                foregroundColor: Colors.white, backgroundColor: Colors.blue, // button's text color
+                minimumSize: const Size(double.infinity, 50), // button's size
               ),
+              child: const Text('进行捐助', style: TextStyle(fontSize: 20)),
             )));
   }
 }

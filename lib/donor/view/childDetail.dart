@@ -21,20 +21,20 @@ class ChildInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           '明光筑梦',
           style: TextStyle(
             fontSize: 25,
           ),
         ),
         centerTitle: true, // 在这里设置 AppBar 的标题
-        backgroundColor: Color.fromARGB(255, 152, 92, 88), // 设置 AppBar 的背景颜色
+        backgroundColor: const Color.fromARGB(255, 152, 92, 88), // 设置 AppBar 的背景颜色
       ),
-      backgroundColor: Color.fromARGB(255, 243, 240, 239),
+      backgroundColor: const Color.fromARGB(255, 243, 240, 239),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             // 第一个部分，图片
@@ -43,7 +43,7 @@ class ChildInfoPage extends StatelessWidget {
               height: 260.0, // 设置容器高度
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), // 设置圆角半径
-                color: Color.fromARGB(255, 250, 240, 240), // 设置背景颜色为白色
+                color: const Color.fromARGB(255, 250, 240, 240), // 设置背景颜色为白色
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5.0), // 设置圆角半径
@@ -55,8 +55,8 @@ class ChildInfoPage extends StatelessWidget {
             ),
             // 第二个部分，文本内容
             Container(
-              margin: EdgeInsets.only(left: 30, right: 30, top: 13, bottom: 10),
-              padding: EdgeInsets.all(16.0),
+              margin: const EdgeInsets.only(left: 30, right: 30, top: 13, bottom: 10),
+              padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5.0), // 设置圆角半径
                 color: const Color.fromARGB(255, 251, 250, 250), // 设置背景颜色为白色
@@ -66,31 +66,31 @@ class ChildInfoPage extends StatelessWidget {
                 children: [
                   Text(
                     '姓名：$name',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 19.0,
                       color: Color.fromARGB(255, 59, 38, 36), // 字体大小
                     ),
                   ),
-                  SizedBox(height: 8.0), // 间隔
+                  const SizedBox(height: 8.0), // 间隔
                   Text(
                     '学校：$school',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 19.0,
                       color: Color.fromARGB(255, 59, 38, 36), // 字体大小
                     ),
                   ),
-                  SizedBox(height: 8.0), // 间隔
+                  const SizedBox(height: 8.0), // 间隔
                   Text(
                     '年龄：$age',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 19.0, // 字体大小
                       color: Color.fromARGB(255, 59, 44, 42),
                     ),
                   ),
-                  SizedBox(height: 8.0), // 间隔
+                  const SizedBox(height: 8.0), // 间隔
                   Text(
                     '详细信息：$detail',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 19.0, height: 1.5,
                       color: Color.fromARGB(255, 59, 38, 36), // 字体大小
                     ),
@@ -99,7 +99,7 @@ class ChildInfoPage extends StatelessWidget {
               ),
             ),
             // 第三个部分，按钮
-            SizedBox(
+            const SizedBox(
               height: 13,
             ),
             SsdButton(text: '进行捐助', onTap: onTapDonate),
@@ -119,7 +119,7 @@ class ChildInfoPage extends StatelessWidget {
           label: '捐赠记录',
           icon: Icon(Icons.receipt),
         ),
-      ], selectedItemColor: Color.fromARGB(255, 152, 92, 88)),
+      ], selectedItemColor: const Color.fromARGB(255, 152, 92, 88)),
     );
   }
 

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'donor/view/main_page.dart'; // 调整这个路径来决定你的 App 的调试的 Page
-import 'donor/view/donorChild.dart';
-import 'donor/view/childDetail.dart';
-import 'donor/view/projectDetail.dart';
-import 'donor/view/childMoneyDetail.dart';
-import 'donor/view/collectMainPage.dart';
-import 'donor/view/sharePage.dart';
-import 'donor/view/donationRecordPage.dart';
+import 'package:ming_guang/donor/view/childDetail.dart';
+import 'package:ming_guang/donor/view/childMoneyDetail.dart';
+import 'package:ming_guang/donor/view/collectMainPage.dart';
+import 'package:ming_guang/donor/view/donorChild.dart';
+import 'package:ming_guang/donor/view/main_page.dart';
+import 'package:ming_guang/donor/view/projectDetail.dart';
+// 调整这个路径来决定你的 App 的调试的 Page
 
 void main() {
 
@@ -25,10 +24,11 @@ void main() {
       //home: const MainPage(),
       //home: const DonarChildPage(),
       //home: const DonarProjectPage(),
-      //home: const childMoneyDetailPage(),
-      //home: const collectMainPage(),
-      //home: const SharePage(),
-      //home: const DonationRecordPage(),
+      //home: const ChildMoneyDetailPage(),
+      //home: const CollectMainPage(),
+      //home: const SharePage(), //Unfound
+      //home: const DonationRecordPage(), //Unfound
+      //home: const DonatePage(), //Incomplete
     )
   );
 }
