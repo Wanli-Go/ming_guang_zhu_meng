@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import './example/my_app.dart'; // 调整这个路径来决定你的 App 的调试的 Page
 
-void main() {
+import './example/view/Comment.dart'; // 调整这个路径来决定你的 App 的调试的 Page
 
-  runApp(
+ void main() {
 
-    MaterialApp(
+   runApp(
 
-      theme: ThemeData(
-        fontFamily: "StarRail", // 定义 App 的字体
-        iconTheme: const IconThemeData( // 定义 图标 的颜色
+     MaterialApp(
+
+       theme: ThemeData(
+         fontFamily: "StarRail", // 定义 App 的字体
+         iconTheme: const IconThemeData( // 定义 图标 的颜色
           color: Colors.indigo
-        ),
+         ),
       ),
 
-      home: const MyApp(), // Your widget
+       home:  MyApp(), // Your widget
 
-    )
+     )
 
-  );
-}
+   );
+ }
