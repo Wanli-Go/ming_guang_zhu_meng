@@ -9,10 +9,16 @@ class collectMainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('我的收藏'), // 在这里设置 AppBar 的标题
-        backgroundColor: Colors.pink, // 设置 AppBar 的背景颜色
+        title: Text(
+          '我的收藏',
+          style: TextStyle(
+            fontSize: 25,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 152, 92, 88),
       ),
-      backgroundColor: const Color.fromARGB(255, 244, 215, 227),
+      backgroundColor: Color.fromARGB(255, 239, 229, 229),
       body: Column(
         children: <Widget>[
           SizedBox(height: 20),
@@ -38,9 +44,6 @@ class collectMainPage extends StatelessWidget {
                 ),
               );
             },
-          ),
-          Center(
-            child: TagWidget(),
           ),
         ],
       ),
@@ -115,10 +118,19 @@ class CharityProjectCardCollect extends StatelessWidget {
 class TagWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // 获取屏幕宽度
+    double screenWidth = MediaQuery.of(context).size.width;
+    // 可以根据屏幕宽度调整尺寸和边距
+    double padding = screenWidth * 0.05; // 5% of the screen width
+    double imageSize = screenWidth * 0.9; // 90% of the screen width
+    double topMargin = screenWidth * 0.05;
+    double textFontSize =
+        screenWidth * 0.045; // Font size that scales with the screen width
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      margin: EdgeInsets.all(padding),
+      padding: EdgeInsets.all(padding/2),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.blue, width: 2), // 添加边框
+        border: Border.all(color: const Color.fromARGB(255, 255, 255, 255), width: 2), // 添加边框
         borderRadius: BorderRadius.circular(12), // 最外层的圆角
         color: Colors.white, // 设置背景颜色，如果需要的话
       ),
@@ -130,14 +142,14 @@ class TagWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               _buildTagItem(Icons.home, '留守儿童'),
-              _buildTagItem(Icons.settings, '缺乏基本生活设施'),
+              _buildTagItem(Icons.settings, '缺乏生活设施'),
             ],
           ),
-          SizedBox(height: 4), // 添加行之间的间隔
+          SizedBox(height: 8), // 添加行之间的间隔
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              _buildTagItem(Icons.child_friendly, '未交学费和书费'),
+              _buildTagItem(Icons.money, '未交学费书费'),
               _buildTagItem(Icons.child_friendly, '需要衣物'),
             ],
           ),
@@ -149,8 +161,8 @@ class TagWidget extends StatelessWidget {
   Widget _buildTagItem(IconData iconData, String text) {
     return Expanded(
       child: Container(
-        margin: const EdgeInsets.all(4.0),
-        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+        margin: const EdgeInsets.all(2.0),
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
         decoration: BoxDecoration(
           color: Colors.grey[200],
           borderRadius: BorderRadius.circular(18),

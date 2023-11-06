@@ -106,7 +106,7 @@ class ChildStatusCard extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
-              "        感谢您对我的帮助，我会好好学习，不辜负您的期望！",
+              "感谢您对我的帮助，我会好好学习，不辜负您的期望！",
               style: TextStyle(
                 fontSize: 18,
                 color: Color.fromARGB(255, 110, 82, 87),

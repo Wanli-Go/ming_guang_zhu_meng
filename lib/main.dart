@@ -5,8 +5,6 @@ import 'donor/view/childDetail.dart';
 import 'donor/view/projectDetail.dart';
 import 'donor/view/childMoneyDetail.dart';
 import 'donor/view/collectMainPage.dart';
-import 'donor/view/sharePage.dart';
-import 'donor/view/donationRecordPage.dart';
 
 void main() {
 
@@ -25,7 +23,7 @@ void main() {
       //home: const MainPage(),
       //home: const DonarChildPage(),
       //home: const DonarProjectPage(),
-      //home: const childMoneyDetailPage(),
+      home: const childMoneyDetailPage(),
       //home: const collectMainPage(),
       //home: const SharePage(),
       //home: const DonationRecordPage(),

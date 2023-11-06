@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'mainShowBox.dart';
+import 'collectMainPage.dart';
 
 class ChildInfoPage extends StatelessWidget {
   final String imagePath;
@@ -19,6 +20,15 @@ class ChildInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 获取屏幕宽度
+    double screenWidth = MediaQuery.of(context).size.width;
+    
+    // 可以根据屏幕宽度调整尺寸和边距
+    double padding = screenWidth * 0.05; // 5% of the screen width
+    double imageSize = screenWidth * 0.9; // 90% of the screen width
+    double topMargin = screenWidth * 0.05;
+    double textFontSize = screenWidth * 0.045; // Font size that scales with the screen width
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -27,39 +37,37 @@ class ChildInfoPage extends StatelessWidget {
             fontSize: 25,
           ),
         ),
-        centerTitle: true, // 在这里设置 AppBar 的标题
-        backgroundColor: Color.fromARGB(255, 152, 92, 88), // 设置 AppBar 的背景颜色
+        centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 152, 92, 88),
       ),
       backgroundColor: Color.fromARGB(255, 243, 240, 239),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 25,
-            ),
-            // 第一个部分，图片
+            SizedBox(height: topMargin),
+            // Image container with relative size
             Container(
-              width: MediaQuery.of(context).size.width / 1.18, // 设置容器宽度为屏幕宽度
-              height: 260.0, // 设置容器高度
+              width: imageSize,
+              height: screenWidth * 0.65, // 65% of the screen width
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0), // 设置圆角半径
-                color: Color.fromARGB(255, 250, 240, 240), // 设置背景颜色为白色
+                borderRadius: BorderRadius.circular(5.0),
+                color: Color.fromARGB(255, 250, 240, 240),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(5.0), // 设置圆角半径
+                borderRadius: BorderRadius.circular(5.0),
                 child: Image.asset(
                   imagePath,
-                  fit: BoxFit.cover, // 图片填充方式
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
-            // 第二个部分，文本内容
+            // Text content with relative padding and font size
             Container(
-              margin: EdgeInsets.only(left: 30, right: 30, top: 13, bottom: 10),
-              padding: EdgeInsets.all(16.0),
+              margin: EdgeInsets.all(padding),
+              padding: EdgeInsets.all(padding),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0), // 设置圆角半径
-                color: const Color.fromARGB(255, 251, 250, 250), // 设置背景颜色为白色
+                borderRadius: BorderRadius.circular(5.0),
+                color: const Color.fromARGB(255, 251, 250, 250),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,41 +75,39 @@ class ChildInfoPage extends StatelessWidget {
                   Text(
                     '姓名：$name',
                     style: TextStyle(
-                      fontSize: 19.0,
-                      color: Color.fromARGB(255, 59, 38, 36), // 字体大小
+                      fontSize: textFontSize,
+                      color: Color.fromARGB(255, 59, 38, 36),
                     ),
                   ),
-                  SizedBox(height: 8.0), // 间隔
+                  SizedBox(height: padding), // Use the same padding for consistency
                   Text(
                     '学校：$school',
                     style: TextStyle(
-                      fontSize: 19.0,
-                      color: Color.fromARGB(255, 59, 38, 36), // 字体大小
+                      fontSize: textFontSize,
+                      color: Color.fromARGB(255, 59, 38, 36),
                     ),
                   ),
-                  SizedBox(height: 8.0), // 间隔
+                  SizedBox(height: padding),
                   Text(
                     '年龄：$age',
                     style: TextStyle(
-                      fontSize: 19.0, // 字体大小
+                      fontSize: textFontSize,
                       color: Color.fromARGB(255, 59, 44, 42),
                     ),
                   ),
-                  SizedBox(height: 8.0), // 间隔
+                  SizedBox(height: padding),
                   Text(
                     '详细信息：$detail',
                     style: TextStyle(
-                      fontSize: 19.0, height: 1.5,
-                      color: Color.fromARGB(255, 59, 38, 36), // 字体大小
+                      fontSize: textFontSize,
+                      height: 1.5,
+                      color: Color.fromARGB(255, 59, 38, 36),
                     ),
                   ),
                 ],
               ),
             ),
-            // 第三个部分，按钮
-            SizedBox(
-              height: 13,
-            ),
+            TagWidget(),
             SsdButton(text: '进行捐助', onTap: onTapDonate),
           ],
         ),
