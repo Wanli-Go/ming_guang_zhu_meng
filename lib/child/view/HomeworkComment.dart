@@ -173,7 +173,7 @@ class HomeworkShow extends StatelessWidget {
                   homeworkComment.data
                 ),
               ),
-              Icon(Icons.thumb_up,),
+              Icon(Icons.trending_up, size: 40,),
             ],
           ),
           Center(

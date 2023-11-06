@@ -36,61 +36,66 @@ class _ChildSituationPageState extends State<ChildSituationPage> {
               student_Infor(),
              
               //包含学生任务完成进度条（两个对应两种任务），两个图表展示框的column大组件
-              Container(
-                margin: EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-
-                    //进度条一
-                    Text(
-                      '必做任务（完成度）',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    LinearProgressIndicator(
-                      minHeight: 14,
-                      value: student.nessary,
-                      backgroundColor: Color.fromARGB(255, 244, 242, 242),
-                      valueColor: AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 151, 98, 179)),
-                    ),
-                    SizedBox(height: 25),
-
-                    //进度条二
-                    Text(
-                      '选做任务（完成度）',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    LinearProgressIndicator(
-                      minHeight: 14,
-                      value: student.choose,
-                      backgroundColor: Color.fromARGB(255, 240, 238, 239),
-                      valueColor: AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 239, 132, 225)),
-                    ),
-                     Container(
-                      child: Center(child: Text('排名图')),
-                      height:40
-                    ),
-
-                   //展示图,曲线柱形图
-
-                    ListView(
-                      children: <Widget>[
-                        Text('Line Chart', style: Theme.of(context).textTheme.headline6),
-                          Container(
-                            height: 300,
-                            child: LineChartWidget( xValues:  xValues, yValues: yValues),
+              Expanded(
+                child: Container(
+                  height: MediaQuery.of(context).size.height*0.5,
+                  margin: EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+              
+                      //进度条一
+                      Text(
+                        '必做任务（完成度）',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      LinearProgressIndicator(
+                        minHeight: 14,
+                        value: student.nessary,
+                        backgroundColor: Color.fromARGB(255, 244, 242, 242),
+                        valueColor: AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 151, 98, 179)),
+                      ),
+                      SizedBox(height: 25),
+              
+                      //进度条二
+                      Text(
+                        '选做任务（完成度）',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      LinearProgressIndicator(
+                        minHeight: 14,
+                        value: student.choose,
+                        backgroundColor: Color.fromARGB(255, 240, 238, 239),
+                        valueColor: AlwaysStoppedAnimation<Color>(Color.fromARGB(255, 239, 132, 225)),
+                      ),
+                       Container(
+                        child: Center(child: Text('排名图')),
+                        height:40
+                      ),
+              
+                     //展示图,曲线柱形图
+              
+                      Expanded(
+                        child: ListView(
+                          children: <Widget>[
+                            Text('Line Chart', style: Theme.of(context).textTheme.headline6),
+                              Container(
+                                height: 300,
+                                child: LineChartWidget( xValues:  xValues, yValues: yValues),
+                              ),
+                              Text('Bar Chart', style: Theme.of(context).textTheme.headline6),
+                              Container(
+                                height: 300,
+                                child: BarChartWidget(xValues: xValues, yValues: yValues),
+                              ),
+                          ],
+                        ),
+                      ),
+                 
+                    ]
+                  )
                           ),
-                          Text('Bar Chart', style: Theme.of(context).textTheme.headline6),
-                          Container(
-                            height: 300,
-                            child: BarChartWidget(xValues: xValues, yValues: yValues),
-                          ),
-                      ],
-                    ),
-               
-                  ]
-                )
-            )
+              )
         ],
       ),
 
@@ -233,61 +238,40 @@ class LineChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LineChart(
-      LineChartData(
-        gridData: FlGridData(show: false),
-        // titlesData: FlTitlesData(
-        //   bottomTitles: AxisTitles(
-        //     showTitles: true,
-            
-        //     getTitles: (value) {
-        //       final index = value.toInt() % xValues.length;
-        //       return xValues[index].x;
-        //     },
-        //     // 其他属性配置...
-        //   ),
-        //   leftTitles: AxisTitles(
-        //     showTitles: true,
-        //     // 其他属性配置...
-        //   ),
-        // ),
-
-        
-
-
-        titlesData: FlTitlesData(
-          bottomTitles: SideTitles(
-            showTitles: true,
-            getTitles: (value) {
-              return xValues[value.toInt() % xValues.length].x;
-            },
-          
-            // getTitles: (value) {
-            //   final index = value.toInt() % xValues.length;
-            //   return xValues[index].x;
-            // },
-           /* getTitles: (value) {
-              return xValues[value.toInt() % xValues.length];
-            },*/
-          )as AxisTitles,
-           
-          leftTitles: SideTitles(showTitles: true)as AxisTitles,
-        ),
-        borderData: FlBorderData(show: false),
-        lineBarsData: [
-          LineChartBarData(
-            spots: yValues.asMap().entries.map((e) {
-              return FlSpot(e.key.toDouble(), e.value.y.toDouble());
-            }).toList(),
-            isCurved: true,
-            colors: [Colors.blue],
-            barWidth: 4,
-            isStrokeCapRound: true,
-            dotData: FlDotData(show: false),
-            belowBarData: BarAreaData(show: false),
-          ),
-        ],
+  LineChartData(
+    gridData: FlGridData(show: false),
+    titlesData: FlTitlesData(
+      bottomTitles: SideTitles(
+        showTitles: true,
+        getTitles: (value) {
+          final index = value.toInt() % xValues.length;
+          return xValues[index].x;
+        },
+        // You may need to configure other properties of SideTitles here.
       ),
-    );
+      leftTitles: SideTitles(
+        showTitles: true,
+        // You may need to configure other properties of SideTitles here.
+      ),
+      // If you have topTitles or rightTitles, you need to configure them as well.
+    ),
+    borderData: FlBorderData(show: false),
+    lineBarsData: [
+      LineChartBarData(
+        spots: yValues.asMap().entries.map((e) {
+          return FlSpot(e.key.toDouble(), e.value.y.toDouble());
+        }).toList(),
+        isCurved: true,
+        colors: [Colors.blue],
+        barWidth: 4,
+        isStrokeCapRound: true,
+        dotData: FlDotData(show: false),
+        belowBarData: BarAreaData(show: false),
+      ),
+    ],
+  ),
+);
+
   }
 }
 
@@ -304,31 +288,39 @@ class BarChartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BarChart(
-      BarChartData(
-        alignment: BarChartAlignment.spaceAround,
-        titlesData: FlTitlesData(
-          bottomTitles: SideTitles(
-            showTitles: true,
-            getTitles: (double value) {
-              return xValues[value.toInt() % xValues.length].x;
-            },
-          )as AxisTitles,
-          leftTitles: SideTitles(showTitles: false)as AxisTitles,
-        ),
-        barGroups: yValues.asMap().entries.map((e) {
-          return BarChartGroupData(
-            x: e.key,
-            barRods: [
-              BarChartRodData(
-                toY: e.value.y.toDouble(),
-                colors: [Colors.blue],
-                width: 16,
-              )
-            ],
-          );
-        }).toList(),
+  BarChartData(
+    alignment: BarChartAlignment.spaceAround,
+    titlesData: FlTitlesData(
+      bottomTitles: SideTitles(
+        showTitles: true,
+        getTitles: (double value) {
+          // Make sure that xValues is a list that contains elements with a property 'x'
+          return xValues[value.toInt() % xValues.length].x;
+        },
+        // You can configure other properties of SideTitles here if needed
       ),
-    );
+      leftTitles: SideTitles(
+        showTitles: false,
+        // Configure other properties for leftTitles if needed
+      ),
+      // If you have topTitles or rightTitles, configure them similarly
+    ),
+    barGroups: yValues.asMap().entries.map((e) {
+      return BarChartGroupData(
+        x: e.key,
+        barRods: [
+          BarChartRodData(
+            y: e.value.y.toDouble(),
+            colors: [Colors.blue],
+            width: 16, // You can adjust the width as needed
+          ),
+        ],
+      );
+    }).toList(),
+    // You can add other properties of BarChartData if needed
+  ),
+);
+
   }
 }
 

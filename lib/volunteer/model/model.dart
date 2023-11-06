@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-// class DataModel {
-//   final String image;
-//   final String name;
-//   final String infor;
-
-//   DataModel({required this.image, required this.name, required this.infor});
-// }
-
-// final List<DataModel> comment = List.generate( // Dummy Data
-//   20,
-//   (i) => DataModel(
-//     image: 'assets/boy.png',
-//     name: '汪汪汪',
-//     infor: "哇,你做得真好,让我很受启发!"
-//   ),
-// );
-
-
-=======
 import 'dart:math';
 
 class Volunteer{
@@ -122,4 +102,3 @@ List<Message> generateDummyMessages({required int count}) {
   }
   return messages;
 }
->>>>>>> b4974ab7949b643fa08505bd22d36fcd3a61f4f3

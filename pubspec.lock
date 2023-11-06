@@ -81,8 +81,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.3.1"
-<<<<<<< HEAD
-=======
   ffi:
     dependency: transitive
     description:
@@ -91,22 +89,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.0"
->>>>>>> b4974ab7949b643fa08505bd22d36fcd3a61f4f3
   fl_chart:
     dependency: "direct main"
     description:
       name: fl_chart
-<<<<<<< HEAD
-      sha256: "6b9eb2b3017241d05c482c01f668dd05cc909ec9a0114fdd49acd958ff2432fa"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "0.64.0"
-=======
       sha256: "0c8baa9d4db70817d27099efb99e40e4164448bb86f73217216ef65b3976bc4f"
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.36.4"
->>>>>>> b4974ab7949b643fa08505bd22d36fcd3a61f4f3
   flutter:
     dependency: "direct main"
     description: flutter

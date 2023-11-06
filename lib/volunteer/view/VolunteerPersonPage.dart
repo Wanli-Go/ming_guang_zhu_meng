@@ -197,13 +197,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                           updatedSex = newValue!;
                                         });
                                       },
-                                      items: <String>['Male', 'Female']
-                                          .map<DropdownMenuItem<String>>((String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(value),
-                                        );
-                                      }).toList(),
+                                      items: ['男', '女']
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                              return DropdownMenuItem<String>(
+                                                value: value,
+                                                child: Text(value),
+                                              );
+                                            }
+                                          ).toList(),
                                     ),
                                     SizedBox(height: 10),
                                     Text('年龄'),
