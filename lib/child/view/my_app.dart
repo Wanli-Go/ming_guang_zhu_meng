@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/volunteer/my_app.dart';
-import 'package:ming_guang/volunteer/view/task-page.dart';
 import 'package:provider/provider.dart';
-
+import 'Mytask.dart';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar( 
         backgroundColor: Colors.pink[300],
@@ -21,10 +19,14 @@ class MyApp extends StatelessWidget {
         )),
       ),
 
-      body: TaskPage(),
+      body: ChangeNotifierProvider(
+        create: (context) => TapNotifier(),
+        child: TaskPage()
+        )
+      ,
 
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1, // 设置当前索引为2
+        currentIndex: 2, // 设置当前索引为2
         items: [
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.home,color: Colors.pink[300]),
@@ -33,16 +35,25 @@ class MyApp extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.home,color: Colors.pink[300]),
-            label: "任务批改",
+            label: "商城",
             icon: const Icon(Icons.home_filled)
           ),
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.home,color: Colors.pink[300]),
-            label: "志愿社区",
+            label: "任务",
             icon: const Icon(Icons.home_filled)
           ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(Icons.home,color: Colors.pink[300]),
+            label: "我的",
+            icon: const Icon(Icons.home_filled)
+          )
         ],
       ),
     );
   }
+}
+
+class TapNotifier extends ChangeNotifier {
+
 }
