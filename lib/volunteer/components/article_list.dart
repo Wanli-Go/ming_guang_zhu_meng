@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/model/articleDetail.dart';
 import '../model/articleBrief.dart';
-import '../view/articleDetail_page.dart';
+import '../view/article_page.dart';
 
 class ArticleListPage extends StatelessWidget {
   final List<ArticleBrief> articleBriefs = briefs;
@@ -38,6 +38,7 @@ class BriefCard extends StatelessWidget {
         },
         child: Card(
           elevation: 2.0, // 控制阴影大小
+          color: Colors.white.withOpacity(0.9),
           shape: RoundedRectangleBorder(
             // 设置边框样式
             borderRadius: BorderRadius.circular(5), // 边框圆角

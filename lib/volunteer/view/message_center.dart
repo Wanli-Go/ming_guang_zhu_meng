@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/view/chat_frame.dart';
-import 'package:ming_guang/volunteer/view_model/notifiers.dart';
+import 'package:ming_guang/volunteer/view_model/message_notifier.dart';
 import 'package:provider/provider.dart';
 import '../model/model.dart';
 
@@ -14,6 +14,7 @@ class MessageCenter extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 236, 130, 165),
         title: Center(child: Text("${user.name} 的 消息中心")),
+        actions: const [Icon(Icons.abc, size: 50, color: Colors.transparent)],
       ),
       body: const MCColumn(),
       bottomNavigationBar: BottomNavigationBar(

@@ -6,6 +6,8 @@ class CommentsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
         itemCount: comments.length,
         itemBuilder: (context, index) {
           return Padding(

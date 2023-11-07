@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/model/model.dart';
 import 'package:flutter/material.dart';
+import 'package:ming_guang/volunteer/themes/main_theme.dart';
 
 class TaskDetailPage extends StatefulWidget {
-  const TaskDetailPage({Key? key}) : super(key: key);
+  final String taskName;
+  const TaskDetailPage({Key? key, required this.taskName}) : super(key: key);
 
   @override
   _TaskDetailPageState createState() => _TaskDetailPageState();
 }
 
 class _TaskDetailPageState extends State<TaskDetailPage> {
-  // TODO: 从后端读取数据
-  final name = '任务名称';
-  final type = '任务类型';
-  final message = '任务描述';
-  final submitCount = 10;
 
   // TODO: 从后端读取孩子的列表
   final children = [
@@ -37,9 +34,17 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+
+  // TODO: 从后端读取数据
+  final name = widget.taskName;
+  final type = '任务类型';
+  final message = '任务描述';
+  final submitCount = 10;
+
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.pink[300],
+        backgroundColor: appBarColor,
         title:Center(child: const  Text('任务详情')),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -47,6 +52,7 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
             Navigator.pop(context);
           },
         ),
+        actions: const [Icon(Icons.abc, size: 50, color: Colors.transparent)],
       ),
       
       body: Column(
@@ -215,6 +221,7 @@ class _SubmitDetailDialogState extends State<SubmitDetailDialog> {
               Navigator.pop(context);
             },
           ),
+          actions: const [Icon(Icons.abc, size: 50, color: Colors.transparent)],
         ),
         body: Container(
           padding: EdgeInsets.all(16),
@@ -227,7 +234,6 @@ class _SubmitDetailDialogState extends State<SubmitDetailDialog> {
               Row(
                 children: [
                   Text('评分：'),
-                  SizedBox(width: 5),
                   RatingBar(
                     rating: rating,
                     onRatingChanged: (value) {
@@ -243,6 +249,7 @@ class _SubmitDetailDialogState extends State<SubmitDetailDialog> {
               
              
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text('做的太好了，鼓励一下~',style: TextStyle(
                     fontFamily: 'StarRail',

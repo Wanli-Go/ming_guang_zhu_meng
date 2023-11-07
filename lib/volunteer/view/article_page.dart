@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/model/articleBrief.dart';
 import 'package:ming_guang/volunteer/model/comment.dart';
+import 'package:ming_guang/volunteer/themes/community_theme.dart';
 import '../model/articleDetail.dart';
-import '../view/DetailComments_List.dart';
+import '../components/article_comments.dart';
 
 class ArticleDetailPage extends StatelessWidget {
   const ArticleDetailPage({super.key});
@@ -11,13 +12,10 @@ class ArticleDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 193, 123, 118),
+        backgroundColor: commAppBarColor,
         centerTitle: true, // 这将使标题水平居中对齐
         title: const Text(
           "文章详情",
-          style: TextStyle(
-              color: Colors.white, // 设置你想要的颜色
-              fontSize: 22),
         ),
 
         actions: [
@@ -125,52 +123,54 @@ class DetailColumn extends StatelessWidget {
 
                 // 评论列表
                 // 这里只是一个静态的示例，实际应用中你可能需要从网络获取评论数据
-                ListView.builder(
-                  shrinkWrap: true, // 使用shrinkWrap使得ListView本身不滚动
-                  physics: NeverScrollableScrollPhysics(), // 禁止ListView滚动
-                  itemCount:
-                      example.comments.length, // 假设example有一个评论列表comments
-                  itemBuilder: (context, index) {
-                    final comment = example.comments[index]; // 获取单个评论
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          ClipOval(
-                            child: Image.asset(
-                              comment.profileUrl, // 替换为评论者的头像URL
-                              width: 55,
-                              height: 55,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  '${comment.username} • ${comment.publishTime}', // 显示评论者ID和时间
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                                Text(
-                                  comment.comments,
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                  ),
-                                ), // 显示评论内容
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                // ListView.builder(
+                //   shrinkWrap: true, // 使用shrinkWrap使得ListView本身不滚动
+                //   physics: NeverScrollableScrollPhysics(), // 禁止ListView滚动
+                //   itemCount:
+                //       example.comments.length, // 假设example有一个评论列表comments
+                //   itemBuilder: (context, index) {
+                //     final comment = example.comments[index]; // 获取单个评论
+                //     return Padding(
+                //       padding: const EdgeInsets.only(bottom: 10.0),
+                //       child: Row(
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: <Widget>[
+                //           ClipOval(
+                //             child: Image.asset(
+                //               comment.profileUrl, // 替换为评论者的头像URL
+                //               width: 55,
+                //               height: 55,
+                //               fit: BoxFit.cover,
+                //             ),
+                //           ),
+                //           SizedBox(width: 10),
+                //           Expanded(
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: <Widget>[
+                //                 Text(
+                //                   '${comment.username} • ${comment.publishTime}', // 显示评论者ID和时间
+                //                   style: TextStyle(
+                //                     color: Colors.grey,
+                //                     fontSize: 14,
+                //                   ),
+                //                 ),
+                //                 Text(
+                //                   comment.comments,
+                //                   style: TextStyle(
+                //                     fontSize: 15,
+                //                   ),
+                //                 ), // 显示评论内容
+                //               ],
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     );
+                //   },
+                // ),
+
+                CommentsList()
               ],
             ),
           ),

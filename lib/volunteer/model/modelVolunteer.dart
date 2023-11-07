@@ -40,7 +40,7 @@ class VolunteerPerson{
  String get _tasks => tasks;
 }
 
-VolunteerPerson volunteerPerson = VolunteerPerson(
+VolunteerPerson dummyPerson = VolunteerPerson(
   name: '王小花',
   imageUrl:'assets/woman.png' ,
   sex: '女',

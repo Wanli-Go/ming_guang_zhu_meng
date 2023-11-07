@@ -93,17 +93,10 @@ flutter:
   fonts:  
   - family: StarRail
     fonts:
-      - asset: fonts\Honkai.ttf
+      - asset: fonts/Honkai.ttf
         weight: 700
   assets:
-    - assets\woman.png
-    - assets\man.png
-    - assets\Donald.png
-    - assets\girl.png
-    - assets\boy.png
-    - assets\markUrl.png
-    - assets\countingUrl.png
-
+    - assets/
 
 
   # For details regarding fonts from package dependencies,
