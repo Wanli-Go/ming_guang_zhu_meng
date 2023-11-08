@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/volunteer/my_app.dart';
 import 'package:ming_guang/volunteer/themes/community_theme.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
 import 'package:ming_guang/volunteer/view/community.dart';
@@ -10,8 +9,8 @@ import 'package:ming_guang/volunteer/view_model/bottom_nav_notifier.dart';
 import 'package:ming_guang/volunteer/view_model/main_model.dart';
 import 'package:provider/provider.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MainView extends StatelessWidget {
+  const MainView({super.key});
 
   static const model = MainModel();
 

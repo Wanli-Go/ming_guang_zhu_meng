@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ming_guang/volunteer/login.dart';
 import 'package:ming_guang/volunteer/view_model/bottom_nav_notifier.dart';
 import 'package:ming_guang/volunteer/view_model/message_notifier.dart';
 import 'package:provider/provider.dart';
-import './volunteer/my_app.dart';
+import 'volunteer/main_view.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -18,7 +19,7 @@ void main() {
             color: Colors.indigo),
       ),
   
-      home: const MyApp(), // Your widget
+      home: const LoginPage(), // Your widget
     ),
   ));
 }
