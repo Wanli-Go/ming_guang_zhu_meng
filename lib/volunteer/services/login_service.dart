@@ -1,13 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:http_interceptor/http/intercepted_client.dart';
 import './base/base_url.dart';
-import './base/request_client.dart';
-import './base/token_interceptor.dart';
 
 class LoginService {
 
   Future<String?> loginRequest(String username, String password, int type) async {
+    print("$username,$password,$type");
     try {
       final response = await http.post(
         Uri.parse('$baseUrl/login'),
@@ -24,12 +22,15 @@ class LoginService {
       if (response.statusCode == 200) {
         // Assuming the API returns a JSON object with a token
         Map<String, dynamic> data = json.decode(response.body);
-        return data['token'];
+        print("login data: $data");
+        return data['data'];
       } else {
         // Handle the error; either throw an exception or return null
+        print("login status code error");
         return 'jdodojdjk';
       }
     } catch (e) { // Return Dummy Token
+      print("login e");
       return 'jdodojdjk';
     }
   }

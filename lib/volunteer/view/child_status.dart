@@ -73,13 +73,13 @@ class _ChildSituationPageState extends State<ChildSituationPage> {
                       const SizedBox(
                           height: 25,),
                       Container(
-                          margin: EdgeInsets.all(5),
+                          margin: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
                             border: Border.all(width: 2, color: Colors.white.withOpacity(0.6)),
                             color: highlight.withOpacity(0.5),
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          height: 50, child: Center(child: Text('排名图',style: TextStyle(fontSize: 20),))),
+                          height: 50, child: const Center(child: Text('排名图',style: TextStyle(fontSize: 20),))),
 
                       //展示图,曲线柱形图
 
@@ -88,7 +88,7 @@ class _ChildSituationPageState extends State<ChildSituationPage> {
                           children: <Widget>[
                             Text('线状图',
                                 style: Theme.of(context).textTheme.titleLarge),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             SizedBox(
@@ -96,12 +96,12 @@ class _ChildSituationPageState extends State<ChildSituationPage> {
                               child: LineChartWidget(
                                   xValues: xValues, yValues: yValues),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 70,
                             ),
                             Text('柱状图',
                                 style: Theme.of(context).textTheme.titleLarge),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             SizedBox(
@@ -318,7 +318,7 @@ class BarChartWidget extends StatelessWidget {
                   getTooltipItem: (group, groupIndex, rod, rodIndex) {
                     return BarTooltipItem(
                       rod.y.round().toString(),
-                      TextStyle(color: Colors.white),
+                      const TextStyle(color: Colors.white),
                     );
                   }),
               touchCallback: (barTouchResponse) {

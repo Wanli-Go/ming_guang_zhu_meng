@@ -3,6 +3,8 @@ import 'package:ming_guang/volunteer/model/comment.dart';
 
 class CommentsList extends StatelessWidget {
   final List<Comment> comments = commentsss;
+
+  CommentsList({super.key});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -22,7 +24,7 @@ class CommentsList extends StatelessWidget {
 class CommentCard extends StatelessWidget {
   final Comment com;
 
-  CommentCard({required this.com});
+  const CommentCard({super.key, required this.com});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +32,8 @@ class CommentCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         // 设置边框样式
         borderRadius: BorderRadius.circular(3), // 边框圆角
-        side: BorderSide(
-          color: const Color.fromARGB(255, 234, 226, 226), // 边框颜色
+        side: const BorderSide(
+          color: Color.fromARGB(255, 234, 226, 226), // 边框颜色
           width: 0.5, // 边框宽度
         ),
       ),

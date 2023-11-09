@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(backgroundColor: appBarColor, title: const Text('志愿者端登陆')),
       body: Stack(
         children: [
-          DynamicBackgroundScreen(),
+          const DynamicBackgroundScreen(),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(

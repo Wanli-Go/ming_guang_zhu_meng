@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-Color appBarColor = const Color.fromARGB(255, 236, 130, 165);
-Color backgroundColor = const Color.fromARGB(255, 251, 232, 241);
-Color highlight = Colors.pinkAccent.shade400;
+const Color appBarColor = Color.fromARGB(255, 236, 130, 165);
+const Color backgroundColor = Color.fromARGB(255, 251, 232, 241);
+final Color highlight = Colors.pinkAccent.shade400;
 
 LinearGradient gradientDecoration = const LinearGradient(
   // 线性渐变

@@ -4,6 +4,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class DynamicBackgroundScreen extends StatefulWidget {
+  const DynamicBackgroundScreen({super.key});
+
   @override
   _DynamicBackgroundScreenState createState() => _DynamicBackgroundScreenState();
 }
@@ -26,7 +28,7 @@ class _DynamicBackgroundScreenState extends State<DynamicBackgroundScreen> {
   void initState() {
     super.initState();
     // Update the background color every 2 seconds
-    Timer.periodic(Duration(seconds: 5), (Timer timer) {
+    Timer.periodic(const Duration(seconds: 5), (Timer timer) {
       setState(() {
         _backgroundColorTop = getRandomPinkColor().withOpacity(0.3);
         _backgroundColorBottom = getRandomPinkColor().withOpacity(0.3);
@@ -38,7 +40,7 @@ class _DynamicBackgroundScreenState extends State<DynamicBackgroundScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedContainer(
-        duration: Duration(seconds: 5),
+        duration: const Duration(seconds: 5),
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
           gradient: LinearGradient(

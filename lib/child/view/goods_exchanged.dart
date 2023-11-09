@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return set_page();
+    return const set_page();
   }
 }
 
@@ -163,27 +163,24 @@ class _PointsMallPageState extends State<PointsMallPage> {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () => switchContent(0),
-                  child: const Text('全部'),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.pink[200], // background (button) color
-                    onPrimary: Colors.white, // foreground (text) color
+                    foregroundColor: Colors.white, backgroundColor: Colors.pink[200], // foreground (text) color
                   ),
+                  child: const Text('全部'),
                 ),
                 ElevatedButton(
                   onPressed: () => switchContent(1),
-                  child: const Text('待收货'),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.pink[200],
-                    onPrimary: Colors.white,
+                    foregroundColor: Colors.white, backgroundColor: Colors.pink[200],
                   ),
+                  child: const Text('待收货'),
                 ),
                 ElevatedButton(
                   onPressed: () => switchContent(2),
-                  child: const Text('已收货'),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.pink[200],
-                    onPrimary: Colors.white,
+                    foregroundColor: Colors.white, backgroundColor: Colors.pink[200],
                   ),
+                  child: const Text('已收货'),
                 ),
               ],
             ),
@@ -250,10 +247,11 @@ class introduce_product extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       child: Row(
         children: <Widget>[
-          SizedBox(width: 10), // 添加空白部件
+          const SizedBox(width: 10), // 添加空白部件
           Expanded(
+            flex: 1,
             child: ClipRRect(
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),
                 bottomLeft: Radius.circular(10),
                 topRight: Radius.circular(10),
@@ -261,9 +259,8 @@ class introduce_product extends StatelessWidget {
               ),
               child: Image.asset(product.imageUrl, fit: BoxFit.cover),
             ),
-            flex: 1,
           ),
-          SizedBox(width: 10), // 添加空白部件
+          const SizedBox(width: 10), // 添加空白部件
           Expanded(
             flex: 2,
             child: Padding(
@@ -271,7 +268,7 @@ class introduce_product extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('商品：${product.name}', style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text('商品：${product.name}', style: const TextStyle(fontWeight: FontWeight.bold)),
                   Text('价格：${product.price}'),
                   Text('地址：${product.address}'),
                   Text('订购日期：${product.orderDate}'),
@@ -292,7 +289,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return bottom();
+    return const bottom();
   }
 }
 

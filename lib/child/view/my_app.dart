@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 
       body: ChangeNotifierProvider(
         create: (context) => TapNotifier(),
-        child: TaskPage()
+        child: const TaskPage()
         )
       ,
 

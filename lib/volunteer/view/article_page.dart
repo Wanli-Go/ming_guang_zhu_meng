@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/volunteer/model/articleBrief.dart';
-import 'package:ming_guang/volunteer/model/comment.dart';
 import 'package:ming_guang/volunteer/themes/community_theme.dart';
 import '../model/articleDetail.dart';
 import '../components/article_comments.dart';
@@ -36,6 +34,8 @@ class ArticleDetailPage extends StatelessWidget {
 class DetailColumn extends StatelessWidget {
   final ArticleDetail example = detail;
 
+  DetailColumn({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -46,22 +46,22 @@ class DetailColumn extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(example.title,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 139, 49, 43))),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               '发布时间: ${example.publishDate}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 color: Colors.grey,
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               '作者: ${detail.author}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 color: Colors.grey,
               ),
@@ -69,12 +69,12 @@ class DetailColumn extends StatelessWidget {
           ],
         ),
       ),
-      Divider(),
+      const Divider(),
 
       // 第二部分: 文章的详细内容
       Expanded(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(16.0), // 这是 SingleChildScrollView 的内边距
+          padding: const EdgeInsets.all(16.0), // 这是 SingleChildScrollView 的内边距
           child: Padding(
             // 为内部的 Column 添加额外的边距
             padding: const EdgeInsets.only(
@@ -84,12 +84,12 @@ class DetailColumn extends StatelessWidget {
               children: <Widget>[
                 Text(
                   example.content,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 17,
                     height: 1.5,
                   ),
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: example.imageUrls.map((url) {
@@ -110,8 +110,8 @@ class DetailColumn extends StatelessWidget {
                 // 如果有更多的内容，继续添加Text和Image小部件
 
                 // 评论标题
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
                   child: Text(
                     '评论区',
                     style: TextStyle(
@@ -176,11 +176,11 @@ class DetailColumn extends StatelessWidget {
           ),
         ),
       ),
-      Divider(),
+      const Divider(),
 
       // 第三部分: 评论区域
 
-      Container(
+      SizedBox(
         height: 50,
         child: Padding(
           padding:
@@ -188,7 +188,7 @@ class DetailColumn extends StatelessWidget {
           child: Row(
             children: <Widget>[
               // 回复输入框
-              Expanded(
+              const Expanded(
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: "写下你的评论...",
@@ -200,7 +200,7 @@ class DetailColumn extends StatelessWidget {
               ),
               // 发送按钮
               IconButton(
-                icon: Icon(Icons.send),
+                icon: const Icon(Icons.send),
                 onPressed: () {
                   // TODO: 实现发送评论的逻辑
                 },

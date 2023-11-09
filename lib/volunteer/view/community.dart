@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import '../model/article.dart';
 import '../components/article_list.dart';
-import 'favorites.dart';
 
 class ArticlesBody extends StatelessWidget {
   const ArticlesBody({
@@ -13,7 +12,7 @@ class ArticlesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
           child: ArticleCarousel(),
@@ -76,14 +75,14 @@ class ArticleCard extends StatelessWidget {
             right: 10,
             bottom: 10,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Text(
                 article.title,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),

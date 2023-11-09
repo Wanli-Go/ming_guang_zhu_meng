@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return theme();
+    return const theme();
   }
 }
 
@@ -59,12 +59,12 @@ class theme extends StatelessWidget {
           shadowColor: Colors.pink.shade100,
         ),
         textTheme: TextTheme(
-          headline6: TextStyle(color: Colors.pink.shade800, fontWeight: FontWeight.bold),
-          bodyText2: TextStyle(color: Colors.pink.shade600),
+          titleLarge: TextStyle(color: Colors.pink.shade800, fontWeight: FontWeight.bold),
+          bodyMedium: TextStyle(color: Colors.pink.shade600),
         ),
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.pink.shade300,
-          titleTextStyle: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          titleTextStyle: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
           selectedItemColor: Colors.pink.shade300,
@@ -134,31 +134,30 @@ class main_structure extends StatelessWidget {
                     const SizedBox(height: 24),
                     Text(
                       '加油华为，加油China！',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 24),
                     Text(
                       '为未来加油，支持学生！',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {
                         // TODO: 分享逻辑
                       },
-                      child: const Text('分享到微信QQ'),
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.pink.shade300,
-                        onPrimary: Colors.white,
+                        foregroundColor: Colors.white, backgroundColor: Colors.pink.shade300,
                         minimumSize: const Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+                      child: const Text('分享到微信QQ'),
                     ),
                   ],
                 ),
@@ -204,15 +203,15 @@ class introduce_student extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('姓名：${studentInfo.name}', style: Theme.of(context).textTheme.bodyText1),
+            Text('姓名：${studentInfo.name}', style: Theme.of(context).textTheme.bodyLarge),
             const SizedBox(height: 8),
-            Text('学校：${studentInfo.school}', style: Theme.of(context).textTheme.bodyText1),
+            Text('学校：${studentInfo.school}', style: Theme.of(context).textTheme.bodyLarge),
             const SizedBox(height: 8),
-            Text('年龄：${studentInfo.age}岁', style: Theme.of(context).textTheme.bodyText1),
+            Text('年龄：${studentInfo.age}岁', style: Theme.of(context).textTheme.bodyLarge),
             const SizedBox(height: 16),
             Text(
               '个人情况：${studentInfo.personalSituation}',
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
@@ -226,7 +225,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return bottom();
+    return const bottom();
   }
 }
 

@@ -22,7 +22,7 @@ class MyButton extends StatelessWidget {
           color: buttonColor,
           borderRadius: BorderRadius.circular(20),
         ),
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -54,23 +54,23 @@ class SsdButton extends StatelessWidget {
         width: 200, // 指定宽度
         height: 50, // 指定高度
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 219, 163, 187).withOpacity(0.8),
+          color: const Color.fromARGB(255, 219, 163, 187).withOpacity(0.8),
           borderRadius: BorderRadius.circular(40),
         ),
-        padding: EdgeInsets.all(10), // 根据需要调整padding
+        padding: const EdgeInsets.all(10), // 根据需要调整padding
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               text,
               style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                  const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
             ),
             const SizedBox(
               width: 10,
               height: 8,
             ),
-            Icon(
+            const Icon(
               Icons.arrow_forward,
               color: Colors.white,
             ),

@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return set_page();
+    return const set_page();
   }
 }
 
@@ -285,16 +285,16 @@ class _ProductCardState extends State<ProductCard> {
                   top: 10,
                   right: 10,
                   child: Container(
-                    padding: EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
+                      color: const Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
                       iconSize: 30,
                       icon:Icon(
                         isFavorite ? Icons.favorite : Icons.favorite,
-                        color: isFavorite ? Colors.red : Color.fromARGB(138, 75, 74, 74),
+                        color: isFavorite ? Colors.red : const Color.fromARGB(138, 75, 74, 74),
                       ),
                       onPressed: () {
                         setState(() {
@@ -328,8 +328,7 @@ class _ProductCardState extends State<ProductCard> {
           ),
           TextButton(
             style: TextButton.styleFrom(
-              backgroundColor: Colors.pink.shade100,
-              primary: Colors.white,
+              foregroundColor: Colors.white, backgroundColor: Colors.pink.shade100,
             ),
             onPressed: widget.product.stock > 0 ? widget.onExchange : null,
             child: Text(widget.product.stock > 0 ? '兑换' : '无库存'),
@@ -345,7 +344,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return bottom();
+    return const bottom();
   }
 }
 

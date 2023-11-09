@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import '../model/activity.dart';
-import '../view/button.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -34,7 +33,7 @@ class Home extends StatelessWidget {
             CarouselSlider(
               options: CarouselOptions(
                 autoPlay: true, // 自动播放
-                autoPlayInterval: Duration(seconds: 3), // 自动播放间隔时间
+                autoPlayInterval: const Duration(seconds: 3), // 自动播放间隔时间
               ),
               items: [
                 // 这里放入你的图片
@@ -44,30 +43,30 @@ class Home extends StatelessWidget {
             ),
 
             const SizedBox(height: 25),
-            Text(
+            const Text(
               textAlign: TextAlign.left, // 文本靠左对齐
               '———— 最新动态 ————',
               style: TextStyle(
-                color: const Color.fromARGB(255, 139, 49, 43), // 设置你想要的颜色
+                color: Color.fromARGB(255, 139, 49, 43), // 设置你想要的颜色
                 fontSize: 20, //大小
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             //写builder
             Expanded(
                 child: ListView.builder(
                     itemCount: activities.length,
                     itemBuilder: (context, index) {
                       return Card(
-                        margin: EdgeInsets.all(8.0),
+                        margin: const EdgeInsets.all(8.0),
                         child: Column(children: <Widget>[
                           ListTile(
                             title: Text(activities[index].name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 18,
                                     color: Color.fromARGB(255, 116, 37, 32))),
                             subtitle: Text(activities[index].activity,
-                                style: TextStyle(fontSize: 17)),
+                                style: const TextStyle(fontSize: 17)),
                             trailing: Text(
                               activities[index].publishDate,
                               style: TextStyle(color: Colors.grey[400]),
@@ -95,7 +94,7 @@ class Home extends StatelessWidget {
                                     },
                                     icon: const Icon(Icons.thumb_up),
                                   ),
-                                  Text('点赞')
+                                  const Text('点赞')
                                 ],
                               ),
                               Column(
@@ -106,7 +105,7 @@ class Home extends StatelessWidget {
                                     },
                                     icon: const Icon(Icons.comment),
                                   ),
-                                  Text('评论')
+                                  const Text('评论')
                                 ],
                               ),
                             ],

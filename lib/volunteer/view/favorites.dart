@@ -1,8 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/themes/community_theme.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
-import '../model/article.dart';
 import '../components/article_list.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -26,7 +24,7 @@ class FavoritesPage extends StatelessWidget {
 
       body: Column(
         children: [
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Expanded(child: ArticleListPage()),
         ],
       ),

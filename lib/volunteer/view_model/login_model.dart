@@ -12,7 +12,7 @@ class LoginModel {
   Future<bool> login(String username, String password, int type) async {
     String? token = await _service.loginRequest(username, password, type);
     if (token == null) {
-      return false; // Login Failed
+      return false;
     } else {
       TokenInterceptor interceptor = TokenInterceptor(token: token);
       final client =
@@ -26,7 +26,7 @@ class LoginModel {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const MainView(),
+          builder: (context) => MainView(),
         ));
   }
 }

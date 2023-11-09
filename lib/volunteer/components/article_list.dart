@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/volunteer/model/articleDetail.dart';
 import '../model/articleBrief.dart';
 import '../view/article_page.dart';
 
 class ArticleListPage extends StatelessWidget {
   final List<ArticleBrief> articleBriefs = briefs;
+
+  ArticleListPage({super.key});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -22,7 +23,7 @@ class ArticleListPage extends StatelessWidget {
 class BriefCard extends StatelessWidget {
   final ArticleBrief abrief;
 
-  BriefCard({required this.abrief});
+  const BriefCard({super.key, required this.abrief});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,7 @@ class BriefCard extends StatelessWidget {
           // 当用户点击BriefCard时，我们跳转到ArticleDetailPage，并将文章信息传递过去
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => ArticleDetailPage(),
+              builder: (context) => const ArticleDetailPage(),
             ),
           );
         },
@@ -42,7 +43,7 @@ class BriefCard extends StatelessWidget {
           shape: RoundedRectangleBorder(
             // 设置边框样式
             borderRadius: BorderRadius.circular(5), // 边框圆角
-            side: BorderSide(
+            side: const BorderSide(
               color: Colors.white, // 边框颜色
               width: 0.5, // 边框宽度
             ),
@@ -54,27 +55,27 @@ class BriefCard extends StatelessWidget {
               children: [
                 Text(
                   abrief.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 5), // 也可以添加大小不同的间隔
+                const SizedBox(height: 5), // 也可以添加大小不同的间隔
                 Text(
                   '发布时间: ${abrief.publishDate}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                     color: Colors.grey,
                   ),
                 ),
-                SizedBox(height: 5), // 间隔
+                const SizedBox(height: 5), // 间隔
                 Text(
                   abrief.summary,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Wrap(
                   children: abrief.imageUrls.map((url) {
                     return Padding(

@@ -128,14 +128,14 @@ class _TaskPageState extends State<TaskPage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          SizedBox(width: 16),
+                          const SizedBox(width: 16),
                           Text('学习积分：$userScore'),
-                          Spacer(),
+                          const Spacer(),
                           TextButton(
                             onPressed: () {
                               // TODO: 跳转到任务统计页面
                             },
-                            child: Text('任务统计>',style: TextStyle(
+                            child: const Text('任务统计>',style: TextStyle(
                               fontFamily: 'StarRail',
                               fontSize: 16,
                               color: Colors.grey
@@ -149,7 +149,7 @@ class _TaskPageState extends State<TaskPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text('本周任务：'),
+                          const Text('本周任务：'),
                           Text('未完成：$unfinishedTaskCount'),
                           Text('已完成：$finishedTaskCount'),
                         ],
@@ -165,7 +165,7 @@ class _TaskPageState extends State<TaskPage> {
            Expanded(
             flex: 10,
             child: Opacity(opacity: 0.8,
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.sizeOf(context).width*0.85,
                 child: Column(
                   children: [
@@ -217,15 +217,15 @@ class _TaskPageState extends State<TaskPage> {
                       child: Container(
                         child: Column(
                           children: [
-                            Text('今日任务',style: TextStyle(
+                            const Text('今日任务',style: TextStyle(
                               fontFamily: 'StarRail',
                               fontSize: 18
                             ),),
-                            Divider(),
+                            const Divider(),
                             GridView.builder(
                               shrinkWrap: true,
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 4,
                                 crossAxisSpacing: 10,
                                 mainAxisSpacing: 10,
@@ -249,7 +249,7 @@ class _TaskPageState extends State<TaskPage> {
                                           showDialog(
                                             context: context,
                                             builder: (context) {
-                                              return TaskDetailDialog();
+                                              return const TaskDetailDialog();
                                             },
                                           );
                                         }
@@ -260,12 +260,12 @@ class _TaskPageState extends State<TaskPage> {
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
-                                            '${task['type']}',style: TextStyle(
+                                            '${task['type']}',style: const TextStyle(
                                               fontFamily: 'StarRail',
                                               fontSize: 16,
                                               color: Colors.white
                                             ),),
-                                            Text('${task['status']}',style: TextStyle(
+                                            Text('${task['status']}',style: const TextStyle(
                                               fontFamily: 'StarRail',
                                               fontSize: 16,
                                               color: Colors.white
@@ -283,16 +283,16 @@ class _TaskPageState extends State<TaskPage> {
                       child: Container(
                         child: Column(
                           children: [
-                            Text('明日任务',style: TextStyle(
+                            const Text('明日任务',style: TextStyle(
                               fontFamily: 'StarRail',
                               fontSize: 18,
 
                             ),),
-                            Divider(),
+                            const Divider(),
                             GridView.builder(
                               shrinkWrap: true,
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 4,
                                 crossAxisSpacing: 10,
                                 mainAxisSpacing: 10,
@@ -317,7 +317,7 @@ class _TaskPageState extends State<TaskPage> {
                                           showDialog(
                                             context: context,
                                             builder: (context) {
-                                              return TaskDetailDialog();
+                                              return const TaskDetailDialog();
                                             },
                                           );
                                         }
@@ -325,12 +325,12 @@ class _TaskPageState extends State<TaskPage> {
                                     child: Column(
                                       children: [
                                         Text(
-                                            '${task['type']}',style: TextStyle(
+                                            '${task['type']}',style: const TextStyle(
                                               fontFamily: 'StarRail',
                                               fontSize: 16,
                                               color: Colors.white
                                             )),
-                                            Text('${task['status']}',style: TextStyle(
+                                            Text('${task['status']}',style: const TextStyle(
                                               fontFamily: 'StarRail',
                                               fontSize: 16,
                                               color: Colors.white
@@ -375,15 +375,15 @@ class _TaskDetailDialogState extends State<TaskDetailDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       insetPadding: EdgeInsets.symmetric(vertical: MediaQuery.sizeOf(context).height*0.18,horizontal:MediaQuery.sizeOf(context).width*0.10),
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.6,
         width: MediaQuery.of(context).size.width,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.pink[300],
-            title: Center(child: Text('任务详情       ')),
+            title: const Center(child: Text('任务详情       ')),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -391,7 +391,7 @@ class _TaskDetailDialogState extends State<TaskDetailDialog> {
           ),
           body: SingleChildScrollView(
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
                   Container(
@@ -399,15 +399,15 @@ class _TaskDetailDialogState extends State<TaskDetailDialog> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Center(child: Text('$taskName',style: TextStyle(fontFamily: 'StarRial',
+                        Center(child: Text(taskName,style: const TextStyle(fontFamily: 'StarRial',
                         fontSize: 16),)),
-                        Container(height: MediaQuery.sizeOf(context).height*0.1,
+                        SizedBox(height: MediaQuery.sizeOf(context).height*0.1,
                         child: Column(
                           children: [
-                            Expanded(flex: 1,child:Center(child: Text('任务描述'))),
+                            const Expanded(flex: 1,child:Center(child: Text('任务描述'))),
                             Expanded(
                               flex: 3,
-                              child: Text('$taskDescription'),
+                              child: Text(taskDescription),
                             )
                         ]),),
                         Text('任务难度：$taskDifficulty'),
@@ -415,7 +415,7 @@ class _TaskDetailDialogState extends State<TaskDetailDialog> {
                       ],
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     height: 200,
                     child: Image.asset(media),
                   ),
@@ -425,34 +425,32 @@ class _TaskDetailDialogState extends State<TaskDetailDialog> {
                         opacity: 0.8,
                         child: TextButton(
                           style: TextButton.styleFrom(
-                              backgroundColor: Colors.pink[200],
-                              primary: Colors.white
+                              foregroundColor: Colors.white, backgroundColor: Colors.pink[200]
                             ),
                           onPressed: () {
                             Navigator.pop(context);
                           },
                           
-                          child: Text('返回'),
+                          child: const Text('返回'),
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Opacity(
                         opacity: 0.8,
                         child: TextButton(
                           style: TextButton.styleFrom(
-                            backgroundColor: Colors.pink[200],
-                            primary: Colors.white
+                            foregroundColor: Colors.white, backgroundColor: Colors.pink[200]
                           ),
                           onPressed: () {
                             // TODO: 提交任务到后端
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                              const SnackBar(
                                 content: Text('提交成功'),
                               ),
                             );
                             Navigator.pop(context);
                           },
-                          child: Text('提交'),
+                          child: const Text('提交'),
                         ),
                       ),
                     ],

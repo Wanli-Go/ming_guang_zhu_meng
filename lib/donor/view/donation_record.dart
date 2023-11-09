@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return set_page();
+    return const set_page();
   }
 }
 
@@ -224,8 +224,7 @@ class DonationListItem extends StatelessWidget {
   final VoidCallback onStatusPressed;
   final VoidCallback onSharePressed;
 
-  const DonationListItem({
-    Key? key,
+  const DonationListItem({super.key, 
     required this.record,
     required this.onStatusPressed,
     required this.onSharePressed,
@@ -292,18 +291,18 @@ class donate_record extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: onStatusPressed,
-                  child: const Text('近况'),
                   style: TextButton.styleFrom(
-                    primary: Colors.pink,
+                    foregroundColor: Colors.pink,
                   ),
+                  child: const Text('近况'),
                 ),
                 const SizedBox(width: 8),
                 TextButton(
                   onPressed: onSharePressed,
-                  child: const Text('分享'),
                   style: TextButton.styleFrom(
-                    primary: Colors.pink,
+                    foregroundColor: Colors.pink,
                   ),
+                  child: const Text('分享'),
                 ),
               ],
             ),

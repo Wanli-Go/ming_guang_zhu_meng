@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/login.dart';
 import 'package:ming_guang/volunteer/view_model/bottom_nav_notifier.dart';
 import 'package:ming_guang/volunteer/view_model/message_notifier.dart';
+import 'package:ming_guang/volunteer/view_model/task_info_update_notifier.dart';
 import 'package:provider/provider.dart';
-import 'volunteer/main_view.dart';
 
 void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create:(context) => MessageNotifier(),),
       ChangeNotifierProvider(create:(context) => BottomNavNotifier(),),
+      ChangeNotifierProvider(create:(context) => TaskInfoUpdateNotifier())
     ],
     builder: (c, ch) => MaterialApp(
       theme: ThemeData(

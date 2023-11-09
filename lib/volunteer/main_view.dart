@@ -7,10 +7,14 @@ import 'package:ming_guang/volunteer/view/favorites.dart';
 import 'package:ming_guang/volunteer/view/task_list.dart';
 import 'package:ming_guang/volunteer/view_model/bottom_nav_notifier.dart';
 import 'package:ming_guang/volunteer/view_model/main_model.dart';
+import 'package:ming_guang/volunteer/view_model/task_info_update_notifier.dart';
 import 'package:provider/provider.dart';
 
 class MainView extends StatelessWidget {
-  const MainView({super.key});
+  int keyForRefreshMain = 0; // set the key for missions so that it rebuilds
+  int keyForRefreshTask = 10000;
+
+  MainView({super.key});
 
   static const model = MainModel();
 
@@ -31,7 +35,7 @@ class MainView extends StatelessWidget {
               ? const Center(child: Text("志愿社区"))
               : const Center(child: Text("明光筑梦·志愿者")),
             leading: isInCommunityPage 
-              ? null : 
+              ? Icon(Icons.abc, size: 50, color: Colors.transparent) : 
               IconButton(
                 icon: const Icon(Icons.person),
                 onPressed: () => model.personalBottonClicked(context),
@@ -67,7 +71,7 @@ class MainView extends StatelessWidget {
               ),
             ),
             actions:  isInCommunityPage 
-              ? null :
+              ? [Icon(Icons.abc, size: 50, color: Colors.transparent)] :
               [IconButton(
                 icon: const Icon(Icons.markunread),
                 onPressed: () {
@@ -80,8 +84,18 @@ class MainView extends StatelessWidget {
         body: IndexedStack(
           index: bottomNotifier.index,
           children: [
-            HomePageBody(bottomNotifier: bottomNotifier,),
-            TaskList(),
+            Consumer<TaskInfoUpdateNotifier>(
+              builder: (context, notifier, c) {
+                keyForRefreshMain += 1;
+                return HomePageBody(key: GlobalObjectKey(keyForRefreshMain), bottomNotifier: bottomNotifier);
+              }
+            ),
+            Consumer<TaskInfoUpdateNotifier>(
+              builder: (context, notifier, c) {
+                keyForRefreshTask += 1;
+                return TaskList(key: GlobalObjectKey(keyForRefreshTask),);
+              }
+            ),
             const ArticlesBody(),
           ],
         ),
@@ -91,7 +105,11 @@ class MainView extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: isInCommunityPage ? commHighlight : highlight,
           currentIndex: bottomNotifier.index,
-          onTap: (value) => bottomNotifier.changeIndex(value),
+          onTap: (value) {
+            keyForRefreshMain -= 1;
+            keyForRefreshTask -= 1;// Make sure the pages don't refresh
+            bottomNotifier.changeIndex(value);
+            },
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(
