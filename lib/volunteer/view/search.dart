@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ming_guang/volunteer/components/community_components.dart';
+import 'package:ming_guang/volunteer/themes/community_theme.dart';
+import 'package:ming_guang/volunteer/view_model/articles_model.dart';
 
 class SearchPage extends StatefulWidget {
+  final ArticlesModel model;
   final String firstKeyword;
-  const SearchPage({Key? key, required this.firstKeyword}) : super(key: key);
+  const SearchPage({Key? key, required this.firstKeyword, required this.model}) : super(key: key);
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -15,13 +19,14 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
-    // fetchProducts(); // 获取商品数据
+    searchController.text = widget.firstKeyword;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: commAppBarColor,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -45,11 +50,12 @@ class _SearchPageState extends State<SearchPage> {
           IconButton(
             icon: const Icon(Icons.search),
             onPressed: () {
-              // 执行搜索逻辑
+              setState(() {
+                
+              });
             },
           ),
         ],
-        backgroundColor: Colors.pink[300],
       ),
       body: Column(
         children: [
@@ -78,7 +84,7 @@ class _SearchPageState extends State<SearchPage> {
               return GestureDetector(
                 onTap: () {
                   setState(() {
-                    searchController.value = searchHistory[index] as TextEditingValue;
+                    searchController.text = searchHistory[index];
                   });
                 },
                 child: Chip(
@@ -93,94 +99,7 @@ class _SearchPageState extends State<SearchPage> {
             }).toList(),
           ),
           Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(10),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                childAspectRatio: 4,
-              ),
-              itemCount: 10, // assuming there are 10 products
-              itemBuilder: (context, index) {
-                // Example product data
-                String productName = '商品名称 ${index + 1}';
-                String productImage = 'assets/2.jpg'; // Example image asset
-                int heat = 542 - index * 10; // Example heat
-
-                return ProductTile(
-                  index: index + 1,
-                  image: productImage,
-                  name: productName,
-                  heat: heat,
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-class ProductTile extends StatelessWidget {
-  final int index;
-  final String image;
-  final String name;
-  final int heat;
-
-  const ProductTile({
-    Key? key,
-    required this.index,
-    required this.image,
-    required this.name,
-    required this.heat,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return introduce_hot_product(index: index, image: image, name: name, heat: heat);
-  }
-}
-
-
-class introduce_hot_product extends StatelessWidget {
-  const introduce_hot_product({
-    super.key,
-    required this.index,
-    required this.image,
-    required this.name,
-    required this.heat,
-  });
-
-  final int index;
-  final String image;
-  final String name;
-  final int heat;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.pink.shade100),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('$index'),
-          ),
-          Image.asset(image, width: 50), // Assuming you have an image asset
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(name),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('热度${heat}w', style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.orange)),
+            child: ArticleListPage(model: widget.model, type: 2, keyWord: searchController.text,)
           ),
         ],
       ),

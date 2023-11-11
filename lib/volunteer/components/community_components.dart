@@ -10,12 +10,13 @@ class ArticleListPage extends StatelessWidget {
   final int type; // 0 = all, 1 = favorite, 2 = search
   String? keyWord;
 
-  ArticleListPage({super.key, required this.model, required this.type});
+  ArticleListPage({super.key, required this.model, required this.type, this.keyWord});
   @override
   Widget build(BuildContext context) {
     List< Future<List<ArticleBrief>> > functions = [
       model.fetchArticles(),
       model.fetchFavorites(),
+      model.search(keyWord)
     ];
     return FutureBuilder<List<ArticleBrief>>(
       future: functions[type],

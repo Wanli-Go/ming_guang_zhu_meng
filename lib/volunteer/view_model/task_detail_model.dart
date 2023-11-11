@@ -29,8 +29,9 @@ class TaskDetailViewModel {
       BuildContext context, TaskInfoUpdateNotifier notifier) async {
     bool success = await taskService.inputScore(kidId, missionId, score);
     if (success) {
+            await Future.delayed(Duration(seconds: 1));
       notifier.update();
-      await Future.delayed(Duration(seconds: 1));
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('提交成功'),

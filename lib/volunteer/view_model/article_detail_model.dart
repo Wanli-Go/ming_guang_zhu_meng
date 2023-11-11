@@ -10,4 +10,8 @@ class ArticleDetailModel {
   Future<ArticleDetail> fetchArticleDetail() async {
     return service.fetchArticleDetail(id);
   }
+
+  void likeArticle(String id){
+    service.likeArticle(id);
+  }
 }

@@ -21,7 +21,7 @@ class HomePageModel {
   }
 
   void mainMyTasksClicked(BuildContext context, BottomNavNotifier notifier) {
-    notifier.changeIndex(1);
+    notifier.changeIndex(0);
   }
 
   KidRecentDto? recentDto;
@@ -30,8 +30,7 @@ class HomePageModel {
     return recentDto!;
   }
   
-  dynamic _taskRatio;
   Future<Map<String, dynamic>> getTaskRatio() async {
-    return _taskRatio ??= await taskService.fetchTaskRatio();
+    return await taskService.fetchTaskRatio();
   }
 }

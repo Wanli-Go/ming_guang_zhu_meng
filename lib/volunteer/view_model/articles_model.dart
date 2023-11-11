@@ -18,8 +18,12 @@ class ArticlesModel{
     return tempArticles!;
   }
 
-  List<ArticleBrief>? tempFavorites;
   Future<List<ArticleBrief>> fetchFavorites() async{
-    return tempFavorites ??= await service.fetchFavorites();
+    return await service.fetchFavorites();
+  }
+
+  Future<List<ArticleBrief>> search(String? keyWord) async{
+    if(keyWord==null)return[];
+    return service.fetchArticlesWithFavorites(keyWord);
   }
 }

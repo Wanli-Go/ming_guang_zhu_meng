@@ -58,9 +58,6 @@ class _TaskListState extends State<TaskList> {
                     decoration: const InputDecoration(
                       hintText: '输入关键字...',
                     ),
-                    onChanged: (value) {
-                      _searchAndUpdate(value);
-                    },
                   ),
                 ),
                 IconButton(
@@ -185,18 +182,7 @@ class _TaskListState extends State<TaskList> {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 16,
-                                    right: 16,
-                                    bottom: 16), // Consistent padding for text
-                                child: Text(
-                                  '提交总数：${task.totalSubmit}',
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ),
+                              
                               Padding(
                                 padding: const EdgeInsets.only(
                                     left: 16,
@@ -205,7 +191,7 @@ class _TaskListState extends State<TaskList> {
                                 child: Row(
                                   children: [
                                     const Text(
-                                      '待批改数：',
+                                      '待批改人数：',
                                       style: TextStyle(
                                         fontSize: 16,
                                       ),
@@ -219,6 +205,18 @@ class _TaskListState extends State<TaskList> {
                                       ),
                                     ),
                                   ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 16,
+                                    right: 16,
+                                    bottom: 16), // Consistent padding for text
+                                child: Text(
+                                  '总提交人数：${task.totalSubmit}',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
                             ],

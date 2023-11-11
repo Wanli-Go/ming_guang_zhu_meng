@@ -8,12 +8,18 @@ import 'package:ming_guang/volunteer/services/base/request_client.dart';
 class ArticleService {
   Future<List<ArticleBrief>> fetchFavorites() async {
     return await fetchArticles(
-        pageNum: 0, pageSize: 0, url: "/volunteer/article/comment");
+        pageNum: 1, pageSize: 10, url: "/volunteer/article/comment");
     //return briefs.reversed.toList();
   }
 
+  Future<List<ArticleBrief>> fetchArticlesWithFavorites(String s) async{
+    return await fetchArticles(
+        pageNum: 1, pageSize: 10, keyword: s,
+    );
+  }
+
   Future<List<ArticleBrief>> fetchArticles(
-      {int pageNum = 1, int pageSize = 6, String? url}) async {
+      {int pageNum = 1, int pageSize = 6, String? url, String? keyword}) async {
     try {
       final response = await RequestClient.client.post(
         Uri.parse(url == null
@@ -22,10 +28,20 @@ class ArticleService {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(<String, int>{
-          'pageNum': pageNum,
-          'pageSize': pageSize,
-        }),
+        body: jsonEncode(
+          keyword == null ? 
+          <String, int>{
+            'pageNum': pageNum,
+            'pageSize': pageSize,
+          } : 
+          <String, dynamic>{
+            'example': {
+              'title': keyword,
+            },
+            'pageNum': pageNum,
+            'pageSize': pageSize,
+          }
+          ),
       );
 
       if (response.statusCode == 200) {
@@ -40,6 +56,7 @@ class ArticleService {
             contentPic: item['contentPic'],
           );
         }).toList();
+        print("Articles list gotten");
         return articles;
       } else {
         print("article briefs response code e");
@@ -70,13 +87,36 @@ class ArticleService {
     }
   }
 
+    Future<bool> likeArticle(String id) async {
+    try{
+      print("like article id: $id");
+    final response = await RequestClient.client
+        .post(Uri.parse('$baseUrl/volunteer/article/putlike/$id'));
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = json.decode(response.body);
+      print(data);
+      bool result = data['data'] == '收藏成功';
+      print("liked article: $result");
+      return result;
+    } else {
+      print('fetch article detail response code e');
+      return false;
+    }
+    }catch(e){
+      print("fetch article detail e: $e");
+      return false;
+    }
+  }
+
   Future<List<Comment>> _fetchComments(String articleId) async {
     try{
     final response = await RequestClient.client.get(Uri.parse(
-        '$base64Url/volunteer/article/detail/$articleId/comment'));
+        '$baseUrl/volunteer/article/detail/$articleId/comment'));
 
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body)['data'];
+      //print(jsonResponse);
       return jsonResponse.map((comment) => Comment.fromJson(comment)).toList();
     } else {
       print('fetch article comments response code e');

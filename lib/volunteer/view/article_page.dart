@@ -6,8 +6,11 @@ import '../components/article_comments.dart';
 
 class ArticleDetailPage extends StatelessWidget {
   final String articleId;
+  late final ArticleDetailModel model;
 
-  const ArticleDetailPage({super.key, required this.articleId});
+  ArticleDetailPage({super.key, required this.articleId}) {
+    model = ArticleDetailModel(id: articleId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +25,7 @@ class ArticleDetailPage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
+              model.likeArticle(articleId);
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text('收藏成功'),
@@ -34,18 +38,19 @@ class ArticleDetailPage extends StatelessWidget {
           )
         ],
       ),
-      body: DetailColumn(articleId: articleId),
+      body: DetailColumn(
+        articleId: articleId,
+        model: model,
+      ),
     );
   }
 }
 
 class DetailColumn extends StatelessWidget {
   final String articleId;
-  late final ArticleDetailModel model;
+  final ArticleDetailModel model;
 
-  DetailColumn({super.key, required this.articleId}) {
-    model = ArticleDetailModel(id: articleId);
-  }
+  DetailColumn({super.key, required this.articleId, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +147,9 @@ class DetailColumn extends StatelessWidget {
                               ),
                             ),
                           ),
-                          CommentsList(comments: example.comments,)
+                          CommentsList(
+                            comments: example.comments,
+                          )
                         ],
                       ),
                     ),
@@ -174,8 +181,14 @@ class DetailColumn extends StatelessWidget {
                         // 发送按钮
                         IconButton(
                           icon: const Icon(Icons.send),
-                          onPressed: () {
-                            // TODO: 实现发送评论的逻辑
+                          onPressed: () async {
+                            await Future.delayed(Duration(milliseconds: 700));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('评论已发送，待审核'),
+                              ),
+                            );
+                            
                           },
                         ),
                       ],
