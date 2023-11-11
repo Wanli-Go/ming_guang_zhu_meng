@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:ffi';
+import 'dart:math';
 import 'package:ming_guang/volunteer/model/TaskItem.dart';
-import 'package:ming_guang/volunteer/model/mission_detail.dart';
+import 'package:ming_guang/volunteer/model/model_mission_detail.dart';
 import 'package:ming_guang/volunteer/services/base/base_url.dart';
 import 'package:ming_guang/volunteer/services/base/request_client.dart';
 int waitingCheck = 12;
@@ -28,7 +30,7 @@ class TaskService {
             tasksJson.map((taskJson) => TaskItem.fromJson(taskJson)).toList();
         return tasks;
       } else {
-        print("fetch tasks response error");
+        print("fetch tasks response error， ${response.statusCode}");
         return _dummyTaskItems();
       }
     } catch (e) {
@@ -65,8 +67,9 @@ class TaskService {
   Future<MissionDetail> getMissionDetail(String id) async {
     try {
       final response = await RequestClient.client
-          .get(Uri.parse('$baseUrl/volunteer/mission/detail/$id'));
-
+          .get(
+            Uri.parse('$baseUrl/volunteer/mission/detail?id=$id'),
+            );
       if (response.statusCode == 200) {
         return MissionDetail.fromJson(jsonDecode(response.body)['data']);
       } else {
@@ -100,7 +103,7 @@ class TaskService {
     try {
       final response = await RequestClient.client.post(
         Uri.parse(
-            '$baseUrl/your_endpoint_here'), // Replace with your actual endpoint
+            '$baseUrl/volunteer/mission/allkid/detail'), // Replace with your actual endpoint
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -146,6 +149,11 @@ class TaskService {
       'kidId': "myid3",
       'kidName': "myname!!",
       'kidPic': "https://cdn.pixabay.com/photo/2017/07/20/03/53/homework-2521144_1280.jpg",
+      }),
+      UngradedCompletion.fromJson(<String, dynamic>{
+      'kidId': "myid2",
+      'kidName': "myname???",
+      'kidPic': "https://cdn.pixabay.com/photo/2017/07/20/03/53/homework-2521144_1280.jpg",
       })
     ];
   }
@@ -171,30 +179,34 @@ class TaskService {
     }
   }
 
-  Future<Map<String, int>> fetchTaskRatio() async{
+  Random random = Random();
+
+  Future<Map<String, dynamic>> fetchTaskRatio() async{
     total += 1;
     try {
       final response = await RequestClient.client
-          .get(Uri.parse('$baseUrl/totalMissionCount'));
+          .get(Uri.parse('$baseUrl/volunteer/mission/totalMissionCount'));
 
       if (response.statusCode == 200) {
         print("taskratio gotten");
-        return json.decode(response.body);
+        var data = json.decode(response.body)['data'];
+        print(data);
+        return data;
       } else {
         print("taskratio response code error");
         // Handle the error; you might throw an exception or return a default object
         // throw Exception('Failed to load kid recent status');
         return {
-          "total": 40,
-          "has": total,
+          "total": 40.toString(),
+          "has": total.toString(),
         };
       }
     } catch (e) {
       print("taskratio e");
       // No response Got
       return {
-          "total": 40,
-          "has": total,
+          "total": 40.toString(),
+          "has": total.toString(),
         };
     }
   }

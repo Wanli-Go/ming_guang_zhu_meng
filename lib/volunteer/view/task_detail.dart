@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/components/task_detail_components.dart';
 import 'package:ming_guang/volunteer/model/TaskItem.dart';
-import 'package:ming_guang/volunteer/model/mission_detail.dart';
+import 'package:ming_guang/volunteer/model/model_mission_detail.dart';
 import 'package:ming_guang/volunteer/services/tasks_service.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_update_task_info.dart';
 import 'package:ming_guang/volunteer/view_model/task_detail_model.dart';
-import 'package:ming_guang/volunteer/view_model/task_info_update_notifier.dart';
 import 'package:provider/provider.dart';
 
 class TaskDetailPage extends StatefulWidget {

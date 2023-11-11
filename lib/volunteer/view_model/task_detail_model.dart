@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/components/task_detail_components.dart';
-import 'package:ming_guang/volunteer/model/mission_detail.dart';
+import 'package:ming_guang/volunteer/model/model_mission_detail.dart';
 import 'package:ming_guang/volunteer/services/tasks_service.dart';
-import 'package:ming_guang/volunteer/view_model/task_info_update_notifier.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_update_task_info.dart';
 
 class TaskDetailViewModel {
   final TaskService taskService;
@@ -25,11 +25,12 @@ class TaskDetailViewModel {
     return taskService.getUngradedCompletions(pageNum, pageSize, taskId);
   }
 
-  Future<void> submitScore(
-      String kidId, String missionId, int score, BuildContext context, TaskInfoUpdateNotifier notifier) async {
+  Future<void> submitScore(String kidId, String missionId, int score,
+      BuildContext context, TaskInfoUpdateNotifier notifier) async {
     bool success = await taskService.inputScore(kidId, missionId, score);
     if (success) {
       notifier.update();
+      await Future.delayed(Duration(seconds: 1));
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('提交成功'),
@@ -45,9 +46,11 @@ class TaskDetailViewModel {
     }
   }
 
-  void scalePic(BuildContext context, String imageUrl, String tag){
-    Navigator.push(context, MaterialPageRoute(
-      builder:(context) => ImageScreen(imageUrl: imageUrl, tag: tag),
-      ));
+  void scalePic(BuildContext context, String imageUrl, String tag) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ImageScreen(imageUrl: imageUrl, tag: tag),
+        ));
   }
 }

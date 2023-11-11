@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  final String firstKeyword;
+  const SearchPage({Key? key, required this.firstKeyword}) : super(key: key);
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -74,13 +75,20 @@ class _SearchPageState extends State<SearchPage> {
             spacing: 8.0, // gap between adjacent chips
             runSpacing: 4.0, // gap between lines
             children: List<Widget>.generate(searchHistory.length, (int index) {
-              return Chip(
-                label: Text(searchHistory[index]),
-                onDeleted: () {
+              return GestureDetector(
+                onTap: () {
                   setState(() {
-                    searchHistory.removeAt(index);
+                    searchController.value = searchHistory[index] as TextEditingValue;
                   });
                 },
+                child: Chip(
+                  label: Text(searchHistory[index]),
+                  onDeleted: () {
+                    setState(() {
+                      searchHistory.removeAt(index);
+                    });
+                  },
+                ),
               );
             }).toList(),
           ),

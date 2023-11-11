@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/volunteer/view/child_status.dart';
 import 'package:ming_guang/volunteer/view/message_center.dart';
 import 'package:ming_guang/volunteer/view/personal_page.dart';
 import 'package:ming_guang/volunteer/view/search.dart';
@@ -23,19 +22,11 @@ class MainModel {
         ));
   }
 
-  void mainChildRecentStatusClicked(BuildContext context) {
+  void searchClicked(BuildContext context, String value) {
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const ChildSituationPage(),
-        ));
-  }
-
-  void searchClicked(BuildContext context) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const SearchPage(),
+          builder: (context) => SearchPage(firstKeyword: value,),
         ));
   }
 }

@@ -5,14 +5,19 @@ import 'package:ming_guang/volunteer/view/community.dart';
 import 'package:ming_guang/volunteer/view/home_page.dart';
 import 'package:ming_guang/volunteer/view/favorites.dart';
 import 'package:ming_guang/volunteer/view/task_list.dart';
-import 'package:ming_guang/volunteer/view_model/bottom_nav_notifier.dart';
+import 'package:ming_guang/volunteer/view_model/articles_model.dart';
 import 'package:ming_guang/volunteer/view_model/main_model.dart';
-import 'package:ming_guang/volunteer/view_model/task_info_update_notifier.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_bottom_nav.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_update_task_info.dart';
 import 'package:provider/provider.dart';
 
 class MainView extends StatelessWidget {
   int keyForRefreshMain = 0; // set the key for missions so that it rebuilds
   int keyForRefreshTask = 10000;
+
+  bool debug = false;
+
+  ArticlesModel articlesModel = ArticlesModel();
 
   MainView({super.key});
 
@@ -20,7 +25,10 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Yes?");
     return Consumer<BottomNavNotifier>(builder: (context, bottomNotifier, c) {
+      print("BUILD!BUILD!");
+
       bool isInCommunityPage = bottomNotifier.index == 2;
       double width = MediaQuery.of(context).size.width;
 
@@ -54,7 +62,7 @@ class MainView extends StatelessWidget {
                       Expanded(
                         // 使用Expanded来确保TextField可以填充剩余空间
                         child: TextField(
-                          onSubmitted: (value) => model.searchClicked(context),
+                          onSubmitted: (value) => model.searchClicked(context, value),
                           decoration: const InputDecoration(
                             hintText: '搜索......',
                             prefixIcon: Icon(Icons.search),
@@ -86,17 +94,22 @@ class MainView extends StatelessWidget {
           children: [
             Consumer<TaskInfoUpdateNotifier>(
               builder: (context, notifier, c) {
-                keyForRefreshMain += 1;
+                if(debug != false) {
+                  keyForRefreshMain += 1;
+                }
                 return HomePageBody(key: GlobalObjectKey(keyForRefreshMain), bottomNotifier: bottomNotifier);
               }
             ),
             Consumer<TaskInfoUpdateNotifier>(
               builder: (context, notifier, c) {
-                keyForRefreshTask += 1;
+                if(debug != false) {
+                  keyForRefreshTask += 1;
+                }
+                print(debug);
                 return TaskList(key: GlobalObjectKey(keyForRefreshTask),);
               }
             ),
-            const ArticlesBody(),
+            CommunityBody(model: articlesModel,),
           ],
         ),
 
@@ -106,6 +119,8 @@ class MainView extends StatelessWidget {
           selectedItemColor: isInCommunityPage ? commHighlight : highlight,
           currentIndex: bottomNotifier.index,
           onTap: (value) {
+            debug = true;
+            print("VALUE CHANGED!");
             keyForRefreshMain -= 1;
             keyForRefreshTask -= 1;// Make sure the pages don't refresh
             bottomNotifier.changeIndex(value);
@@ -135,7 +150,7 @@ class MainView extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const FavoritesPage()),
+                        builder: (context) => FavoritesPage(model: articlesModel,)),
                   );
                 },
                 child: const Icon(Icons.hotel_class),

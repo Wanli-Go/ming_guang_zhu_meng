@@ -1,19 +1,19 @@
-class Article {
+class CommunityPictures {
   final String title;
   final String imageURL; //存在在assets中的图像资源路径
 
-  Article({
+  CommunityPictures({
     required this.title,
     required this.imageURL,
   });
 }
 
-final List<Article> articles = [
-  Article(
+final List<CommunityPictures> articles = [
+  CommunityPictures(
     title: '志愿精神：微光可成炬 大爱映苍穹',
     imageURL: 'assets/images/community1.jpg',
   ),
-  Article(
+  CommunityPictures(
     title: '青春志愿行 奉献新时代',
     imageURL: 'assets/images/community2.jpg',
   ),

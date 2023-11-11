@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/login.dart';
-import 'package:ming_guang/volunteer/view_model/bottom_nav_notifier.dart';
-import 'package:ming_guang/volunteer/view_model/message_notifier.dart';
-import 'package:ming_guang/volunteer/view_model/task_info_update_notifier.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_bottom_nav.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_message.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_update_task_info.dart';
 import 'package:provider/provider.dart';
 
 void main() {

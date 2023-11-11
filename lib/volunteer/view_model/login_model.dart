@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http_interceptor/http/http.dart';
 import 'package:ming_guang/volunteer/main_view.dart';
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 import 'package:ming_guang/volunteer/services/base/request_client.dart';
 import 'package:ming_guang/volunteer/services/login_service.dart';
 
@@ -14,6 +15,7 @@ class LoginModel {
     if (token == null) {
       return false;
     } else {
+      global_token = token;
       TokenInterceptor interceptor = TokenInterceptor(token: token);
       final client =
           InterceptedClient.build(interceptors: [interceptor]);

@@ -10,6 +10,7 @@ class TokenInterceptor implements InterceptorContract {
     if (token != null) {
       // Append the token to the headers
       data.headers['token'] = '$token';
+      data.headers['Content-Type'] = 'application/json';
     }
     return data;
   }

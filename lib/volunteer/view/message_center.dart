@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/view/chat_frame.dart';
-import 'package:ming_guang/volunteer/view_model/message_notifier.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_message.dart';
 import 'package:provider/provider.dart';
 import '../model/model.dart';
 
@@ -13,19 +13,10 @@ class MessageCenter extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 251, 232, 241),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 236, 130, 165),
-        title: Center(child: Text("${user.name} 的 消息中心")),
+        title: Center(child: Text("消息中心")),
         actions: const [Icon(Icons.abc, size: 50, color: Colors.transparent)],
       ),
       body: const MCColumn(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.pages_rounded), label: "Main"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.table_chart_sharp), label: "Resources"),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        ],
-      ),
     );
   }
 }
@@ -68,7 +59,7 @@ class SubjectContainer extends StatelessWidget {
         if (sent) {
           result += "→  ";
         } else if (element.isRead == false) {
-          result += "·  ";
+          result += "（新消息）";
           color = const Color.fromARGB(255, 255, 86, 86);
         }
         result += element.content;
@@ -198,7 +189,7 @@ class SubjectContainer extends StatelessWidget {
                 },
                 child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withOpacity(0.3),
                         shape: BoxShape.circle,
                         border: Border.all(
                             width: 5, color: Colors.white.withOpacity(0.84))),

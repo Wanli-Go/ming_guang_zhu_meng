@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/model/comment.dart';
 
 class CommentsList extends StatelessWidget {
-  final List<Comment> comments = commentsss;
+  final List<Comment> comments;
 
-  CommentsList({super.key});
+  CommentsList({super.key, required this.comments});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

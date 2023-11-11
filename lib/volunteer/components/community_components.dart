@@ -1,29 +1,54 @@
 import 'package:flutter/material.dart';
-import '../model/articleBrief.dart';
+import 'package:ming_guang/volunteer/themes/community_theme.dart';
+import 'package:ming_guang/volunteer/view_model/articles_model.dart';
+import '../model/model_article_brief.dart';
 import '../view/article_page.dart';
 
 class ArticleListPage extends StatelessWidget {
-  final List<ArticleBrief> articleBriefs = briefs;
 
-  ArticleListPage({super.key});
+  final ArticlesModel model;
+  final int type; // 0 = all, 1 = favorite, 2 = search
+  String? keyWord;
+
+  ArticleListPage({super.key, required this.model, required this.type});
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: articleBriefs.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding:
-                const EdgeInsets.only(left: 12, right: 12, top: 5, bottom: 5),
-            child: BriefCard(abrief: articleBriefs[index]),
+    List< Future<List<ArticleBrief>> > functions = [
+      model.fetchArticles(),
+      model.fetchFavorites(),
+    ];
+    return FutureBuilder<List<ArticleBrief>>(
+      future: functions[type],
+      builder: (context, snapshot) {
+        if(!snapshot.hasData){
+          return Center(
+            child: SizedBox(
+              height: 100,
+              child: Center(
+                child: CircularProgressIndicator(color: commHighlight,),
+              ),
+            ),
           );
-        });
+        }
+        List<ArticleBrief> briefs = snapshot.data!;
+        return ListView.builder(
+            itemCount: briefs.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding:
+                    const EdgeInsets.only(left: 12, right: 12, top: 5, bottom: 5),
+                child: BriefCard(aBrief: briefs[index]),
+              );
+            });
+      }
+    );
   }
 }
 
 class BriefCard extends StatelessWidget {
-  final ArticleBrief abrief;
+  final ArticleBrief aBrief;
 
-  const BriefCard({super.key, required this.abrief});
+  const BriefCard({super.key, required this.aBrief});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +58,7 @@ class BriefCard extends StatelessWidget {
           // 当用户点击BriefCard时，我们跳转到ArticleDetailPage，并将文章信息传递过去
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const ArticleDetailPage(),
+              builder: (context) => ArticleDetailPage(articleId: aBrief.id,),
             ),
           );
         },
@@ -54,7 +79,7 @@ class BriefCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  abrief.title,
+                  aBrief.title,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -62,7 +87,7 @@ class BriefCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5), // 也可以添加大小不同的间隔
                 Text(
-                  '发布时间: ${abrief.publishDate}',
+                  '发布时间: ${aBrief.articleTime}',
                   style: const TextStyle(
                     fontSize: 15,
                     color: Colors.grey,
@@ -70,25 +95,23 @@ class BriefCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5), // 间隔
                 Text(
-                  abrief.summary,
+                  aBrief.content,
                   style: const TextStyle(
                     fontSize: 16,
                   ),
+                  maxLines: 4,
                 ),
                 const SizedBox(height: 5),
-                Wrap(
-                  children: abrief.imageUrls.map((url) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                          top: 5.0, right: 5.0), // 图片之间的间隔
-                      child: Image.asset(
-                        url,
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  }).toList(),
+
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 5.0, right: 5.0), // 图片之间的间隔
+                  child: Image.network(
+                    aBrief.contentPic,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ],
             ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_update_task_info.dart';
 import 'package:ming_guang/volunteer/view_model/task_detail_model.dart';
-import 'package:ming_guang/volunteer/view_model/task_info_update_notifier.dart';
-import 'package:provider/provider.dart';
 
 class DetailItem extends StatelessWidget {
   final String title;

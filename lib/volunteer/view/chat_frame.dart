@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/model/model.dart';
-import 'package:ming_guang/volunteer/view_model/message_notifier.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_message.dart';
 import 'package:provider/provider.dart';
 
 class ChatScreen extends StatefulWidget {

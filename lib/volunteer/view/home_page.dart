@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ming_guang/volunteer/model/model.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
-import 'package:ming_guang/volunteer/view_model/bottom_nav_notifier.dart';
 import 'package:ming_guang/volunteer/view_model/home_page_model.dart';
+import 'package:ming_guang/volunteer/view_model/notifiers/notifier_bottom_nav.dart';
 
 import '../components/home_page_components.dart';
-import '../model/dto_kid_recent.dart';
+import '../model/model_kid_recent.dart';
+
+HomePageModel model = HomePageModel();
 
 class HomePageBody extends StatefulWidget {
   final BottomNavNotifier bottomNotifier;
@@ -21,19 +22,11 @@ class HomePageBody extends StatefulWidget {
 }
 
 class _HomePageBodyState extends State<HomePageBody> {
-  late HomePageModel model;
 
   @override
   void initState() {
     super.initState();
-    model = HomePageModel();
   }
-
-  final List<String> imageList = [
-    'assets/boy.png',
-    'assets/girl.png',
-    'assets/Donald.png',
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +40,7 @@ class _HomePageBodyState extends State<HomePageBody> {
         ),
 
         //滚轮子件：
-        GunLun(imageList: imageList),
+        GunLun(),
 
         //查看孩子近况：
         Container(
@@ -91,7 +84,7 @@ class _HomePageBodyState extends State<HomePageBody> {
                         color: Colors.white,
                       ),
                       onPressed: () =>
-                          model.mainChildRecentStatusClicked(context),
+                          model.mainChildRecentStatusClicked(context, model),
                     ),
                   ],
                 ),
@@ -148,9 +141,9 @@ class _HomePageBodyState extends State<HomePageBody> {
                       child: Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(25),
+                            padding: const EdgeInsets.all(15),
                             child: CircleAvatar(
-                              radius: MediaQuery.of(context).size.width * 0.1,
+                              radius: MediaQuery.of(context).size.width * 0.14,
                               backgroundImage: NetworkImage(kidRecent
                                   .photo), // Use the photo from the data
                             ),
@@ -184,6 +177,7 @@ class _HomePageBodyState extends State<HomePageBody> {
                               ),
                             ),
                           ),
+                          const SizedBox(width: 15,)
                         ],
                       ),
                     );
@@ -244,48 +238,6 @@ class _HomePageBodyState extends State<HomePageBody> {
           ),
         ),
       ],
-    );
-  }
-}
-
-class GunLun extends StatelessWidget {
-  const GunLun({
-    super.key,
-    required this.imageList,
-  });
-
-  final List<String> imageList;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.22,
-      child: CarouselSlider(
-        options: CarouselOptions(
-          autoPlay: true,
-          enableInfiniteScroll: true,
-          autoPlayInterval: const Duration(seconds: 3),
-          enlargeCenterPage: true,
-        ),
-        items: imageList.map((image) {
-          return Builder(
-            builder: (BuildContext context) {
-              return Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: const BoxDecoration(
-                  color: Colors.grey,
-                ),
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                ),
-              );
-            },
-          );
-        }).toList(),
-      ),
     );
   }
 }

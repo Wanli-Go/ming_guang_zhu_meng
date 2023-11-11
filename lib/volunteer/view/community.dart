@@ -1,13 +1,21 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import '../model/article.dart';
-import '../components/article_list.dart';
+import 'package:ming_guang/volunteer/view_model/articles_model.dart';
+import '../model/model_comm_pics.dart';
+import '../components/community_components.dart';
 
-class ArticlesBody extends StatelessWidget {
-  const ArticlesBody({
-    super.key,
+class CommunityBody extends StatefulWidget {
+  final ArticlesModel model;
+
+  const CommunityBody({
+    super.key, required this.model,
   });
 
+  @override
+  State<CommunityBody> createState() => _CommunityBodyState();
+}
+
+class _CommunityBodyState extends State<CommunityBody> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,21 +27,20 @@ class ArticlesBody extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         const Text(
-          '————文章推荐————',
+          '———— 文章推荐 ————',
           style: TextStyle(
             color: Color.fromARGB(255, 139, 49, 43), // 设置你想要的颜色
             fontSize: 18, //大小
           ),
         ),
-        Expanded(child: ArticleListPage()),
-        //底部导航栏
+        Expanded(child: ArticleListPage(model: widget.model, type: 0,)),
       ],
     );
   }
 }
 
 class ArticleCarousel extends StatelessWidget {
-  final List<Article> article = articles;
+  final List<CommunityPictures> article = articles;
 
   ArticleCarousel({super.key});
   @override
@@ -45,8 +52,10 @@ class ArticleCarousel extends StatelessWidget {
       },
       options: CarouselOptions(
         autoPlay: true,
+        autoPlayAnimationDuration: const Duration(seconds: 2),
+        autoPlayInterval: const Duration(seconds: 7),
         enlargeCenterPage: true,
-        aspectRatio: 16 / 9,
+        aspectRatio: 17 / 8,
         viewportFraction: 0.8,
       ),
     );
@@ -54,7 +63,7 @@ class ArticleCarousel extends StatelessWidget {
 }
 
 class ArticleCard extends StatelessWidget {
-  final Article article;
+  final CommunityPictures article;
 
   const ArticleCard({Key? key, required this.article}) : super(key: key);
 
