@@ -43,6 +43,7 @@ class TextFade extends StatelessWidget {
             fontWeight: fontWeight ?? FontWeight.bold,
             color: color,
           ),
+          maxLines: 1,
         ),
       ),
     );

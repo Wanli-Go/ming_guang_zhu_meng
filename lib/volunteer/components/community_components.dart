@@ -111,12 +111,14 @@ class BriefCard extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.only(top: 5.0, right: 5.0), // 图片之间的间隔
-                  child: Image.network(
-                    "$baseUrl/${aBrief.contentPic}",
-                    headers: {'token': global_token},
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
+                  child: Center(
+                    child: Image.network(
+                      "$baseUrl/pic/${aBrief.contentPic}",
+                      headers: {'token': global_token},
+                      width: 210,
+                      height: 90,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ],

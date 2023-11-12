@@ -54,7 +54,7 @@ class CommentCard extends StatelessWidget {
                   child: Image.network(
                     // Changed to Image.network for loading images from URLs
                     //com.profileUrl,
-                    "$baseUrl/${com.profileUrl}",
+                    "$baseUrl/pic/${com.profileUrl}",
                     headers: {'token': global_token},
                     width: 40,
                     height: 40,

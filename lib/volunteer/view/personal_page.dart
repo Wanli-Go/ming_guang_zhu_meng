@@ -65,9 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Row(
         children: [
           CircleAvatar(
+            foregroundColor: appBarColor,
             radius: 40,
             backgroundImage: NetworkImage(
-              "$baseUrl/${personalInfo.photo}",
+              "$baseUrl/pic/${personalInfo.photo}",
               headers: {'token': global_token},
             ),
             backgroundColor: Colors.transparent,

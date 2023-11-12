@@ -153,7 +153,7 @@ class SubjectContainer extends StatelessWidget {
                             radius: size.width * 0.1,
                             backgroundImage: child.imageLink != null
                                 ? NetworkImage(
-                                    "$baseUrl/${child.imageLink!}",
+                                    "$baseUrl/pic/${child.imageLink!}",
                                     headers: {'token': global_token},
                                   )
                                 : const AssetImage("assets/default.png")

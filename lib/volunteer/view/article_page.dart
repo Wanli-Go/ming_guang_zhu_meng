@@ -128,7 +128,7 @@ class DetailColumn extends StatelessWidget {
                             child: Center(
                               // 使用Center来水平居中Image
                               child: Image.network(
-                                "$baseUrl/${example.contentPic}",
+                                "$baseUrl/pic/${example.contentPic}",
                                 headers: {'token': global_token},
                                 width: 250,
                                 height: 250,

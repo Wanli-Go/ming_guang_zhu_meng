@@ -19,7 +19,7 @@ class ArticleService {
   }
 
   Future<List<ArticleBrief>> fetchArticles(
-      {int pageNum = 1, int pageSize = 6, String? url, String? keyword}) async {
+      {int pageNum = 2, int pageSize = 7, String? url, String? keyword}) async {
     try {
       final response = await RequestClient.client.post(
         Uri.parse(url == null

@@ -42,19 +42,19 @@ class MissionDetail {
 class UngradedCompletion {
   final String kidId;
   final String kidName;
-  final String kidPic;
+  final String replyFile;
 
   UngradedCompletion({
     required this.kidId,
     required this.kidName,
-    required this.kidPic,
+    required this.replyFile,
   });
 
   factory UngradedCompletion.fromJson(Map<String, dynamic> json) {
     return UngradedCompletion(
       kidId: json['kidId'],
       kidName: json['kidName'],
-      kidPic: json['kidPic'],
+      replyFile: json['replyFile'],
     );
   }
 }

@@ -42,7 +42,7 @@ class TopWidget extends StatelessWidget {
                 radius: size.width *
                     0.14, // Slightly smaller to fit the height of the container
                 backgroundImage: NetworkImage(
-                  "$baseUrl/${volunteerPerson.imageUrl}",
+                  "$baseUrl/pic/${volunteerPerson.imageUrl}",
                   headers: {'token': global_token},
                 ),
               ),

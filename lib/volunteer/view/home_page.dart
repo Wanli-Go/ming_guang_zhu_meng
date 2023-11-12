@@ -143,7 +143,7 @@ class _HomePageBodyState extends State<HomePageBody> {
                             child: CircleAvatar(
                               radius: MediaQuery.of(context).size.width * 0.14,
                               backgroundImage: NetworkImage(
-                                "$baseUrl/${kidRecent.photo}",
+                                "$baseUrl/pic/${kidRecent.photo}",
                                 headers: {'token': global_token},
                               ), // Use the photo from the data
                             ),
@@ -168,10 +168,10 @@ class _HomePageBodyState extends State<HomePageBody> {
                                     kidRecent
                                         .recent, // Use the recent update from the data
                                     style: const TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 13.5,
                                       overflow: TextOverflow.ellipsis,
                                     ),
-                                    maxLines: 2,
+                                    maxLines: 3,
                                   ),
                                 ],
                               ),

@@ -85,7 +85,7 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
               child: Container(),
             ),
             Expanded(
-              flex: 12,
+              flex: 10,
               child: FutureBuilder<List<UngradedCompletion>>(
                 future: model.fetchUngradedCompletions(),
                 builder: (context, snapshot) {
@@ -214,7 +214,7 @@ class UngradedCompletionsList extends StatelessWidget {
                     color: Colors.white,
                     image: DecorationImage(
                       image: NetworkImage(
-                        "$baseUrl/${completion.kidPic}",
+                        "$baseUrl/reply/file/${completion.replyFile}",
                         headers: {'token': global_token},
                       ), // Assume kidPic is a URL
                       fit: BoxFit.cover,
@@ -242,7 +242,7 @@ class UngradedCompletionsList extends StatelessWidget {
                       context: context,
                       builder: (context) {
                         return SubmitDetailDialog(
-                          mediaUrl: completion.kidPic,
+                          mediaUrl: completion.replyFile,
                           model: model,
                           missionId: missionId,
                           kidId: completion.kidId,

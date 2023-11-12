@@ -6,16 +6,16 @@ import 'package:ming_guang/volunteer/view_model/task_list_model.dart';
 // Assume the TaskService and TaskItem match the API structure
 
 class TaskList extends StatefulWidget {
+  final TextEditingController _controler = TextEditingController();
   
 
-  const TaskList({super.key});
+  TaskList({super.key});
 
   @override
   _TaskListState createState() => _TaskListState();
 }
 
 class _TaskListState extends State<TaskList> {
-  final TextEditingController _controller = TextEditingController();
 
   // Instance of your TaskListModel
   final TaskListModel _model = TaskListModel();
@@ -44,6 +44,7 @@ class _TaskListState extends State<TaskList> {
 
   @override
   Widget build(BuildContext context) {
+    var _controller = widget._controler;
     return Center(
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.85,
@@ -60,6 +61,7 @@ class _TaskListState extends State<TaskList> {
                     ),
                   ),
                 ),
+                Container(width: 10,),
                 IconButton(
                   icon: const Icon(Icons.search),
                   onPressed: () {

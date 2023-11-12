@@ -13,7 +13,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  List<String> searchHistory = ['烤鸡', '小蛋糕', '小蛋糕', '小蛋糕', '小蛋糕', '小蛋糕', '小蛋糕', '小蛋糕', '小蛋糕']; // 示例数据，应从后端获取
+  List<String> searchHistory = ['环保', '志愿', '服务', '救援援助', '健康', '社区']; // 示例数据，应从后端获取
   TextEditingController searchController = TextEditingController();
 
   @override

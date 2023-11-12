@@ -116,6 +116,7 @@ class TaskService {
 
       if (response.statusCode == 200) {
         print("getUngradedCompletions gotten");
+        print(jsonDecode(response.body));
         List<dynamic> completionsJson =
             jsonDecode(response.body)['data']['list'];
         return completionsJson

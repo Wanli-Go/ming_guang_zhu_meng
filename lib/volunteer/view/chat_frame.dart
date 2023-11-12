@@ -33,7 +33,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 251, 232, 241),
       appBar: AppBar(
-        title: Text("Chat with ${child.name}"),
+        title: Text("和 ${child.name} 的聊天"),
         backgroundColor: const Color.fromARGB(255, 236, 130, 165),
       ),
       body: Column(

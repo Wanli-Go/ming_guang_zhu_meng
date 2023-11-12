@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 
 class SseService {
   StreamController<String>? _streamController;
@@ -11,7 +12,12 @@ class SseService {
     _client = http.Client();
     _streamController = StreamController();
 
-    _client.send(http.Request('GET', Uri.parse(url))).then((response) {
+    var _request = http.Request('GET', Uri.parse(url))
+      ..headers.addAll({
+        "token": global_token
+      });
+
+    _client.send(_request).then((response) {
       _subscription = response.stream
           .transform(const Utf8Decoder())
           .transform(const LineSplitter())
@@ -25,10 +31,4 @@ class SseService {
   }
 
   Stream<String> get stream => _streamController!.stream;
-
-  void close() {
-    _subscription.cancel();
-    _client.close();
-    _streamController!.close();
-  }
 }

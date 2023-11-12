@@ -168,7 +168,7 @@ class StudentInfo extends StatelessWidget {
                       height: MediaQuery.of(context).size.width * 0.3,
                       child: ClipOval(
                         child: Image.network(
-                          "$baseUrl/${kidStatus.photo}",
+                          "$baseUrl/pic/${kidStatus.photo}",
                           headers: {'token': global_token},
                         ),
                       ),

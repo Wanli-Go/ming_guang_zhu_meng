@@ -8,7 +8,7 @@ class LoginService {
     print("$username,$password,$type");
     try {
       final response = await http.post(
-        Uri.parse('$baseUrl/login'),//login
+        Uri.parse('$baseUrl/signin'),//login
         headers: {
           'Content-Type': 'application/json',
         },
@@ -30,7 +30,7 @@ class LoginService {
         return 'jdodojdjk';
       }
     } catch (e) { // Return Dummy Token
-      print("login e");
+      print("login e: $e");
       return 'jdodojdjk';
     }
   }

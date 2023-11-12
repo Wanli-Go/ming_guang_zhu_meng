@@ -114,7 +114,7 @@ class _SubmitDetailDialogState extends State<SubmitDetailDialog> {
                   child: Hero(
                       tag: widget.kidId,
                       child: Image.network(
-                        "$baseUrl/${widget.mediaUrl}",
+                        "$baseUrl/reply/file/${widget.mediaUrl}",
                         headers: {'token': global_token},
                       )),
                 ),
@@ -178,7 +178,10 @@ class ImageScreen extends StatelessWidget {
         child: Center(
           child: Hero(
             tag: tag,
-            child: Image.network(imageUrl),
+            child: Image.network(
+              "$baseUrl/reply/file/${imageUrl}",
+              headers: {'token': global_token},
+            ),
           ),
         ),
       ),
