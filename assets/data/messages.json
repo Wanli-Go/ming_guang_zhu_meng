@@ -1,0 +1,30 @@
+[
+    {
+        "content": "大哥哥你好！",
+        "time": "09:00",
+        "fromId": "1",
+        "toId": "0",
+        "isRead": true
+    },
+    {
+        "content": "同学你好呀",
+        "time": "09:01",
+        "fromId": "0",
+        "toId": "2",
+        "isRead": false
+    },
+    {
+        "content": "你们已经添加了好友，现在可以开始聊天了！",
+        "time": "07:01",
+        "fromId": "0",
+        "toId": "1",
+        "isRead": false
+    },
+    {
+        "content": "你们已经添加了好友，现在可以开始聊天了！",
+        "time": "08:02",
+        "fromId": "0",
+        "toId": "2",
+        "isRead": false
+    }
+]

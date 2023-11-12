@@ -8,7 +8,7 @@ class LoginService {
     print("$username,$password,$type");
     try {
       final response = await http.post(
-        Uri.parse('$baseUrl/login'),
+        Uri.parse('$baseUrl/login'),//login
         headers: {
           'Content-Type': 'application/json',
         },

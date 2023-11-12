@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/model/model_personal_info.dart';
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
 import 'package:ming_guang/volunteer/view_model/personal_info_model.dart';
 
@@ -35,7 +36,10 @@ class _MyHomePageState extends State<MyHomePage> {
         future: viewModel.getPersonalInfo(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator(color: highlight,));
+            return Center(
+                child: CircularProgressIndicator(
+              color: highlight,
+            ));
           }
           if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error.toString()}'));
@@ -62,7 +66,10 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           CircleAvatar(
             radius: 40,
-            backgroundImage: NetworkImage(personalInfo.photo),
+            backgroundImage: NetworkImage(
+              "$baseUrl/${personalInfo.photo}",
+              headers: {'token': global_token},
+            ),
             backgroundColor: Colors.transparent,
           ),
           const SizedBox(width: 16),
@@ -106,11 +113,26 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildDetailRow('性别', personalInfo.gender == 0 ? '女' : '男'), const Divider(color: appBarColor,),
-            _buildDetailRow('年龄', personalInfo.age.toString()),const Divider(color: appBarColor,),
-            _buildDetailRow('生日', personalInfo.birthday),const Divider(color: appBarColor,),
-            _buildDetailRow('地区', personalInfo.area),const Divider(color: appBarColor,),
-            _buildDetailRow('家乡', personalInfo.hometown),const Divider(color: appBarColor,),
+            _buildDetailRow('性别', personalInfo.gender == 0 ? '女' : '男'),
+            const Divider(
+              color: appBarColor,
+            ),
+            _buildDetailRow('年龄', personalInfo.age.toString()),
+            const Divider(
+              color: appBarColor,
+            ),
+            _buildDetailRow('生日', personalInfo.birthday),
+            const Divider(
+              color: appBarColor,
+            ),
+            _buildDetailRow('地区', personalInfo.area),
+            const Divider(
+              color: appBarColor,
+            ),
+            _buildDetailRow('家乡', personalInfo.hometown),
+            const Divider(
+              color: appBarColor,
+            ),
             const SizedBox(height: 20),
             Text(
               '简介:',
@@ -190,11 +212,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 DropdownButton<String>(
                   value: updatedSex,
                   onChanged: (String? newValue) {
-                    
-                      updatedSex = newValue!;
-          
+                    updatedSex = newValue!;
                   },
-                  items: ['男', '女'].map<DropdownMenuItem<String>>((String value) {
+                  items:
+                      ['男', '女'].map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -207,9 +228,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   initialValue: updatedAge.toString(),
                   keyboardType: TextInputType.number,
                   onChanged: (value) {
-          
-                      updatedAge = int.tryParse(value) ?? 0;
-          
+                    updatedAge = int.tryParse(value) ?? 0;
                   },
                 ),
                 const SizedBox(height: 10),
@@ -217,9 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextFormField(
                   initialValue: updatedBirthday,
                   onChanged: (value) {
-          
-                      updatedBirthday = value;
-          
+                    updatedBirthday = value;
                   },
                 ),
                 const SizedBox(height: 10),
@@ -227,9 +244,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextFormField(
                   initialValue: updatedArea,
                   onChanged: (value) {
-          
-                      updatedArea = value;
-          
+                    updatedArea = value;
                   },
                 ),
                 const SizedBox(height: 10),
@@ -237,9 +252,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextFormField(
                   initialValue: updatedHometown,
                   onChanged: (value) {
-          
-                      updatedArea = value;
-          
+                    updatedArea = value;
                   },
                 ),
                 const SizedBox(height: 10),
@@ -247,9 +260,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextFormField(
                   initialValue: updatedDescription,
                   onChanged: (value) {
-          
-                      updatedDescription = value;
-          
+                    updatedDescription = value;
                   },
                 ),
               ],

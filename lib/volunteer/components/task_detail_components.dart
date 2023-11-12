@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
 import 'package:ming_guang/volunteer/view_model/notifiers/notifier_update_task_info.dart';
 import 'package:ming_guang/volunteer/view_model/task_detail_model.dart';
@@ -100,14 +101,22 @@ class _SubmitDetailDialogState extends State<SubmitDetailDialog> {
                   ],
                 ),
               ),
-              const Text("点击图片可以放大", style: TextStyle(fontSize: 10, decoration: TextDecoration.overline),),
+              const Text(
+                "点击图片可以放大",
+                style: TextStyle(
+                    fontSize: 10, decoration: TextDecoration.overline),
+              ),
               GestureDetector(
                 onTap: () => widget.model
                     .scalePic(context, widget.mediaUrl, widget.kidId),
                 child: SizedBox(
                   height: 200,
                   child: Hero(
-                      tag: widget.kidId, child: Image.network(widget.mediaUrl)),
+                      tag: widget.kidId,
+                      child: Image.network(
+                        "$baseUrl/${widget.mediaUrl}",
+                        headers: {'token': global_token},
+                      )),
                 ),
               ),
               Row(

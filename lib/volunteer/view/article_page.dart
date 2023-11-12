@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 import 'package:ming_guang/volunteer/themes/community_theme.dart';
 import 'package:ming_guang/volunteer/view_model/article_detail_model.dart';
 import '../model/model_article_detail.dart';
@@ -126,8 +127,9 @@ class DetailColumn extends StatelessWidget {
                                 const EdgeInsets.only(top: 5.0), // 图片之间的垂直间隔
                             child: Center(
                               // 使用Center来水平居中Image
-                              child: Image.asset(
-                                example.contentPic,
+                              child: Image.network(
+                                "$baseUrl/${example.contentPic}",
+                                headers: {'token': global_token},
                                 width: 250,
                                 height: 250,
                                 fit: BoxFit.cover,
@@ -188,7 +190,6 @@ class DetailColumn extends StatelessWidget {
                                 content: Text('评论已发送，待审核'),
                               ),
                             );
-                            
                           },
                         ),
                       ],

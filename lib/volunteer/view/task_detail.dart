@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/components/task_detail_components.dart';
 import 'package:ming_guang/volunteer/model/TaskItem.dart';
 import 'package:ming_guang/volunteer/model/model_mission_detail.dart';
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 import 'package:ming_guang/volunteer/services/tasks_service.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
 import 'package:ming_guang/volunteer/view_model/notifiers/notifier_update_task_info.dart';
@@ -42,80 +43,81 @@ class _TaskDetailPageState extends State<TaskDetailPage> {
         ),
         actions: const [Icon(Icons.abc, size: 50, color: Colors.transparent)],
       ),
-      body: Consumer<TaskInfoUpdateNotifier>(
-        builder: (context, notifier, c) {
-          return Column(
-            children: [
-              FutureBuilder<MissionDetail>(
-                future: model.fetchMissionDetail(widget.taskItem.id),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Expanded(
-                      flex: 10,
-                      child: Center(
-                          child: CircularProgressIndicator(
-                        color: highlight,
-                      )),
-                    );
-                  }
-                  if (snapshot.hasError) {
-                    return Expanded(
-                      flex: 10,
-                      child: Center(child: Text('Error: ${snapshot.error}')),
-                    );
-                  }
-                  if (!snapshot.hasData) {
-                    return const Expanded(
-                      flex: 10,
-                      child: Center(child: Text('加载失败！')),
-                    );
-                  }
-                  final missionDetail = snapshot.data!;
+      body: Consumer<TaskInfoUpdateNotifier>(builder: (context, notifier, c) {
+        return Column(
+          children: [
+            FutureBuilder<MissionDetail>(
+              future: model.fetchMissionDetail(widget.taskItem.id),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
                   return Expanded(
                     flex: 10,
-                    child: DetailCard(missionDetail: missionDetail, notifier: notifier,),
+                    child: Center(
+                        child: CircularProgressIndicator(
+                      color: highlight,
+                    )),
+                  );
+                }
+                if (snapshot.hasError) {
+                  return Expanded(
+                    flex: 10,
+                    child: Center(child: Text('Error: ${snapshot.error}')),
+                  );
+                }
+                if (!snapshot.hasData) {
+                  return const Expanded(
+                    flex: 10,
+                    child: Center(child: Text('加载失败！')),
+                  );
+                }
+                final missionDetail = snapshot.data!;
+                return Expanded(
+                  flex: 10,
+                  child: DetailCard(
+                    missionDetail: missionDetail,
+                    notifier: notifier,
+                  ),
+                );
+              },
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(),
+            ),
+            Expanded(
+              flex: 12,
+              child: FutureBuilder<List<UngradedCompletion>>(
+                future: model.fetchUngradedCompletions(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                        child: CircularProgressIndicator(
+                      color: highlight,
+                    ));
+                  }
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  }
+                  if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(child: Text('未发现待批改作业'));
+                  }
+                  final completions = snapshot.data!;
+                  return UngradedCompletionsList(
+                    completions: completions,
+                    model: model,
+                    missionId: widget.taskItem.id,
+                    notifier: notifier,
                   );
                 },
               ),
-              Expanded(
-                flex: 1,
-                child: Container(),
-              ),
-              Expanded(
-                flex: 12,
-                child: FutureBuilder<List<UngradedCompletion>>(
-                  future: model.fetchUngradedCompletions(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                          child: CircularProgressIndicator(
-                        color: highlight,
-                      ));
-                    }
-                    if (snapshot.hasError) {
-                      return Center(child: Text('Error: ${snapshot.error}'));
-                    }
-                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return const Center(child: Text('未发现待批改作业'));
-                    }
-                    final completions = snapshot.data!;
-                    return UngradedCompletionsList(
-                      completions: completions,
-                      model: model,
-                      missionId: widget.taskItem.id,
-                      notifier: notifier,
-                    );
-                  },
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(),
-              ),
-            ],
-          );
-        }
-      ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(),
+            ),
+          ],
+        );
+      }),
     );
   }
 }
@@ -124,7 +126,9 @@ class DetailCard extends StatelessWidget {
   final MissionDetail missionDetail;
   final TaskInfoUpdateNotifier notifier;
 
-  const DetailCard({Key? key, required this.missionDetail, required this.notifier}) : super(key: key);
+  const DetailCard(
+      {Key? key, required this.missionDetail, required this.notifier})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +179,8 @@ class UngradedCompletionsList extends StatelessWidget {
       {Key? key,
       required this.completions,
       required this.missionId,
-      required this.model, required this.notifier})
+      required this.model,
+      required this.notifier})
       : super(key: key);
 
   @override
@@ -208,9 +213,10 @@ class UngradedCompletionsList extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     image: DecorationImage(
-                      image: 
-                      NetworkImage(
-                          completion.kidPic), // Assume kidPic is a URL
+                      image: NetworkImage(
+                        "$baseUrl/${completion.kidPic}",
+                        headers: {'token': global_token},
+                      ), // Assume kidPic is a URL
                       fit: BoxFit.cover,
                     ),
                     shape: BoxShape.rectangle,

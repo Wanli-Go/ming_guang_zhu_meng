@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/volunteer/model/model.dart';
+import 'package:ming_guang/volunteer/model/model_message.dart';
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
 import 'package:ming_guang/volunteer/view_model/home_page_model.dart';
 import 'package:ming_guang/volunteer/view_model/notifiers/notifier_bottom_nav.dart';
@@ -22,7 +23,6 @@ class HomePageBody extends StatefulWidget {
 }
 
 class _HomePageBodyState extends State<HomePageBody> {
-
   @override
   void initState() {
     super.initState();
@@ -94,38 +94,36 @@ class _HomePageBodyState extends State<HomePageBody> {
               FutureBuilder<KidRecentDto>(
                 future: model.fetchShortRecent(), // Here you call the method
                 builder: (context, snapshot) {
-
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     // Show loading indicator while waiting for the data
-                    return  Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.15,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
+                    return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                          gradient: gradientDecoration,
                         ),
-                        gradient: gradientDecoration,
-                      ),
-                      child:Center(child: CircularProgressIndicator(color: highlight,)));
-                  } 
-                  
-                  else if (snapshot.hasError) {
+                        child: Center(
+                            child: CircularProgressIndicator(
+                          color: highlight,
+                        )));
+                  } else if (snapshot.hasError) {
                     // Show error message if something went wrong
-                    return  Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height * 0.15,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
+                    return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.15,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                          gradient: gradientDecoration,
                         ),
-                        gradient: gradientDecoration,
-                      ),
-                      child:const Center(child: Text('加载近况失败')));
-                  } 
-                  
-                  else if (snapshot.hasData) {
+                        child: const Center(child: Text('加载近况失败')));
+                  } else if (snapshot.hasData) {
                     // Once the data is available, build the UI
                     final kidRecent = snapshot.data!;
                     return Container(
@@ -144,8 +142,10 @@ class _HomePageBodyState extends State<HomePageBody> {
                             padding: const EdgeInsets.all(15),
                             child: CircleAvatar(
                               radius: MediaQuery.of(context).size.width * 0.14,
-                              backgroundImage: NetworkImage(kidRecent
-                                  .photo), // Use the photo from the data
+                              backgroundImage: NetworkImage(
+                                "$baseUrl/${kidRecent.photo}",
+                                headers: {'token': global_token},
+                              ), // Use the photo from the data
                             ),
                           ),
                           Expanded(
@@ -177,7 +177,9 @@ class _HomePageBodyState extends State<HomePageBody> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 15,)
+                          const SizedBox(
+                            width: 15,
+                          )
                         ],
                       ),
                     );
@@ -233,7 +235,7 @@ class _HomePageBodyState extends State<HomePageBody> {
               ),
 
               //我的任务展示框
-              TaskRatioDisplay(tasks: task_list, model: model),
+              TaskRatioDisplay(model: model),
             ],
           ),
         ),

@@ -21,7 +21,7 @@ class MainView extends StatelessWidget {
 
   MainView({super.key});
 
-  static const model = MainModel();
+  static final model = MainModel();
 
   @override
   Widget build(BuildContext context) {

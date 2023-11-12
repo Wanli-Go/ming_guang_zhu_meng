@@ -1,20 +1,15 @@
-import 'dart:ffi';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:ming_guang/volunteer/model/model.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
 import 'package:ming_guang/volunteer/view_model/home_page_model.dart';
 import 'package:ming_guang/volunteer/view_model/notifiers/notifier_update_task_info.dart';
 import 'package:provider/provider.dart';
 
 class TaskRatioDisplay extends StatefulWidget {
-  final List<Task> tasks;
   final HomePageModel model;
 
   const TaskRatioDisplay({
     Key? key,
-    required this.tasks,
     required this.model,
   }) : super(key: key);
 

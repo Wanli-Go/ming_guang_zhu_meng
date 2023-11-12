@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/model/comment.dart';
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 
 class CommentsList extends StatelessWidget {
   final List<Comment> comments;
@@ -8,8 +9,8 @@ class CommentsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: comments.length,
         itemBuilder: (context, index) {
           return Padding(
@@ -30,32 +31,39 @@ class CommentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10), // Increased the border radius for a softer look
+        borderRadius: BorderRadius.circular(
+            10), // Increased the border radius for a softer look
         side: const BorderSide(
           color: Color.fromARGB(255, 234, 226, 226),
           width: 1,
         ),
       ),
       elevation: 5, // Added elevation for a subtle shadow
-      margin: const EdgeInsets.all(10), // Added margin for spacing between cards
+      margin:
+          const EdgeInsets.all(10), // Added margin for spacing between cards
       child: Padding(
-        padding: const EdgeInsets.all(12), // Adjusted padding for better spacing
+        padding:
+            const EdgeInsets.all(12), // Adjusted padding for better spacing
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row( // Using Row to layout the avatar and user details horizontally
+            Row(
+              // Using Row to layout the avatar and user details horizontally
               children: [
                 ClipOval(
-                  child: Image.network( // Changed to Image.network for loading images from URLs
+                  child: Image.network(
+                    // Changed to Image.network for loading images from URLs
                     //com.profileUrl,
-                    "https://cdn.pixabay.com/photo/2022/10/24/02/52/child-7542535_1280.jpg",
+                    "$baseUrl/${com.profileUrl}",
+                    headers: {'token': global_token},
                     width: 40,
                     height: 40,
                     fit: BoxFit.fitWidth,
                   ),
                 ),
                 SizedBox(width: 10), // Added a SizedBox for spacing
-                Expanded( // Wrapped in Expanded for proper layout
+                Expanded(
+                  // Wrapped in Expanded for proper layout
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -78,7 +86,9 @@ class CommentCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 10), // Added spacing between the header and the comment content
+            SizedBox(
+                height:
+                    10), // Added spacing between the header and the comment content
             Text(
               com.comments,
               style: TextStyle(fontSize: 14),

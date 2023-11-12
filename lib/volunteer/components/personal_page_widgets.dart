@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ming_guang/volunteer/model/modelVolunteer.dart';
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
+
 class TopWidget extends StatelessWidget {
   const TopWidget({
     super.key,
@@ -37,8 +39,12 @@ class TopWidget extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
               child: CircleAvatar(
-                radius: size.width * 0.14, // Slightly smaller to fit the height of the container
-                backgroundImage: AssetImage(volunteerPerson.imageUrl),
+                radius: size.width *
+                    0.14, // Slightly smaller to fit the height of the container
+                backgroundImage: NetworkImage(
+                  "$baseUrl/${volunteerPerson.imageUrl}",
+                  headers: {'token': global_token},
+                ),
               ),
             ),
             Expanded(
@@ -51,7 +57,8 @@ class TopWidget extends StatelessWidget {
                     Text(
                       volunteerPerson.name,
                       style: TextStyle(
-                        fontSize: size.width * 0.05, // Adjust the font size relative to the screen width
+                        fontSize: size.width *
+                            0.05, // Adjust the font size relative to the screen width
                         fontWeight: FontWeight.bold,
                         color: highlight,
                       ),
@@ -86,13 +93,15 @@ class TopWidget extends StatelessWidget {
   }
 }
 
-
 Widget buildDetailRow(IconData icon, String label, String value) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
     child: Row(
       children: [
-        Icon(icon, color: highlight,),
+        Icon(
+          icon,
+          color: highlight,
+        ),
         const SizedBox(width: 8),
         Text(
           '$label: ',

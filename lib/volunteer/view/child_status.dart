@@ -5,6 +5,7 @@ import 'package:ming_guang/volunteer/model/X_LC.dart';
 import 'package:ming_guang/volunteer/model/Y_LC.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:ming_guang/volunteer/model/model_kid_recent.dart';
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 import 'package:ming_guang/volunteer/themes/main_theme.dart';
 import 'package:ming_guang/volunteer/view_model/home_page_model.dart';
 
@@ -53,8 +54,7 @@ class _ChildSituationPageState extends State<ChildSituationPage> {
                       const LinearProgressIndicator(
                         minHeight: 15,
                         value: 0.85,
-                        backgroundColor:
-                            Color.fromARGB(255, 244, 242, 242),
+                        backgroundColor: Color.fromARGB(255, 244, 242, 242),
                         valueColor: AlwaysStoppedAnimation<Color>(
                             Color.fromARGB(255, 151, 98, 179)),
                       ),
@@ -68,21 +68,27 @@ class _ChildSituationPageState extends State<ChildSituationPage> {
                       const LinearProgressIndicator(
                         minHeight: 14,
                         value: 0.43,
-                        backgroundColor:
-                            Color.fromARGB(255, 240, 238, 239),
+                        backgroundColor: Color.fromARGB(255, 240, 238, 239),
                         valueColor: AlwaysStoppedAnimation<Color>(
                             Color.fromARGB(255, 239, 132, 225)),
                       ),
                       const SizedBox(
-                          height: 25,),
+                        height: 25,
+                      ),
                       Container(
                           margin: const EdgeInsets.all(5),
                           decoration: BoxDecoration(
-                            border: Border.all(width: 2, color: Colors.white.withOpacity(0.6)),
+                            border: Border.all(
+                                width: 2, color: Colors.white.withOpacity(0.6)),
                             color: highlight.withOpacity(0.5),
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          height: 50, child: const Center(child: Text('班级排名图',style: TextStyle(fontSize: 20),))),
+                          height: 50,
+                          child: const Center(
+                              child: Text(
+                            '班级排名图',
+                            style: TextStyle(fontSize: 20),
+                          ))),
 
                       //展示图,曲线柱形图
 
@@ -144,59 +150,63 @@ class StudentInfo extends StatelessWidget {
         gradient: gradientDecoration,
       ),
       child: FutureBuilder<KidRecentDto>(
-        future: model.fetchShortRecent(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator(color: highlight),);
-          }
-          final kidStatus = snapshot.data!;
-          return Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Center(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    height: MediaQuery.of(context).size.width * 0.3,
-                    child: ClipOval(
-                      child: Image.network(kidStatus.photo),
+          future: model.fetchShortRecent(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(color: highlight),
+              );
+            }
+            final kidStatus = snapshot.data!;
+            return Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Center(
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.width * 0.3,
+                      child: ClipOval(
+                        child: Image.network(
+                          "$baseUrl/${kidStatus.photo}",
+                          headers: {'token': global_token},
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Container(
-                  //color: Colors.amber,
-                  padding: EdgeInsets.only(left: size.width * 0.1),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 25),
-                      Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Text(
-                          kidStatus.name,
-                          style: const TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Container(
+                    //color: Colors.amber,
+                    padding: EdgeInsets.only(left: size.width * 0.1),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 25),
+                        Padding(
+                          padding: const EdgeInsets.all(0),
+                          child: Text(
+                            kidStatus.name,
+                            style: const TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      Expanded(
-                        child: Text(
-                          kidStatus.recent,
-                          style: const TextStyle(fontSize: 14),
+                        const SizedBox(height: 20),
+                        Expanded(
+                          child: Text(
+                            kidStatus.recent,
+                            style: const TextStyle(fontSize: 14),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          );
-        }
-      ),
+              ],
+            );
+          }),
     );
   }
 }
@@ -302,8 +312,6 @@ extension IterableNumExtension on Iterable<num> {
   }
 }
 
-
-
 //柱状图
 class BarChartWidget extends StatelessWidget {
   final List<X_LC> xValues;
@@ -325,7 +333,7 @@ class BarChartWidget extends StatelessWidget {
         child: BarChart(
           BarChartData(
             alignment: BarChartAlignment.spaceAround,
-            maxY: yValues.map((e) => e.y).reduce(max).toDouble()+1,
+            maxY: yValues.map((e) => e.y).reduce(max).toDouble() + 1,
             barTouchData: BarTouchData(
               touchTooltipData: BarTouchTooltipData(
                   tooltipBgColor: Colors.blueGrey,

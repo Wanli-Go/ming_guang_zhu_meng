@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ming_guang/volunteer/model/model.dart';
+import 'package:ming_guang/volunteer/model/model_message.dart';
+import 'package:ming_guang/volunteer/view_model/chat_frame_model.dart';
 import 'package:ming_guang/volunteer/view_model/notifiers/notifier_message.dart';
 import 'package:provider/provider.dart';
 
 class ChatScreen extends StatefulWidget {
-  final String userId;
-  final String toId;
+  final String userId = "0";
+  final Child child;
+  final ChatFrameModel model;
 
-  const ChatScreen({Key? key, required this.userId, required this.toId}) : super(key: key);
+  const ChatScreen({Key? key, required this.child, required this.model}) : super(key: key);
 
   @override
   _ChatScreenState createState() => _ChatScreenState(userId: userId);
@@ -27,18 +29,19 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var child = widget.child;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 251, 232, 241),
       appBar: AppBar(
-        title: Text("Chat with ${getChildName(widget.toId)}"),
+        title: Text("Chat with ${child.name}"),
         backgroundColor: const Color.fromARGB(255, 236, 130, 165),
       ),
       body: Column(
         children: <Widget>[
           Expanded(
             child: Consumer<MessageNotifier>(
-              builder: (context, messageNotifier, child) {
-                List<Message> messages = messageNotifier.messagesForConversation(widget.userId, widget.toId);
+              builder: (context, messageNotifier, c) {
+                List<Message> messages = messageNotifier.messagesForConversation(widget.userId, child.id);
 
                 // Scroll to the bottom on new message event
                 WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -88,18 +91,13 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           MessageInputWidget(
             onSend: (String content) {
-              Provider.of<MessageNotifier>(context, listen: false).sendMessage(content, widget.userId, widget.toId);
+              widget.model.sendMessagetoServer(content);
+              Provider.of<MessageNotifier>(context, listen: false).sendMessage(content, widget.userId, child.id);
             },
           ),
         ],
       ),
     );
-  }
-
-  // Helper function to get child's name
-  String getChildName(String childId) {
-    // You would typically look up the child's name from your data model
-    return childs.firstWhere((child) => child.id == childId).name;
   }
 }
 
@@ -119,7 +117,7 @@ class MessageInputWidget extends StatelessWidget {
           Expanded(
             child: TextField(
               controller: _controller,
-              decoration: const InputDecoration(hintText: "Type a message"),
+              decoration: const InputDecoration(hintText: "输入一个消息..."),
             ),
           ),
           IconButton(

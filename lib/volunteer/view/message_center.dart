@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:ming_guang/volunteer/services/base/base_url.dart';
 import 'package:ming_guang/volunteer/view/chat_frame.dart';
+import 'package:ming_guang/volunteer/view_model/chat_frame_model.dart';
 import 'package:ming_guang/volunteer/view_model/notifiers/notifier_message.dart';
 import 'package:provider/provider.dart';
-import '../model/model.dart';
+import '../components/text_fade.dart';
+import '../model/model_message.dart';
 
 class MessageCenter extends StatelessWidget {
-  const MessageCenter({super.key});
+  final List<Child> children;
+  const MessageCenter({super.key, required this.children});
 
   @override
   Widget build(BuildContext context) {
@@ -13,19 +17,33 @@ class MessageCenter extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 251, 232, 241),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 236, 130, 165),
-        title: Center(child: Text("消息中心")),
+        title: const Center(child: Text("消息中心")),
         actions: const [Icon(Icons.abc, size: 50, color: Colors.transparent)],
       ),
-      body: const MCColumn(),
+      body: MCColumn(
+        children: children,
+      ),
     );
   }
 }
 
-class MCColumn extends StatelessWidget {
-  const MCColumn({super.key});
+class MCColumn extends StatefulWidget {
+  final List<Child> children;
+  List<ChatFrameModel> models = [];
+  MCColumn({super.key, required this.children});
 
   @override
+  State<MCColumn> createState() => _MCColumnState();
+}
+
+class _MCColumnState extends State<MCColumn> {
+  @override
   Widget build(BuildContext context) {
+    for (var element in widget.children) {
+      widget.models.add(ChatFrameModel(childId: element.id, context: context));
+    }
+
+    var childs = widget.children;
     return Consumer<MessageNotifier>(builder: (context, notifier, child) {
       return ListView.builder(
         itemCount: childs.length,
@@ -33,7 +51,11 @@ class MCColumn extends StatelessWidget {
           return Column(children: [
             Padding(
               padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.06),
-              child: SubjectContainer(index: index, notifier: notifier),
+              child: SubjectContainer(
+                child: childs[index],
+                notifier: notifier,
+                model: widget.models[index],
+              ),
             )
           ]);
         },
@@ -43,18 +65,22 @@ class MCColumn extends StatelessWidget {
 }
 
 class SubjectContainer extends StatelessWidget {
-  final int index;
+  final ChatFrameModel model;
+  final Child child;
   final MessageNotifier notifier;
 
   const SubjectContainer(
-      {required this.index, required this.notifier, super.key});
+      {required this.notifier,
+      super.key,
+      required this.child,
+      required this.model});
 
   List<dynamic> _getFirstMessage(List<Message> messageList) {
     String result = "";
     Color color = Colors.black;
     for (var element in messageList) {
-      var received = element.fromId == childs[index].id;
-      var sent = element.fromId == user.id && element.toId == childs[index].id;
+      var received = element.fromId == child.id;
+      var sent = element.fromId == "0" && element.toId == child.id;
       if (received || sent) {
         if (sent) {
           result += "→  ";
@@ -66,7 +92,7 @@ class SubjectContainer extends StatelessWidget {
         break;
       }
     }
-    return [result, color];
+    return result != "" ? [result, color] : ["暂无新消息", color];
   }
 
   @override
@@ -125,8 +151,11 @@ class SubjectContainer extends StatelessWidget {
                                   width: 2.5)),
                           child: CircleAvatar(
                             radius: size.width * 0.1,
-                            backgroundImage: childs[index].imageLink != null
-                                ? NetworkImage(childs[index].imageLink!)
+                            backgroundImage: child.imageLink != null
+                                ? NetworkImage(
+                                    "$baseUrl/${child.imageLink!}",
+                                    headers: {'token': global_token},
+                                  )
                                 : const AssetImage("assets/default.png")
                                     as ImageProvider<Object>,
                           )),
@@ -138,7 +167,7 @@ class SubjectContainer extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            childs[index].name,
+                            child.name,
                             softWrap: false,
                             style: TextStyle(
                               //color: Color.fromARGB(255, 255, 42, 42).withOpacity(0.6),
@@ -154,7 +183,7 @@ class SubjectContainer extends StatelessWidget {
                               color: Colors.black,
                               fontWeight: FontWeight.normal,
                               fontSize: 15,
-                              text: childs[index].description ?? "无信息可用  "),
+                              text: child.description ?? "无信息可用  "),
                         ],
                       ),
                     ),
@@ -181,11 +210,17 @@ class SubjectContainer extends StatelessWidget {
               top: 52,
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => ChatScreen(
-                          key: UniqueKey(),
-                          userId: user.id,
-                          toId: childs[index].id)));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                    return ChatScreen(
+                      key: UniqueKey(),
+                      child: child,
+                      model: model,
+                    );
+                  })).then((value) {
+                    notifier.see(childId: child.id);
+                    Provider.of<MessageNotifier>(context, listen: false)
+                        .saveMessagesToFile();
+                  });
                 },
                 child: Container(
                     decoration: BoxDecoration(
@@ -197,55 +232,6 @@ class SubjectContainer extends StatelessWidget {
                         size: 50, color: Colors.pinkAccent)),
               ))
         ],
-      ),
-    );
-  }
-}
-
-class TextFade extends StatelessWidget {
-  final String text;
-  final Color color;
-  double? fontSize;
-  FontWeight? fontWeight;
-  TextFade({
-    required this.color,
-    required this.text,
-    this.fontSize,
-    this.fontWeight,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // 这是用 ChatGPT 生成的一个文本组件，实现了当文本过长时自动淡出的效果。
-      // 多多利用 ChatGPT 达到类似的效果、提高开发效率。
-      // padding: const EdgeInsets.symmetric(horizontal: 16.0), // Padding for the container
-      child: ShaderMask(
-        shaderCallback: (Rect bounds) {
-          return const LinearGradient(
-            colors: [Colors.white, Colors.transparent],
-            stops: [
-              0.90,
-              1.0
-            ], // 90% of the text will be fully visible, the last 10% will fade out
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-          ).createShader(bounds);
-        },
-        blendMode: BlendMode
-            .dstIn, // This blend mode will apply the gradient as a mask
-        child: Text(
-          text,
-          softWrap: false,
-          overflow:
-              TextOverflow.clip, // Clip the overflow to ensure the fade effect
-          style: TextStyle(
-            fontSize: (fontSize ?? 14.0),
-            fontWeight: fontWeight ?? FontWeight.bold,
-            color: color,
-          ),
-        ),
       ),
     );
   }

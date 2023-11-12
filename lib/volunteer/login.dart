@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
     const int type = 3; // Volunteer app
 
     try {
-      final bool result = await model.login(username, password, type);
+      final bool result = await model.login(username, password, type, context);
 
       if (mounted) {
         setState(() => _isLoading = false);
